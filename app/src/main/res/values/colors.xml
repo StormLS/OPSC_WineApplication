@@ -14,4 +14,7 @@
     <color name="customColourThree">#989898</color>
     <color name="customColourFour">#AE003F</color>
     <color name="customColourFive">#9DBEB9</color>
+
+    <color name="grey">#636363</color>
+    <color name="lightgrey">#979797</color>
 </resources>
