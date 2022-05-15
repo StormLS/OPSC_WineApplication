@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -154,6 +155,12 @@ public class dashboard extends AppCompatActivity
     {
         //Redirect activity to About Us
         redirectActivity(this, AboutUs.class);
+    }
+
+    public void ClickSettings(View view)
+    {
+        //Redirect activity to About Us
+        redirectActivity(this, Settings.class);
     }
 
     public void ClickLogout(View view)
