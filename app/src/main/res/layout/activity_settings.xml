@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".settings">
+    tools:context=".settings"
+    android:background="@color/customColourOne.5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,13 +15,345 @@
         android:orientation="vertical">
         <include
             layout="@layout/main_toolbar"/>
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Settings"
-            android:textSize="50sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="395dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="left|center_horizontal"
+                        android:stateListAnimator="@null"
+                        android:text="Account"
+                        android:textSize="18sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Current Email: "
+                                android:gravity="center">
+
+                            </TextView>
+
+                            <EditText
+                                android:id="@+id/editTextTextPersonName1"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:layout_width="80dp"
+                                android:layout_height="50dp"
+                                android:text="Update">
+                            </androidx.appcompat.widget.AppCompatButton>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="395dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="left|center_horizontal"
+                            android:stateListAnimator="@null"
+                            android:text="Themes"
+                            android:textSize="18sp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:layout_marginRight="10dp"
+                                    android:text="Theme 1: "
+                                    android:gravity="center">
+                                </TextView>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourOne">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourTwo">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourThree">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourFour">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourFive">
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/ThemeOne"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Active"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:layout_marginRight="10dp"
+                                    android:text="Theme 2: "
+                                    android:gravity="center">
+                                </TextView>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourOne">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourTwo">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourThree">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourFour">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourFive">
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/ThemeTwo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Active"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:layout_marginRight="10dp"
+                                    android:text="Theme 3: "
+                                    android:gravity="center">
+                                </TextView>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourOne">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourTwo">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourThree">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourFour">
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/customColourFive">
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/ThemeThree"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Active"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="395dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="left|center_horizontal"
+                            android:stateListAnimator="@null"
+                            android:text="User Feedback"
+                            android:textSize="18sp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="To help us improve our help please direct all feedback to our support email at the link provided below. Thank you!"
+                                android:gravity="center_vertical">
+                            </TextView>
+                            <TextView
+                                android:id="@+id/hyperlink"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/support_hyperlink">
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="395dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="left|center_horizontal"
+                            android:stateListAnimator="@null"
+                            android:text="Privacy Policy"
+                            android:textSize="18sp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="The following in the Wine Compendium Privacy Policy:"
+                                android:gravity="center_vertical">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="300dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:text="Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah ">
+
+                            </TextView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
@@ -29,8 +362,7 @@
         android:layout_gravity="start"
         android:background="@android:color/white">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+        <include layout="@layout/main_nav_drawer" />
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WineCompendium</string>
+
+    <string name="support_hyperlink">Help Us Improve Our App!\n<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQab_channel=RickAstley">WineCompendium.com</a></string>
 </resources>

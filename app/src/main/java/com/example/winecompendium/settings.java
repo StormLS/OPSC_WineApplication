@@ -6,7 +6,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.TextView;
 
 public class settings extends AppCompatActivity
 {
@@ -18,6 +20,7 @@ public class settings extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        setupHyperlink();
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -97,5 +100,10 @@ public class settings extends AppCompatActivity
         super.onPause();
         //Close drawer
         dashboard.closeDrawer(drawerLayout);
+    }
+
+    private void setupHyperlink() {
+        TextView linkTextView = findViewById(R.id.hyperlink);
+        linkTextView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }
