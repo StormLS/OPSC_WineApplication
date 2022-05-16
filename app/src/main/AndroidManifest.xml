@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.winecompendium">
 
     <application
@@ -17,7 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".login"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".faq"
             android:exported="false" />
@@ -46,5 +47,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

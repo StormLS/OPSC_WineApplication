@@ -160,7 +160,7 @@ public class dashboard extends AppCompatActivity
     public void ClickSettings(View view)
     {
         //Redirect activity to About Us
-        redirectActivity(this, Settings.class);
+        redirectActivity(this, settings.class);
     }
 
     public void ClickLogout(View view)
@@ -230,7 +230,7 @@ public class dashboard extends AppCompatActivity
             drawerLayout.closeDrawer(GravityCompat.START);
         }else
         {
-            super.onBackPressed();
+            logout(this);
         }
     }
 }

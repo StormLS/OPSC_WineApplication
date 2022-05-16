@@ -5,6 +5,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 public class analytics extends AppCompatActivity
@@ -72,6 +73,12 @@ public class analytics extends AppCompatActivity
     public void ClickAboutUs(View view)
     {
         dashboard.redirectActivity(this, AboutUs.class);
+    }
+
+    public void ClickSettings(View view)
+    {
+        //Redirect activity to About Us
+        dashboard.redirectActivity(this, settings.class);
     }
     //--------------------------------- Navigation Management Code ---------------------------------
 

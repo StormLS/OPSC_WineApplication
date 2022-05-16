@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 public class categories extends AppCompatActivity
@@ -77,6 +78,12 @@ public class categories extends AppCompatActivity
     public void ClickAboutUs(View view)
     {
         dashboard.redirectActivity(this, AboutUs.class);
+    }
+
+    public void ClickSettings(View view)
+    {
+        //Redirect activity to About Us
+        dashboard.redirectActivity(this, settings.class);
     }
     //--------------------------------- Navigation Management Code ---------------------------------
 

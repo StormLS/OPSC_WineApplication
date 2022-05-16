@@ -16,6 +16,18 @@
         <include
             layout="@layout/main_toolbar"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Collections"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp">
+
+        </TextView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,37 +35,40 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp">
-                <Button
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_mycollectionsOne"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom"
                     android:background="@drawable/custom_btn_mycollections_button_active"
                     android:text="All wines"
                     android:textSize="10dp"
                     android:textColor="@color/white">
-                </Button>
-                <Button
+                </androidx.appcompat.widget.AppCompatButton>
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_mycollectionsTwo"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom"
                     android:background="@drawable/custom_btn_mycollections_button_notactive"
                     android:text="Add Wine"
                     android:textSize="10dp"
                     android:textColor="@color/white">
-                </Button>
-                <Button
+                </androidx.appcompat.widget.AppCompatButton>
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_mycollectionsThree"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom"
                     android:background="@drawable/custom_btn_mycollections_button_notactive"
                     android:text="Favourites"
                     android:textSize="10dp"
                     android:textColor="@color/white">
-                </Button>
+                </androidx.appcompat.widget.AppCompatButton>
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp">
-                        <Button
+                        <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/filter"
                             android:layout_marginRight="10dp"
                             android:layout_width="100dp"
@@ -79,8 +94,8 @@
                             android:background="@drawable/custom_btn_filter"
                             android:text="Filter"
                             android:textSize="10dp">
-                        </Button>
-                        <Button
+                        </androidx.appcompat.widget.AppCompatButton>
+                        <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/sortby"
                             android:layout_width="100dp"
                             android:layout_height="30dp"
@@ -88,7 +103,7 @@
                             android:background="@drawable/custom_btn_sortby"
                             android:text="Sort By"
                             android:textSize="10dp">
-                        </Button>
+                        </androidx.appcompat.widget.AppCompatButton>
                     </LinearLayout>
 
                     <ImageButton
@@ -114,6 +129,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Current number of wines: 0">
                     </TextView>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -168,14 +184,14 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="30dp"
-                                            android:text="Red Red Red Wine!!!">
+                                            android:text="Example Wine">
                                         </TextView>
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="10dp"
-                                            android:text="This wine is made from the redyest grapes on the planet of earth.">
+                                            android:text="The description of a wine will go here.">
                                         </TextView>
 
                                         <LinearLayout
@@ -183,7 +199,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="20dp">
 
-                                            <Button
+                                            <androidx.appcompat.widget.AppCompatButton
                                                 android:layout_width="60dp"
                                                 android:layout_height="32dp"
                                                 android:layout_gravity="center"
@@ -192,9 +208,9 @@
                                                 android:textColor="@color/customColourFour"
                                                 android:textSize="10dp">
 
-                                            </Button>
+                                            </androidx.appcompat.widget.AppCompatButton>
 
-                                            <Button
+                                            <androidx.appcompat.widget.AppCompatButton
                                                 android:layout_width="64dp"
                                                 android:layout_height="32dp"
                                                 android:layout_gravity="center"
@@ -203,7 +219,7 @@
                                                 android:textColor="@color/customColourFour"
                                                 android:background="@color/customColourFive">
 
-                                            </Button>
+                                            </androidx.appcompat.widget.AppCompatButton>
                                             <ImageButton
                                                 android:layout_width="50dp"
                                                 android:layout_height="48dp"
@@ -219,6 +235,7 @@
 
 
                         </GridLayout>
+
                     </ScrollView>
                 </LinearLayout>
             </LinearLayout>
