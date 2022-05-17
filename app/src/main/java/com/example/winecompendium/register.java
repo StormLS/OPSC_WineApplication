@@ -155,7 +155,7 @@ public class register extends AppCompatActivity
                             Log.d(TAG, "createUserWithEmail:success");
 
                             sendVerificationEmail();
-                            addUsertoDatabase(_name, _surname, _Email, _password, mAuth.getCurrentUser().getUid().toString());
+                            addUsertoDatabase(_name, _surname, _Email, mAuth.getCurrentUser().getUid().toString());
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -228,12 +228,12 @@ public class register extends AppCompatActivity
 
     //-------------------------- Method to add the user data to firestore firebase -----------------
 
-    private void  addUsertoDatabase(String _fname, String _lname, String _email, String _pass, String _id) {
+    private void  addUsertoDatabase(String _fname, String _lname, String _email, String _id) {
         userID = mAuth.getCurrentUser().getUid();
 
         //Adding the user in registration to the firestore database
         CollectionReference dbUsers = fstore.collection("Users");
-        users user = new users(_fname, _lname, _email, _pass, userID);
+        users user = new users(_fname, _lname, _email, userID);
 
         dbUsers.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -246,6 +246,7 @@ public class register extends AppCompatActivity
                 Log.d("onFailure_USER", "onFailure: User Not Saved" + e.getMessage());
             }
         });
+
 
     }
 

@@ -5,18 +5,16 @@ public class users {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private String userID;
 
     //default constructor
     public users(){}
 
     //constructor with full parameters
-    public users (String firstName, String lastName, String email, String password, String userID) {
+    public users (String firstName, String lastName, String email, String userID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.userID = userID;
     }
 
@@ -44,13 +42,6 @@ public class users {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getUserID() {
         return userID;
