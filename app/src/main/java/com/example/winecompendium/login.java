@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,8 +38,8 @@ public class login extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (TextInputEditText)findViewById(R.id.email_input);
-        password = (TextInputEditText)findViewById(R.id.password_input);
+        email = findViewById(R.id.login_email_input);
+        password = findViewById(R.id.login_password_input);
 
         btn_register = findViewById(R.id.btn_register);
         btn_login = findViewById(R.id.btn_login);
