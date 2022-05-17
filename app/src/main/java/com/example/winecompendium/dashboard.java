@@ -11,7 +11,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class dashboard extends AppCompatActivity {
 
@@ -22,6 +26,10 @@ public class dashboard extends AppCompatActivity {
     private Button btn_allcatagories;
     private Button btn_analytics;
     private Button btn_settings;
+    private TextView txtDashboardUserName;
+
+    String userFirstName; //currently logged in user first name
+    String userID; //currently logged in user's ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class dashboard extends AppCompatActivity {
         btn_allcatagories = findViewById(R.id.btn_allcatagories);
         btn_analytics = findViewById(R.id.btn_analytics);
         btn_settings = findViewById(R.id.btn_settings);
+        txtDashboardUserName = findViewById(R.id.txtHelloUser);
         //------------------------------------------------------------------------------------------
 
         // ------------------------------- Buttons on the Dashboard --------------------------------
@@ -82,6 +91,28 @@ public class dashboard extends AppCompatActivity {
             }
         });
         //------------------------------------------------------------------------------------------
+
+
+        //-------------------------- Getting currently logged in user details ----------------------
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            Toast.makeText(this,"User is logged in.",Toast.LENGTH_SHORT).show();
+            //User is logged in
+            userFirstName = user.getDisplayName();
+            userID = user.getUid();
+            SetDashboardName(userFirstName);
+
+        } else {
+            //No user is logged in
+            Toast.makeText(this,"No user is logged in.",Toast.LENGTH_SHORT).show();
+        }
+        //------------------------------------------------------------------------------------------
+    }
+
+    private void SetDashboardName(String user_name) {
+        String hello = getString(R.string.hello_user,user_name);
+        txtDashboardUserName.setText(hello);
     }
 
     //----------------------------------- Drawer Management Code -----------------------------------

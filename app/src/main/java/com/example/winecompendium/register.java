@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,6 +35,8 @@ public class register extends AppCompatActivity
     //Declaring any UI element for interaction
     private Button btn_register;
     private TextView btn_alreadyMember;
+
+
     //Declaring any UI element for interaction
 
     //Declaring EditText Fields on Register page
@@ -42,12 +48,14 @@ public class register extends AppCompatActivity
     EditText confirmPassword;
     //Declaring EditText Fields on Register page
 
+    private static final String TAG = "EmailPassword";
+
     //Code for firebase database
     FirebaseAuth mAuth;
-    FirebaseFirestore fstore;
+    private FirebaseFirestore fstore;
     String userID;
     FirebaseUser fuser;
-    //Code for firebase database
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -72,6 +80,9 @@ public class register extends AppCompatActivity
         fuser = mAuth.getCurrentUser();
         //Code for firebase database
 
+
+        //Todo: is code below necessary?
+        /*
         if(mAuth.getCurrentUser() != null) //Checks to see which user is signed in
         {
             if (!fuser.isEmailVerified())
@@ -85,8 +96,9 @@ public class register extends AppCompatActivity
                 //finish();
             }
         }
+        */
 
-        /**
+        /*
          *  SUMMERY: When the user clicks on the Register button, Proceed to WriteDate to Firebase
          */
         btn_register.setOnClickListener(new View.OnClickListener()
@@ -96,16 +108,21 @@ public class register extends AppCompatActivity
             {
                 if (password.getText().toString().equals(confirmPassword.getText().toString()))
                 {
-                    registerUserWithFirebase();
-                    // showDialog();
-                }else
+                    if (emailValidator(Email.getText().toString())) {
+                        registerUserWithFirebase();
+                    } else
+                    {
+                        Toast.makeText(register.this,"Invalid email! Please try again.",Toast.LENGTH_LONG);
+                    }
+                }
+                else
                 {
                     Toast.makeText(register.this,  "Your passwords dont match! Try Again!", Toast.LENGTH_LONG);
                 }
             }
         });
 
-        /**
+        /*
          *  SUMMERY: When the user clicks on the Already a Member button, Return to Login
          */
         btn_alreadyMember.setOnClickListener(new View.OnClickListener()
@@ -122,67 +139,49 @@ public class register extends AppCompatActivity
     /** SUMMARY: Saves the input data to Firebase. The user is then sent a verification email that
      *           needs to be completed before they can login
      */
-    void registerUserWithFirebase()
+    private void registerUserWithFirebase()
     {
+        String _name = name.getText().toString();
+        String _surname = surname.getText().toString();
+        String _Email = Email.getText().toString();
+        String _password = password.getText().toString();
+
+        mAuth.createUserWithEmailAndPassword(_Email, _password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+
+                            sendVerificationEmail();
+                            addUsertoDatabase(_name, _surname, _Email, _password, mAuth.getCurrentUser().getUid().toString());
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(register.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
         //progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(Email .getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-        {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task)
-            {
-                if (task.isSuccessful()) //When the user is successfully registered
-                {
-                    FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
-                    auth.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>()
-                    {
-                        @Override
-                        public void onSuccess(Void aVoid)
-                        {
-                            Toast.makeText(register.this,  "Verification Email Has Been Sent", Toast.LENGTH_LONG);
-                        }
-                    }).addOnFailureListener(new OnFailureListener()
-                    {
-                        @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
-                            Log.d("onFailure_EMAIL", "onFailure: Email Not Sent" + e.getMessage());
 
-                        }
-                    });
-
-                    Toast.makeText(register.this, "Verification Email Has Been Sent.", Toast.LENGTH_LONG).show();
-
-                    userID = mAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference = fstore.collection("users").document(userID);
-                    Map<String, Object> user =  new HashMap<>();
-                    user.put("Name",name.getText().toString());
-                    user.put("Surname",surname.getText().toString());
-
-                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>()
-                    {
-                        @Override
-                        public void onSuccess(Void aVoid)
-                        {
-                            Log.d("onSuccess_TAG", "onSuccess: User profile and data saved" + userID);
-                        }
-                    }).addOnFailureListener(new OnFailureListener()
-                    {
-                        @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
-                            Log.d("onFailure_USER", "onFailure: User Not Saved" + e.getMessage());
-                        }
-                    });
-                    showThankYouDialog();
-                }
-                else //When the user isn't registered correctly
-                {
-                    // progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
+
+    //------------------------------ Method to validate register email -----------------------------
+
+    public boolean emailValidator(String email) {
+
+        if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
 
     private void showThankYouDialog()
     {
@@ -203,5 +202,88 @@ public class register extends AppCompatActivity
         });
         dialog.show();
     }
+
+
+    //------------------------------ Method to send verification link ------------------------------
+
+    private void sendVerificationEmail() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    showThankYouDialog();
+                } else {
+                    Log.e(TAG, "sendEmailVerification", task.getException());
+                    Toast.makeText(register.this,
+                            "Failed to send verification email.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    //----------------------------------------------------------------------------------------------
+
+    //-------------------------- Method to add the user data to firestore firebase -----------------
+
+    private void  addUsertoDatabase(String _fname, String _lname, String _email, String _pass, String _id) {
+        userID = mAuth.getCurrentUser().getUid();
+
+        //Adding the user in registration to the firestore database
+        CollectionReference dbUsers = fstore.collection("Users");
+        users user = new users(_fname, _lname, _email, _pass, userID);
+
+        dbUsers.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d("onSuccess_TAG", "onSuccess: User profile and data saved" + userID);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("onFailure_USER", "onFailure: User Not Saved" + e.getMessage());
+            }
+        });
+
+    }
+
+    //----------------------------------------------------------------------------------------------
 }
 /**-------------------------------------===< END OF FILE >===-------------------------------------*/
+
+
+
+//  Toast.makeText(register.this, "Verification Email Has Been Sent.", Toast.LENGTH_LONG).show();
+
+                    /*
+                    userID = mAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = fstore.collection("users").document(userID);
+                    Map<String, Object> user =  new HashMap<>();
+                    user.put("Name",name.getText().toString());
+                    user.put("Surname",surname.getText().toString());
+
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>()
+                    {
+                        @Override
+                        public void onSuccess(Void aVoid)
+                        {
+                            Log.d("onSuccess_TAG", "onSuccess: User profile and data saved" + userID);
+                        }
+                    }).addOnFailureListener(new OnFailureListener()
+                    {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            Log.d("onFailure_USER", "onFailure: User Not Saved" + e.getMessage());
+                        }
+                    });*/
+
+
+                /*
+                else //When the user isn't registered correctly
+                {
+                    // progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }*/
