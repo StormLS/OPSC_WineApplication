@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,14 +11,22 @@
     android:background="@color/customColourOne">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:minWidth="40dp"
+        android:minHeight="40dp"
         android:onClick="ClickMenu"
-        android:src="@drawable/ic_menu"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:srcCompat="@drawable/icon_burger_menu" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@drawable/wc_logo"/>
+        android:id="@+id/imageView2"
+        android:layout_width="324dp"
+        android:layout_height="91dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/final_logo2" />
 </LinearLayout>

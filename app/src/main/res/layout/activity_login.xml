@@ -20,7 +20,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
-        app:srcCompat="@drawable/wc_logo"
+        app:srcCompat="@drawable/final_logo"
         tools:srcCompat="@drawable/final_logo">
 
     </ImageView>

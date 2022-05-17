@@ -1,123 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
+    android:background="@drawable/dashboard_background"
+    android:orientation="vertical"
     tools:context=".dashboard">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include
-            layout="@layout/main_toolbar"/>
 
-        <LinearLayout
+        <include
+            layout="@layout/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="vertical"
-            android:background="@color/customColourOne.5">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:gravity="center_horizontal"
-                    android:text="Hello, User."
-                    android:textColor="@color/customColourFive"
-                    android:textSize="30dp"></TextView>
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_horizontal"
-                    android:paddingRight="40dp"
-                    android:text="MY DASHBOARD"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"></TextView>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/customColourOne.5">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Hello, Amber."
+                android:textColor="@color/customColourSix"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_regular"
+                android:text="MY DASHBOARD"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="331dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_horizontal"
+                android:text="Welcome to your dashboard. From here you will be able to navigate your way through our application and start collecting wines."
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="420dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="60dp"
-                android:background="@drawable/custom_container_dashboard"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:background="@drawable/container_dashboard2"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp" />
 
                 <LinearLayout
-                    android:layout_width="375dp"
-                    android:layout_height="350dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="174dp"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="340dp"
-                        android:layout_height="165dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp">
+                    <Button
+                        android:id="@+id/btn_mycollections"
+                        android:layout_width="165dp"
+                        android:layout_height="174dp"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourThree"
+                        android:drawableStart="@drawable/mycollections_btnbackground"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="end"
+                        android:paddingStart="30dp"
+                        android:paddingBottom="30dp"
+                        android:textColor="#C8C8C8"
+                        android:textSize="22sp"
+                        app:cornerRadius="15dp"
+                        app:iconGravity="end"
+                        app:iconTint="#D5D5D5"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-                        <ImageButton
-                            android:id="@+id/btn_mycollections"
-                            android:layout_width="165dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/custom_btn_dashboard_mycollections"
-                            android:src="@drawable/icon_mycollections">
+                    <Button
+                        android:id="@+id/btn_allcatagories"
+                        android:layout_width="165dp"
+                        android:layout_height="174dp"
+                        android:layout_gravity="right"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourSeven"
+                        android:drawableStart="@drawable/categories_btnbackground"
+                        android:paddingStart="22dp"
+                        app:cornerRadius="15dp"
+                        app:iconGravity="end"
+                        app:iconTint="#C4EEE7"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-                        </ImageButton>
+                </LinearLayout>
 
-                        <ImageButton
-                            android:id="@+id/btn_allcatagories"
-                            android:layout_width="165dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:background="@drawable/custom_btn_dashboard_allcatagories"
-                            android:src="@drawable/icon_allcatagories"></ImageButton>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_analytics"
+                        android:layout_width="388dp"
+                        android:layout_height="174dp"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourFour"
+                        android:drawableStart="@drawable/analytics_btnbackground"
+                        android:paddingStart="35dp"
+                        app:cornerRadius="15dp"
+                        app:iconGravity="end"
+                        app:iconTint="#EF90B2"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-                    <LinearLayout
-                        android:layout_width="340dp"
-                        android:layout_height="165dp"
-                        android:layout_gravity="center_horizontal">
-
-                        <ImageButton
-                            android:id="@+id/btn_analytics"
-                            android:layout_width="165dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/custom_btn_dashboard_analytics"
-                            android:src="@drawable/icon_analytics"></ImageButton>
-
-                        <ImageButton
-                            android:id="@+id/btn_settings"
-                            android:layout_width="165dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:background="@drawable/custom_btn_dashboard_settings"
-                            android:src="@drawable/icon_settings"></ImageButton>
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_settings"
+                        android:layout_width="391dp"
+                        android:layout_height="174dp"
+                        android:layout_gravity="right"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourOne"
+                        android:drawableStart="@drawable/settings_btnbackground"
+                        android:paddingStart="35dp"
+                        app:cornerRadius="15dp"
+                        app:iconGravity="end"
+                        app:iconTint="#72AFC2"
+                        tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white">

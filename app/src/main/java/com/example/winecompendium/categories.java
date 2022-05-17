@@ -1,15 +1,9 @@
 package com.example.winecompendium;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 
 public class categories extends AppCompatActivity
@@ -24,7 +18,7 @@ public class categories extends AppCompatActivity
         setContentView(R.layout.activity_categories);
 
         //Assign variable
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout_);
     }
 
     //----------------------------------- Drawer Management Code -----------------------------------

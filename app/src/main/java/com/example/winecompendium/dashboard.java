@@ -9,29 +9,28 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class dashboard extends AppCompatActivity
-{
-    //Initialize variables
-    DrawerLayout drawerLayout;
+public class dashboard extends AppCompatActivity {
 
-    private ImageButton btn_mycollections;
-    private ImageButton btn_allcatagories;
-    private ImageButton btn_analytics;
-    private ImageButton btn_settings;
+    //Initialise variables
+
+    DrawerLayout drawerLayout;
+    private Button btn_mycollections;
+    private Button btn_allcatagories;
+    private Button btn_analytics;
+    private Button btn_settings;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
+
 
         //----------- findViewByID() & setOnClickListener() here for Dashboard variables -----------
         btn_mycollections = findViewById(R.id.btn_mycollections);
@@ -117,10 +116,10 @@ public class dashboard extends AppCompatActivity
     //--------------------------------- Navigation Management Code ---------------------------------
     public void ClickHome(View view)
     {
-        //Recreate activity
-        recreate();
+        //Redirect activity to home page
+        redirectActivity(this, dashboard.class);
     }
-    
+
     public void ClickMyCollections(View view)
     {
         //Redirect activity to MyCollections

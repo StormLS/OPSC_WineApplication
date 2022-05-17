@@ -3,9 +3,7 @@ package com.example.winecompendium;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 
 public class analytics extends AppCompatActivity
@@ -20,7 +18,7 @@ public class analytics extends AppCompatActivity
         setContentView(R.layout.activity_analytics);
 
         //Assign variable
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout_);
     }
 
     //----------------------------------- Drawer Management Code -----------------------------------
