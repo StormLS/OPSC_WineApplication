@@ -5,11 +5,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class mycollections extends AppCompatActivity
 {
     //Initialize variables
     DrawerLayout drawerLayout;
+    private TextView txtNavName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -19,7 +21,19 @@ public class mycollections extends AppCompatActivity
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout_);
+        txtNavName = findViewById(R.id.txtNavUser);
+
+        dashboard dash = new dashboard();
+        SetNavDrawerName(dash._name);
     }
+
+    //---------------------------------method for nav drawer display first name --------------------
+    private void SetNavDrawerName(String _username) {
+        String _fname = getString(R.string.nav_name,_username);
+        txtNavName.setText(_fname);
+    }
+    //----------------------------------------------------------------------------------------------
+
 
     //----------------------------------- Drawer Management Code -----------------------------------
     public void ClickMenu(View view)

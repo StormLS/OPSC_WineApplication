@@ -48,7 +48,9 @@ public class dashboard extends AppCompatActivity {
     private Button btn_analytics;
     private Button btn_settings;
     private TextView txtDashboardUserName;
+    private TextView txtNavName;
     private String userID; //currently logged in user's ID
+    public static String _name = "User"; //this variable will be accessed from all pages
 
 
     @Override
@@ -68,6 +70,7 @@ public class dashboard extends AppCompatActivity {
         btn_analytics = findViewById(R.id.btn_analytics);
         btn_settings = findViewById(R.id.btn_settings);
         txtDashboardUserName = findViewById(R.id.txtHelloUser);
+        txtNavName = findViewById(R.id.txtNavUser);
         //------------------------------------------------------------------------------------------
 
         // ------------------------------- Buttons on the Dashboard --------------------------------
@@ -117,7 +120,7 @@ public class dashboard extends AppCompatActivity {
     }
 
     //---------------------------- Getting currently logged in user details ------------------------
-    private void fetchUserFirstName() {
+    public void fetchUserFirstName() {
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
         userID = fUser.getUid();
@@ -135,8 +138,9 @@ public class dashboard extends AppCompatActivity {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             //Getting the first name value
                             users accName = ds.getValue(users.class);
-                            String _name = accName.getFirstName();
+                            _name = accName.getFirstName();
                             SetDashboardName(_name);
+                            SetNavDrawerName(_name);
                             Log.d("firstname","accName");
                         }
                     }
@@ -152,6 +156,7 @@ public class dashboard extends AppCompatActivity {
             //No user is logged in
             Toast.makeText(this,"No user is logged in.",Toast.LENGTH_SHORT).show();
         }
+
     }
     //----------------------------------------------------------------------------------------------
 
@@ -160,6 +165,13 @@ public class dashboard extends AppCompatActivity {
     private void SetDashboardName(String _username) {
         String hello = getString(R.string.hello_user,_username);
         txtDashboardUserName.setText(hello);
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //---------------------------------method for nav drawer display first name --------------------
+    public void SetNavDrawerName(String _username) {
+        String _fname = getString(R.string.nav_name,_username);
+        txtNavName.setText(_fname);
     }
     //----------------------------------------------------------------------------------------------
 

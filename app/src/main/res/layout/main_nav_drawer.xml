@@ -24,11 +24,12 @@
         android:layout_height="10dp" />
 
     <TextView
+        android:id="@+id/txtNavUser"
         android:layout_width="143dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start|right"
         android:layout_marginStart="20dp"
-        android:text="Amber"
+        android:text="User"
         android:textAlignment="center"
         android:textColor="@color/customColourOne"
         android:textSize="20sp"
