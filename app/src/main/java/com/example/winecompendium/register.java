@@ -221,7 +221,10 @@ public class register extends AppCompatActivity
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     showThankYouDialog();
-                } else {
+                    Log.d("onSuccess_TAG", "onSuccess: Email verification link sent" + userID);
+                }
+                else
+                {
                     Log.e(TAG, "sendEmailVerification", task.getException());
                     Toast.makeText(register.this,
                             "Failed to send verification email.",
@@ -233,10 +236,15 @@ public class register extends AppCompatActivity
 
     //----------------------------------------------------------------------------------------------
 
-    //-------------------------- Method to add the user data to firestore firebase -----------------
+    //-------------------------- Method to add the user data to firebase database  -----------------
 
     private void  addUsertoDatabase(String _fname, String _lname, String _email, String _id) {
+
         userID = mAuth.getCurrentUser().getUid();
+
+        /*
+        TODO: Will it still be necessary to add users to a firestore database?
+         */
 
         //Adding the user in registration to the firestore database
         CollectionReference dbUsers = fstore.collection("Users");
@@ -254,8 +262,11 @@ public class register extends AppCompatActivity
             }
         });
 
+        /*
+        TODO: -------------------------------------------------------------------
+         */
+
         //Adding user to Real-time database
-        //valid email
         _user.setFirstName(_fname);
         _user.setLastName(_lname);
         _user.setEmail(_email);
@@ -268,39 +279,4 @@ public class register extends AppCompatActivity
 
     //----------------------------------------------------------------------------------------------
 }
-/**-------------------------------------===< END OF FILE >===-------------------------------------*/
-
-
-
-//  Toast.makeText(register.this, "Verification Email Has Been Sent.", Toast.LENGTH_LONG).show();
-
-                    /*
-                    userID = mAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference = fstore.collection("users").document(userID);
-                    Map<String, Object> user =  new HashMap<>();
-                    user.put("Name",name.getText().toString());
-                    user.put("Surname",surname.getText().toString());
-
-                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>()
-                    {
-                        @Override
-                        public void onSuccess(Void aVoid)
-                        {
-                            Log.d("onSuccess_TAG", "onSuccess: User profile and data saved" + userID);
-                        }
-                    }).addOnFailureListener(new OnFailureListener()
-                    {
-                        @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
-                            Log.d("onFailure_USER", "onFailure: User Not Saved" + e.getMessage());
-                        }
-                    });*/
-
-
-                /*
-                else //When the user isn't registered correctly
-                {
-                    // progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }*/
+/* -------------------------------------===< END OF FILE >===-------------------------------------*/
