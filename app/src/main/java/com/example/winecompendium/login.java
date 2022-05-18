@@ -47,7 +47,7 @@ public class login extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
-        /**
+        /*
          *  SUMMERY: A listener for when the user clicks the Register button, then moves to register
          *           page
          */
@@ -64,7 +64,7 @@ public class login extends AppCompatActivity
             }
         });
 
-        /**
+        /*
          *  SUMMERY: Once clicked the user will go through the LogUserIn() authentication process
          */
         btn_login.setOnClickListener(new View.OnClickListener()
@@ -76,7 +76,7 @@ public class login extends AppCompatActivity
             }
         });
 
-        /**
+        /*
          *  SUMMERY: When the forgot password button is clicked the user will be asked
          *           to input their email for a reset link.
          */

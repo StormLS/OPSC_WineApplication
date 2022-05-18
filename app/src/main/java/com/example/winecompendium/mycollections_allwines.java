@@ -3,8 +3,10 @@ package com.example.winecompendium;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class mycollections_allwines extends AppCompatActivity
@@ -12,6 +14,7 @@ public class mycollections_allwines extends AppCompatActivity
     //Initialize variables
     DrawerLayout drawerLayout;
     private TextView txtNavName;
+    private Button btn_addwines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,9 +25,18 @@ public class mycollections_allwines extends AppCompatActivity
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout_);
         txtNavName = findViewById(R.id.txtNavUser);
+        btn_addwines = findViewById(R.id.btn_addwines_1);
 
         dashboard dash = new dashboard();
         SetNavDrawerName(dash._name);
+
+        btn_addwines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mycollections_allwines.this, mycollections_addwines.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //---------------------------------method for nav drawer display first name --------------------
