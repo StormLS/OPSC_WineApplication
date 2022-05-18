@@ -1,12 +1,14 @@
 package com.example.winecompendium;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +22,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class dashboard extends AppCompatActivity {
 
@@ -34,13 +48,7 @@ public class dashboard extends AppCompatActivity {
     private Button btn_analytics;
     private Button btn_settings;
     private TextView txtDashboardUserName;
-
-
-    private String  user_name;
-    String userFirstName; //currently logged in user first name
-    String userID; //currently logged in user's ID
-
-    FirebaseFirestore fstore;
+    private String userID; //currently logged in user's ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,45 +113,48 @@ public class dashboard extends AppCompatActivity {
 
 
         //-------------------------- Getting currently logged in user details ----------------------
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        fstore = FirebaseFirestore.getInstance();
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        userID = fUser.getUid();
 
-        if (user != null) {
-            //Getting the user's first name based on user ID
-            userID = user.getUid();
-            DocumentReference ref = fstore.collection("Users").document(userID);
+        //query based on current user id. Finding the first name of current user to display on dashboard
+        Query query = dataRef.child("Users/firstName").orderByChild("userID").equalTo(userID);
 
-            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        //check if current user is logged in
+        if (fUser != null) {
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot doc = task.getResult();
-                        if (doc.exists()) {
-                            Log.d("UserID","DocumentSnapshot data: " + doc.getData());
-
-                            user_name = doc.getString("firstName");
-                        } else {
-                            Log.d("UserID","No document found");
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            //Getting the first name value
+                            String accName = ds.getValue(String.class);
+                            SetDashboardName(accName); //display the first name
+                            Log.d("firstname","accName");
                         }
-                    } else {
-                        Log.d("UserID","get failed with ", task.getException());
                     }
                 }
-            });
 
-            SetDashboardName(user_name);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("error", error.getMessage());
+                }
+            });
 
         } else {
             //No user is logged in
             Toast.makeText(this,"No user is logged in.",Toast.LENGTH_SHORT).show();
         }
-        //------------------------------------------------------------------------------------------
     }
+    //----------------------------------------------------------------------------------------------
 
-    private void SetDashboardName(String user_name) {
-        String hello = getString(R.string.hello_user,user_name);
+    //---------------------------------method for dashboard display first name ---------------------
+    private void SetDashboardName(String _username) {
+        String hello = getString(R.string.hello_user,_username);
         txtDashboardUserName.setText(hello);
     }
+    //----------------------------------------------------------------------------------------------
 
     //----------------------------------- Drawer Management Code -----------------------------------
     public void ClickMenu(View view)

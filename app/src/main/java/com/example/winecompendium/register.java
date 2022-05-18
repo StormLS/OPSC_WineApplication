@@ -56,6 +56,11 @@ public class register extends AppCompatActivity
     String userID;
     FirebaseUser fuser;
 
+    users _user;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //add users to the path
+    private DatabaseReference UsersRef = database.getReference("Users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,6 +84,8 @@ public class register extends AppCompatActivity
         fstore = FirebaseFirestore.getInstance();
         fuser = mAuth.getCurrentUser();
         //Code for firebase database
+
+        _user = new users();
 
 
         //Todo: is code below necessary?
@@ -247,6 +254,15 @@ public class register extends AppCompatActivity
             }
         });
 
+        //Adding user to Real-time database
+        //valid email
+        _user.setFirstName(_fname);
+        _user.setLastName(_lname);
+        _user.setEmail(_email);
+        _user.setUserID(userID);
+
+        //add user to users database
+        UsersRef.push().setValue(_user);
 
     }
 
