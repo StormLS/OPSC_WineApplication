@@ -55,7 +55,7 @@ public class analytics extends AppCompatActivity
 
     public void ClickMyCollections(View view)
     {
-        dashboard.redirectActivity(this, mycollections.class);
+        dashboard.redirectActivity(this, mycollections_allwines.class);
     }
 
     public void ClickMyCategories(View view)

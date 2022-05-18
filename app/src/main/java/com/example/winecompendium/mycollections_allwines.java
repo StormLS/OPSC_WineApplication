@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class mycollections extends AppCompatActivity
+public class mycollections_allwines extends AppCompatActivity
 {
     //Initialize variables
     DrawerLayout drawerLayout;
@@ -17,7 +17,7 @@ public class mycollections extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mycollections);
+        setContentView(R.layout.activity_mycollections_allwines);
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout_);

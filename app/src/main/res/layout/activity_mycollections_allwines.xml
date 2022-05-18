@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/activities_background"
-    tools:context=".mycollections">
+    tools:context=".mycollections_allwines">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,15 +18,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp" />
 
-        <ImageView
-            android:id="@+id/imageView5"
+        <TextView
+            android:id="@+id/textView7"
             android:layout_width="426dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="69dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="38dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/mycollections_text" />
+            android:fontFamily="@font/poppins_regular"
+            android:letterSpacing="-0.08"
+            android:text="My Collections"
+            android:textColor="@color/customColourEleven"
+            android:textSize="27sp" />
 
         <ImageView
             android:id="@+id/imageView6"
@@ -46,18 +49,19 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="133dp" />
+            android:layout_height="123dp"
+            android:layout_gravity="center_vertical" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_vertical">
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="fill_vertical"
+                android:id="@+id/btn_allwines_1"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_gravity="fill|fill_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFour"
                 android:elevation="10dp"
@@ -65,46 +69,48 @@
                 android:text="All wines"
                 android:textAllCaps="false"
                 android:textColor="#FFAAC9"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 app:strokeColor="#8C0033"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_vertical"
+                android:id="@+id/btn_addwines_1"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_gravity="fill|fill_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFive"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Add wines"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 app:strokeColor="#7CA39D"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_vertical"
+                android:id="@+id/btn_favs_1"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_gravity="fill|fill_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFive"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Favourites"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 app:strokeColor="#7CA39D"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:orientation="vertical">
 
             <LinearLayout
@@ -118,36 +124,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/filter"
-                        android:layout_width="100dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/btn_filter"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourThree"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="Filter"
-                        android:textSize="10dp"></androidx.appcompat.widget.AppCompatButton>
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:cornerRadius="7dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/sortby"
-                        android:layout_width="100dp"
-                        android:layout_height="30dp"
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourTen"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Sort"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:cornerRadius="7dp" />
+
+                    <ImageButton
+                        android:id="@+id/search"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/btn_sort"
-                        android:text="Sort By"
-                        android:textSize="10dp"></androidx.appcompat.widget.AppCompatButton>
+                        android:layout_marginLeft="60dp"
+                        android:backgroundTint="@color/customColourTwo"
+                        android:contentDescription="search"
+                        android:src="@drawable/search_icon"
+                        tools:ignore="TouchTargetSizeCheck">
+
+                    </ImageButton>
                 </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/search"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="110dp"
-                    android:background="@color/customColourOne"
-                    android:src="@drawable/surname_icon">
-
-                </ImageButton>
             </LinearLayout>
 
             <LinearLayout
@@ -160,8 +178,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Current number of wines: 0"
-                    android:textColor="@color/black"></TextView>
+                    android:textColor="#888888"></TextView>
 
             </LinearLayout>
 
@@ -172,7 +191,7 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="451dp">
 
                     <GridLayout
                         android:layout_width="match_parent"
@@ -188,7 +207,7 @@
                             android:layout_height="200dp"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
-                            app:cardBackgroundColor="@color/customColourFive"
+                            app:cardBackgroundColor="@color/customColourNine"
                             app:cardCornerRadius="15dp"
 
                             app:cardElevation="10dp">
@@ -220,45 +239,65 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="30dp"
-                                        android:text="Example Wine"></TextView>
+                                        android:fontFamily="@font/poppins_semibold"
+                                        android:text="Example Wine"
+                                        android:textSize="16sp"></TextView>
+
+                                    <TextView
+                                        android:id="@+id/txtWineType"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Wine Type"
+                                        android:textSize="15sp" />
 
                                     <TextView
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="47dp"
                                         android:layout_marginTop="10dp"
-                                        android:text="The description of a wine will go here."></TextView>
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:text="The description of a wine will go here."
+                                        android:textSize="14sp"></TextView>
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp">
+                                        android:layout_height="35dp"
+                                        android:layout_marginTop="10dp">
 
-                                        <androidx.appcompat.widget.AppCompatButton
-                                            android:layout_width="60dp"
-                                            android:layout_height="32dp"
-                                            android:layout_gravity="center"
-                                            android:background="@color/customColourFive"
+                                        <Button
+                                            android:id="@+id/button"
+                                            android:layout_width="51dp"
+                                            android:layout_height="41dp"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/poppins_regular"
+                                            android:gravity="bottom|start|top|left"
+                                            android:paddingStart="1dp"
                                             android:text="View"
+                                            android:textAllCaps="false"
                                             android:textColor="@color/customColourFour"
-                                            android:textSize="10dp">
+                                            tools:ignore="TouchTargetSizeCheck" />
 
-                                        </androidx.appcompat.widget.AppCompatButton>
-
-                                        <androidx.appcompat.widget.AppCompatButton
-                                            android:layout_width="64dp"
-                                            android:layout_height="32dp"
-                                            android:layout_gravity="center"
-                                            android:background="@color/customColourFive"
+                                        <Button
+                                            android:id="@+id/button2"
+                                            android:layout_width="65dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/poppins_regular"
+                                            android:gravity="bottom|start|top|left"
+                                            android:paddingStart="1dp"
                                             android:text="Edit"
+                                            android:textAllCaps="false"
                                             android:textColor="@color/customColourFour"
-                                            android:textSize="10dp">
-
-                                        </androidx.appcompat.widget.AppCompatButton>
+                                            tools:ignore="TouchTargetSizeCheck" />
 
                                         <ImageButton
                                             android:layout_width="50dp"
                                             android:layout_height="48dp"
-                                            android:background="@color/customColourFive"
+                                            android:layout_gravity="center_vertical"
+                                            android:background="@color/customColourNine"
+                                            android:contentDescription="heart"
                                             android:gravity="right"
                                             android:src="@drawable/ic_heart">
 
