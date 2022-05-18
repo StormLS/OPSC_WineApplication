@@ -115,6 +115,8 @@ public class register extends AppCompatActivity
             {
                 if (password.getText().toString().equals(confirmPassword.getText().toString()))
                 {
+                    //If passwords match
+                    //method to check if email is valid. If valid then proceed to register user
                     if (emailValidator(Email.getText().toString())) {
                         registerUserWithFirebase();
                     } else
@@ -122,7 +124,7 @@ public class register extends AppCompatActivity
                         Toast.makeText(register.this,"Invalid email! Please try again.",Toast.LENGTH_LONG);
                     }
                 }
-                else
+                else //if passwords don't match
                 {
                     Toast.makeText(register.this,  "Your passwords dont match! Try Again!", Toast.LENGTH_LONG);
                 }

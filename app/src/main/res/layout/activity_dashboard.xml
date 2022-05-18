@@ -30,7 +30,7 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Hello, Amber."
+                android:text="Hello, User."
                 android:textColor="@color/customColourSix"
                 android:textSize="30sp" />
 
