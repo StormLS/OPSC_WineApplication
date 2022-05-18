@@ -50,14 +50,17 @@ public class dashboard extends AppCompatActivity {
     private TextView txtDashboardUserName;
     private String userID; //currently logged in user's ID
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        //running method that updates the first name of current user on dashboard
+        fetchUserFirstName();
+
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
-
 
         //----------- findViewByID() & setOnClickListener() here for Dashboard variables -----------
         btn_mycollections = findViewById(R.id.btn_mycollections);
@@ -111,15 +114,17 @@ public class dashboard extends AppCompatActivity {
         });
         //------------------------------------------------------------------------------------------
 
+    }
 
-        //-------------------------- Getting currently logged in user details ----------------------
-        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+    //---------------------------- Getting currently logged in user details ------------------------
+    private void fetchUserFirstName() {
+
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
         userID = fUser.getUid();
 
         //query based on current user id. Finding the first name of current user to display on dashboard
-        Query query = dataRef.child("Users/firstName").orderByChild("userID").equalTo(userID);
-
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+        Query query = dataRef.child("Users").orderByChild("userID").equalTo(userID);
 
         //check if current user is logged in
         if (fUser != null) {
@@ -129,8 +134,9 @@ public class dashboard extends AppCompatActivity {
                     if (snapshot.exists()) {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             //Getting the first name value
-                            String accName = ds.getValue(String.class);
-                            SetDashboardName(accName); //display the first name
+                            users accName = ds.getValue(users.class);
+                            String _name = accName.getFirstName();
+                            SetDashboardName(_name);
                             Log.d("firstname","accName");
                         }
                     }
@@ -148,6 +154,7 @@ public class dashboard extends AppCompatActivity {
         }
     }
     //----------------------------------------------------------------------------------------------
+
 
     //---------------------------------method for dashboard display first name ---------------------
     private void SetDashboardName(String _username) {
