@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.res.ColorStateList;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
@@ -15,12 +16,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
+
 public class MyCollections extends AppCompatActivity {
 
     private Button btnAllWines;
     private Button btnAddWines;
     private Button btnFavourites;
-    private Button btnSelected;
     private TextView txtNavName;
     DrawerLayout drawerLayout;
 
@@ -35,16 +37,24 @@ public class MyCollections extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         txtNavName = findViewById(R.id.txtNavUser);
 
+        //Updating the nav drawer first name
         dashboard dash = new dashboard();
         SetNavDrawerName(dash._name);
 
+        /*
+         ------------------------------------Navigation---------------------------------------------
+         */
         btnAllWines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 allwines_fragment frag1 = new allwines_fragment();
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fragment_layout,frag1, frag1.getTag()).commit();
-                ButtonSelected(btnAllWines);
+
+                //update appearance of button
+                ButtonSelected((MaterialButton) btnAllWines);
+                //return other buttons to normal unselected state
+                ButtonUnselected((MaterialButton) btnAddWines, (MaterialButton) btnFavourites);
             }
         });
 
@@ -54,6 +64,11 @@ public class MyCollections extends AppCompatActivity {
                 addwines_fragment frag2 = new addwines_fragment();
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fragment_layout,frag2, frag2.getTag()).commit();
+
+                //update appearance of button
+                ButtonSelected((MaterialButton) btnAddWines);
+                //return other buttons to normal unselected state
+                ButtonUnselected((MaterialButton) btnAllWines, (MaterialButton) btnFavourites);
             }
         });
 
@@ -63,8 +78,14 @@ public class MyCollections extends AppCompatActivity {
                 favourites_fragment frag3 = new favourites_fragment();
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fragment_layout,frag3, frag3.getTag()).commit();
+
+                //update appearance of button
+                ButtonSelected((MaterialButton) btnFavourites);
+                //return other buttons to normal unselected state
+                ButtonUnselected((MaterialButton) btnAddWines, (MaterialButton) btnAllWines);
             }
         });
+        //------------------------------------------------------------------------------------------
 
     }
     //---------------------------------method for nav drawer display first name --------------------
@@ -151,33 +172,45 @@ public class MyCollections extends AppCompatActivity {
         dashboard.closeDrawer(drawerLayout);
     }
 
-
-
-    //Updating the appearance of the button that is selected
-    public void ButtonSelected(Button selectedBtn) {
+    //------------------Updating the appearance of the button that is selected----------------------
+    public void ButtonSelected(MaterialButton selectedBtn) {
 
         //background colour
         selectedBtn.setBackgroundColor(selectedBtn.getContext().getResources().getColor(R.color.customColourFour));
-
-        /*
-         Button stroke appearance
-         */
-        int dpSize =  2;
-        DisplayMetrics dm = getResources().getDisplayMetrics() ;
-        float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dm);
-        ShapeDrawable shapedrawable = new ShapeDrawable();
-        shapedrawable.setShape(new RectShape());
-        shapedrawable.getPaint().setColor(getResources().getColor(R.color.selectedBtnStroke));
-        shapedrawable.getPaint().setStrokeWidth(0f);
-        shapedrawable.getPaint().setStyle(Paint.Style.STROKE);
-      //  selectedBtn.setBackground(shapedrawable);
-        selectedBtn.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
-
+        //Button stroke appearance
+        selectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.selectedBtnStroke)));
         //Text colour
         selectedBtn.setTextColor(getResources().getColor(R.color.selectedBtnText));
 
     }
+    //----------------------------------------------------------------------------------------------
 
+    //------------------Returning to the appearance of the button that is unselected----------------
+    public void ButtonUnselected(MaterialButton unSelectedBtn1, MaterialButton unSelectedBtn2) {
+
+        /*
+        Button 1
+         */
+        //background colour
+        unSelectedBtn1.setBackgroundColor(unSelectedBtn1.getContext().getResources().getColor(R.color.customColourFive));
+        //Button stroke appearance
+        unSelectedBtn1.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.unselectedBtnStroke)));
+        //Text colour
+        unSelectedBtn1.setTextColor(getResources().getColor(R.color.unselectedBtnText));
+
+        /*
+        Button 2
+         */
+        //background colour
+        unSelectedBtn2.setBackgroundColor(unSelectedBtn2.getContext().getResources().getColor(R.color.customColourFive));
+        //Button stroke appearance
+        unSelectedBtn2.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.unselectedBtnStroke)));
+        //Text colour
+        unSelectedBtn2.setTextColor(getResources().getColor(R.color.unselectedBtnText));
+
+
+    }
+    //----------------------------------------------------------------------------------------------
 
 
 

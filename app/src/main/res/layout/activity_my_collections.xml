@@ -57,7 +57,7 @@
             android:layout_height="48dp"
             android:layout_gravity="center_vertical">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_allwines_1"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -74,7 +74,7 @@
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_addwines_1"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -90,7 +90,7 @@
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_favs_1"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
