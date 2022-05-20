@@ -60,5 +60,6 @@ public class addwines_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_addwines_fragment, container, false);
+
     }
 }

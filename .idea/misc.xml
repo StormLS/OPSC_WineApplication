@@ -23,6 +23,8 @@
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/dialog_account_created.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/main_nav_drawer.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/main_toolbar.xml" value="0.25" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/bg_spinner.xml" value="0.349" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/calendar_icon.xml" value="0.349" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_btn_burger_menu.xml" value="0.348" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_btn_filter.xml" value="0.348" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_btn_login.xml" value="0.348" />
@@ -32,7 +34,12 @@
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_button.xml" value="0.348" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_button2.xml" value="0.348" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_container_login.xml" value="0.348" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/custom_spinner.xml" value="0.345" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/login_container.xml" value="0.348" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/spinner_ab_pressed_new_theme_bs.xml" value="0.345" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/spinner_arrow.xml" value="0.345" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/spinner_style.xml" value="0.345" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/textview_border.xml" value="0.345" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_contact.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_dashboard.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_dashboard2.xml" value="0.3625" />
@@ -46,7 +53,7 @@
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_settings.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/dialog_account_created.xml" value="0.3625" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_addwines_fragment.xml" value="0.3625" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_addwines_fragment.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_allwines_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_favourites_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/main_nav_drawer.xml" value="0.3625" />

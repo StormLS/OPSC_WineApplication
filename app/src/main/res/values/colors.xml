@@ -24,6 +24,7 @@
     <color name="selectedBtnText">#FFAAC9</color>
     <color name="unselectedBtnStroke">#7CA39D</color>
     <color name="unselectedBtnText">#C8E5E1</color>
+    <color  name="customColourTwelve">#AAAAAA</color>
 
 
     <color name="grey">#636363</color>
