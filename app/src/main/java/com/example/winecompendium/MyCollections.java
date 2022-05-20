@@ -2,43 +2,71 @@ package com.example.winecompendium;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class mycollections_allwines extends AppCompatActivity
-{
-    //Initialize variables
-    DrawerLayout drawerLayout;
+public class MyCollections extends AppCompatActivity {
+
+    private Button btnAllWines;
+    private Button btnAddWines;
+    private Button btnFavourites;
+    private Button btnSelected;
     private TextView txtNavName;
-    private Button btn_addwines;
+    DrawerLayout drawerLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mycollections_allwines);
+        setContentView(R.layout.activity_my_collections);
 
-        //Assign variable
-        drawerLayout = findViewById(R.id.drawer_layout_);
+        btnAllWines = findViewById(R.id.btn_allwines_1);
+        btnAddWines = findViewById(R.id.btn_addwines_1);
+        btnFavourites = findViewById(R.id.btn_favs_1);
+        drawerLayout = findViewById(R.id.drawer_layout);
         txtNavName = findViewById(R.id.txtNavUser);
-        btn_addwines = findViewById(R.id.btn_addwines_1);
 
         dashboard dash = new dashboard();
         SetNavDrawerName(dash._name);
 
-        btn_addwines.setOnClickListener(new View.OnClickListener() {
+        btnAllWines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mycollections_allwines.this, mycollections_addwines.class);
-                startActivity(intent);
+                allwines_fragment frag1 = new allwines_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag1, frag1.getTag()).commit();
+                ButtonSelected(btnAllWines);
             }
         });
-    }
 
+        btnAddWines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addwines_fragment frag2 = new addwines_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag2, frag2.getTag()).commit();
+            }
+        });
+
+        btnFavourites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favourites_fragment frag3 = new favourites_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag3, frag3.getTag()).commit();
+            }
+        });
+
+    }
     //---------------------------------method for nav drawer display first name --------------------
     private void SetNavDrawerName(String _username) {
         String _fname = getString(R.string.nav_name,_username);
@@ -122,4 +150,35 @@ public class mycollections_allwines extends AppCompatActivity
         //Close drawer
         dashboard.closeDrawer(drawerLayout);
     }
+
+
+
+    //Updating the appearance of the button that is selected
+    public void ButtonSelected(Button selectedBtn) {
+
+        //background colour
+        selectedBtn.setBackgroundColor(selectedBtn.getContext().getResources().getColor(R.color.customColourFour));
+
+        /*
+         Button stroke appearance
+         */
+        int dpSize =  2;
+        DisplayMetrics dm = getResources().getDisplayMetrics() ;
+        float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dm);
+        ShapeDrawable shapedrawable = new ShapeDrawable();
+        shapedrawable.setShape(new RectShape());
+        shapedrawable.getPaint().setColor(getResources().getColor(R.color.selectedBtnStroke));
+        shapedrawable.getPaint().setStrokeWidth(0f);
+        shapedrawable.getPaint().setStyle(Paint.Style.STROKE);
+      //  selectedBtn.setBackground(shapedrawable);
+        selectedBtn.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
+
+        //Text colour
+        selectedBtn.setTextColor(getResources().getColor(R.color.selectedBtnText));
+
+    }
+
+
+
+
 }

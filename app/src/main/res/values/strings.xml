@@ -4,4 +4,6 @@
     <string name="support_hyperlink">Help Us Improve Our App!\n<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQab_channel=RickAstley">WineCompendium.com</a></string>
     <string name="hello_user">Hello, %1$s.</string>
     <string name="nav_name">%1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

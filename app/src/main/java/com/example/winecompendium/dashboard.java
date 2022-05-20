@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -66,10 +67,8 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Toast btn_collections_pressed = Toast.makeText(getApplicationContext(), "'Button Pressed: MyCollections", Toast.LENGTH_SHORT);
-                btn_collections_pressed.show();
-                //Intent i = new Intent(dashboard.this, myCollections.class);
-                //startActivity(i);
+                Intent i = new Intent(dashboard.this, MyCollections.class);
+                startActivity(i);
             }
         });
 
@@ -201,7 +200,7 @@ public class dashboard extends AppCompatActivity {
     public void ClickMyCollections(View view)
     {
         //Redirect activity to MyCollections
-        redirectActivity(this, mycollections_allwines.class);
+        redirectActivity(this, MyCollections.class);
     }
 
     public void ClickMyCategories(View view)

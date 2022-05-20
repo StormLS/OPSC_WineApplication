@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WineCompendium">
         <activity
-            android:name=".mycollections_favourites"
-            android:exported="false" />
-        <activity
-            android:name=".mycollections_addwines"
+            android:name=".MyCollections"
             android:exported="false" />
         <activity
             android:name=".dashboard"
@@ -47,9 +44,6 @@
             android:exported="false" />
         <activity
             android:name=".AboutUs"
-            android:exported="false" />
-        <activity
-            android:name=".mycollections_allwines"
             android:exported="false" />
     </application>
 

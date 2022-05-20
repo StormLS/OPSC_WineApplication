@@ -58,7 +58,7 @@ public class settings extends AppCompatActivity
     public void ClickMyCollections(View view)
     {
         //Redirect activity to MyCategories
-        dashboard.redirectActivity(this, mycollections_allwines.class);
+        dashboard.redirectActivity(this, MyCollections.class);
     }
 
     public void ClickMyCategories(View view)

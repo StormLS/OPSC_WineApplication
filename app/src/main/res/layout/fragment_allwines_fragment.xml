@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".allwines_fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/customColourThree"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Filter"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    app:cornerRadius="7dp" />
+
+                <Button
+                    android:id="@+id/button7"
+                    app:cornerRadius="7dp"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/customColourTen"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Sort"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/search"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="60dp"
+                    android:backgroundTint="@color/customColourTwo"
+                    android:contentDescription="search"
+                    android:src="@drawable/search_icon"
+                    tools:ignore="TouchTargetSizeCheck">
+
+                </ImageButton>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Current number of wines: 0"
+                android:textColor="#888888"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="451dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:columnCount="1"
+                    android:columnOrderPreserved="false"
+                    android:rowCount="4">
+
+                    <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="@color/customColourNine"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="180dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/customColourThree">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/no_image"></ImageView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="180dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="30dp"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text="Example Wine"
+                                    android:textSize="16sp"></TextView>
+
+                                <TextView
+                                    android:id="@+id/txtWineType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="Wine Type"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="47dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:text="The description of a wine will go here."
+                                    android:textSize="14sp"></TextView>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <Button
+                                        android:id="@+id/button"
+                                        android:layout_width="51dp"
+                                        android:layout_height="41dp"
+                                        android:layout_weight="1"
+                                        android:background="@android:color/transparent"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="bottom|start|top|left"
+                                        android:paddingStart="1dp"
+                                        android:text="View"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/customColourFour"
+                                        tools:ignore="TouchTargetSizeCheck" />
+
+                                    <Button
+                                        android:id="@+id/button2"
+                                        android:layout_width="65dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@android:color/transparent"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="bottom|start|top|left"
+                                        android:paddingStart="1dp"
+                                        android:text="Edit"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/customColourFour"
+                                        tools:ignore="TouchTargetSizeCheck" />
+
+                                    <ImageButton
+                                        android:layout_width="50dp"
+                                        android:layout_height="48dp"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@color/customColourNine"
+                                        android:contentDescription="heart"
+                                        android:gravity="right"
+                                        android:src="@drawable/ic_heart">
+
+                                    </ImageButton>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </GridLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
