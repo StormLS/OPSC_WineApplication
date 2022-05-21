@@ -360,7 +360,8 @@
                             android:hint="%"
                             android:inputType="number"
                             android:paddingStart="5dp"
-                            android:paddingTop="3dp" />
+                            android:paddingTop="3dp"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <Space
                             android:layout_width="10dp"
@@ -378,7 +379,8 @@
                             android:hint="2022"
                             android:inputType="number"
                             android:paddingStart="5dp"
-                            android:paddingTop="3dp" />
+                            android:paddingTop="3dp"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <Space
                             android:layout_width="10dp"
