@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/custom_spinner"
     android:orientation="vertical"
     tools:context=".addwines_fragment">
 
@@ -38,7 +37,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="456dp"
+                android:layout_height="459dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -77,13 +76,14 @@
                         <TextView
                             android:id="@+id/textView18"
                             android:layout_width="match_parent"
-                            android:layout_height="7dp"
+                            android:layout_height="12dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="3dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:letterSpacing="0.03"
                             android:text="Image"
+                            android:textColor="@color/grey"
                             android:textSize="17sp" />
 
                         <LinearLayout
@@ -118,8 +118,9 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/ic_baseline_photo_camera_24"
                                 android:backgroundTint="@color/black"
+                                android:contentDescription="camera"
                                 android:textColor="@color/customColourOne"
-                                tools:ignore="TouchTargetSizeCheck" />
+                                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                         </LinearLayout>
 
@@ -134,13 +135,14 @@
                         <TextView
                             android:id="@+id/textView21"
                             android:layout_width="108dp"
-                            android:layout_height="54dp"
+                            android:layout_height="48dp"
                             android:layout_gravity="top"
                             android:layout_marginStart="20dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:letterSpacing="0.03"
                             android:text="Date acquired"
+                            android:textColor="@color/grey"
                             android:textSize="17sp" />
 
                         <Button
@@ -153,24 +155,27 @@
                             android:layout_weight="1"
                             android:background="@drawable/calendar_icon"
                             android:backgroundTint="@color/black"
+                            android:contentDescription="calendar"
                             tools:ignore="TouchTargetSizeCheck" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="3dp"
+                        android:layout_height="49dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textView25"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
+                            android:layout_height="20dp"
                             android:layout_marginStart="20dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
+                            android:paddingStart="0dp"
+                            android:paddingBottom="0dp"
                             android:text="Rating"
+                            android:textColor="@color/grey"
                             android:textSize="17sp" />
 
                         <RatingBar
@@ -179,14 +184,35 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="14dp"
                             android:layout_weight="1"
                             android:numStars="5" />
 
                         <Space
                             android:layout_width="match_parent"
-                            android:layout_height="28dp"
+                            android:layout_height="5dp"
                             android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btn_set_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_horizontal|top|center_vertical"
+                            android:letterSpacing="0.03"
+                            android:paddingStart="0dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="0dp"
+                            android:text="@string/set_description_underline"
+                            android:textAllCaps="false"
+                            android:textColor="@color/grey"
+                            android:textSize="17sp"
+                            tools:ignore="TouchTargetSizeCheck" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -204,6 +230,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:letterSpacing="0.03"
                         android:text="Name"
+                        android:textColor="@color/grey"
                         android:textSize="17sp" />
 
                     <EditText
@@ -232,6 +259,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:letterSpacing="0.03"
                         android:text="Type"
+                        android:textColor="@color/grey"
                         android:textSize="17sp" />
 
                     <Spinner
@@ -253,6 +281,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:letterSpacing="0.03"
                         android:text="Subtype"
+                        android:textColor="@color/grey"
                         android:textSize="17sp" />
 
                     <Spinner
@@ -274,6 +303,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:letterSpacing="0.03"
                         android:text="Origin"
+                        android:textColor="@color/grey"
                         android:textSize="17sp" />
 
                     <Spinner
@@ -295,6 +325,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:letterSpacing="0.03"
                         android:text="Bottle Type"
+                        android:textColor="@color/grey"
                         android:textSize="17sp" />
 
                     <Spinner
@@ -322,6 +353,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:letterSpacing="0.03"
                             android:text="Perc."
+                            android:textColor="@color/grey"
                             android:textSize="17sp" />
 
                         <Space
@@ -337,6 +369,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:letterSpacing="0.03"
                             android:text="Year"
+                            android:textColor="@color/grey"
                             android:textSize="17sp" />
 
                         <Space

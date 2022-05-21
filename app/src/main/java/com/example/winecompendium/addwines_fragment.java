@@ -1,12 +1,18 @@
 package com.example.winecompendium;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +20,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class addwines_fragment extends Fragment {
+
+    private Button btnSetDesc;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,11 +56,17 @@ public class addwines_fragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        setDesc_dialogue df = new setDesc_dialogue();
+        df.setCancelable(false); //prevent user from closing dialogue outside the box
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -62,4 +76,32 @@ public class addwines_fragment extends Fragment {
         return inflater.inflate(R.layout.fragment_addwines_fragment, container, false);
 
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        /*
+        Implementation for showing the set description dialogue box
+         */
+        btnSetDesc = getView().findViewById(R.id.btn_set_desc);
+
+        btnSetDesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowDialogueBox();
+            }
+        });
+    }
+
+    /*
+     Show the set description dialogue box
+    */
+    private void ShowDialogueBox() {
+        FragmentManager fm =  getChildFragmentManager();
+        setDesc_dialogue setDescriptionDialogue = setDesc_dialogue.newInstance("Wine Description");
+        setDescriptionDialogue.show(fm, "fragment_edit_name");
+
+    }
+
+
 }

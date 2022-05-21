@@ -42,6 +42,15 @@ public class MyCollections extends AppCompatActivity {
         SetNavDrawerName(dash._name);
 
         /*
+         //Display the all wines fragment on create
+         */
+        allwines_fragment frag1 = new allwines_fragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.fragment_layout,frag1, frag1.getTag()).commit();
+        //update appearance of button
+        ButtonSelected((MaterialButton) btnAllWines);
+
+        /*
          ------------------------------------Navigation---------------------------------------------
          */
         btnAllWines.setOnClickListener(new View.OnClickListener() {
