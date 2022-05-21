@@ -1,14 +1,32 @@
 package com.example.winecompendium;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +35,18 @@ import android.widget.Spinner;
  */
 public class addwines_fragment extends Fragment
 {
-    private Spinner spinner;
+
+    private Button btnSetDesc;
+
+    private Spinner spinner_wineType;
+    private Spinner spinner_wineSubtype;
+    private Spinner spinner_wineOrigin;
+    private Spinner spinner_wineBottleType;
+
+    DatabaseReference dbRef;
+    ArrayList<String> spinnerList_WineTypes;
+    ArrayAdapter<String> adapter;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,8 +70,7 @@ public class addwines_fragment extends Fragment
      * @return A new instance of fragment addwines_fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static addwines_fragment newInstance(String param1, String param2)
-    {
+    public static addwines_fragment newInstance(String param1, String param2) {
         addwines_fragment fragment = new addwines_fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -52,8 +80,11 @@ public class addwines_fragment extends Fragment
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
+
+        setDesc_dialogue df = new setDesc_dialogue();
+        df.setCancelable(false); //prevent user from closing dialogue outside the box
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -62,9 +93,117 @@ public class addwines_fragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_addwines_fragment, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        /*
+        Implementation for showing the set description dialogue box
+         */
+        btnSetDesc = getView().findViewById(R.id.btn_set_desc);
+
+        btnSetDesc.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                ShowDialogueBox();
+            }
+        });
+
+        spinner_wineType = getView().findViewById(R.id.wineType);
+        dbRef = FirebaseDatabase.getInstance().getReference("WineType");
+
+        spinnerList_WineTypes = new ArrayList<>();
+
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_WineTypes);
+
+        spinner_wineType.setAdapter(adapter);
+
+        dbRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for(DataSnapshot item : snapshot.getChildren())
+                {
+                    spinnerList_WineTypes.add(item.getValue().toString());
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
+
+        /*
+        spinner_wineType = (Spinner) getView().findViewById(R.id.wineType);
+
+        WineTypes = new ArrayList<>();
+
+        dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef.child("WineType").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for(DataSnapshot childSnapshot:snapshot.getChildren())
+                {
+                    String allWineTypes = snapshot.child("Type").getValue(String.class);
+                    WineTypes.add(allWineTypes);
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, WineTypes);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner_wineType.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+        */
+
+        /*
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.wineType_array, android.R.layout.simple_spinner_item); // Create an ArrayAdapter using the string array and a default spinner layout
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Specify the layout to use when the list of choices appears
+        spinner_wineType.setAdapter(adapter);// Apply the adapter to the spinner
+         */
+    }
+
+    /*
+     Show the set description dialogue box
+    */
+    private void ShowDialogueBox()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        setDesc_dialogue setDescriptionDialogue = setDesc_dialogue.newInstance("Wine Description");
+        setDescriptionDialogue.show(fm, "fragment_edit_name");
+
+    }
+
+    private void populateAllSpinners()
+    {
+        //Creating the findView for all spinners
+
+        spinner_wineType = (Spinner) getView().findViewById(R.id.wineSubtype);
+        spinner_wineType = (Spinner) getView().findViewById(R.id.wineOrigin);
+        spinner_wineType = (Spinner) getView().findViewById(R.id.wineBottleType);
+
+
+        /*
+
+         */
     }
 }

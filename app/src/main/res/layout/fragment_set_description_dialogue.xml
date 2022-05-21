@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidUnresolvableTag -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".setDesc_dialogue">
+
+    <LinearLayout
+        android:layout_width="306dp"
+        android:layout_height="301dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="34dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Wine Description"
+            android:textColor="@color/customColourOne"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:letterSpacing="0.03"
+            android:text="Please set a description for your newly acquired wine"
+            android:textColor="@color/customColourFour"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txtDesc"
+            style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="286dp"
+            android:layout_height="123dp"
+            android:layout_gravity="center_horizontal|fill"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/textview_border"
+            android:backgroundTint="#E3E3E3"
+            android:ems="10"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="start|left"
+            android:hint="Start typing here.."
+            android:inputType="textMultiLine|textPersonName"
+            android:lines="4"
+            android:maxLines="4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnCloseDialogue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/customColourTwo"
+            android:text="Done"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+</LinearLayout>
