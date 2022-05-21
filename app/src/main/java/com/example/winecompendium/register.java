@@ -62,6 +62,7 @@ public class register extends AppCompatActivity
     //add users to the path
     private DatabaseReference UsersRef = database.getReference("Users");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -127,6 +128,8 @@ public class register extends AppCompatActivity
                 else //if passwords don't match
                 {
                     Toast.makeText(register.this,  "Your passwords dont match! Try Again!", Toast.LENGTH_LONG);
+                    password.requestFocus();
+                    confirmPassword.requestFocus();
                 }
             }
         });
@@ -276,7 +279,6 @@ public class register extends AppCompatActivity
 
         //add user to users database
         UsersRef.push().setValue(_user);
-
     }
 
     //----------------------------------------------------------------------------------------------

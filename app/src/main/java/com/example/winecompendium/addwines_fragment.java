@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link addwines_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class addwines_fragment extends Fragment {
+public class addwines_fragment extends Fragment
+{
+    private Spinner spinner;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +41,8 @@ public class addwines_fragment extends Fragment {
      * @return A new instance of fragment addwines_fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static addwines_fragment newInstance(String param1, String param2) {
+    public static addwines_fragment newInstance(String param1, String param2)
+    {
         addwines_fragment fragment = new addwines_fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -47,7 +52,8 @@ public class addwines_fragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -56,8 +62,8 @@ public class addwines_fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_addwines_fragment, container, false);
     }

@@ -1,7 +1,7 @@
 package com.example.winecompendium;
 
-public class users {
-
+public class users
+{
     private String firstName;
     private String lastName;
     private String email;

@@ -79,32 +79,39 @@
             android:inputType="textPersonName"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/password_input"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="232dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableLeft="@drawable/icon_pass"
-            android:drawablePadding="5dip"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
+            app:startIconDrawable="@drawable/icon_pass"
+            app:startIconContentDescription="test"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="16sp" />
+            app:endIconMode="password_toggle">
+            android:minHeight="48dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_input"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/confirmPassword_input"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="232dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableLeft="@drawable/confirmpassword_icon"
-            android:drawablePadding="5dip"
-            android:drawableTint="#AFAFAF"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="Confirm password"
-            android:inputType="textPassword"
-            android:textSize="16sp" />
+            android:hint="Confirm Password"
+            android:minHeight="48dp"
+            app:startIconDrawable="@drawable/confirmpassword_icon"
+            app:startIconContentDescription="test"
+            app:endIconMode="password_toggle">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPassword_input"
+                android:background="@color/white"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"

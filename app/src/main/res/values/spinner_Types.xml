@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="wineType_array">
+        <item>White Wine</item>
+        <item>Red Wine</item>
+        <item>Rose Wines</item>
+        <item>Sparking Wines</item>
+        <item>Dessert Wines</item>
+        <item>Fortified Wines</item>
+    </string-array>
+</resources>

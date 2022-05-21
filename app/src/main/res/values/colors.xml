@@ -20,8 +20,12 @@
     <color name="customColourNine">#BAD1CD</color>
     <color name="customColourTen">#C5C5C5</color>
     <color name="customColourEleven">#C8C8C8</color>
+    <color  name="customColourTwelve">#AAAAAA</color>
+
     <color name="selectedBtnStroke">#8C0033</color>
     <color name="selectedBtnText">#FFAAC9</color>
+    <color name="unselectedBtnStroke">#7CA39D</color>
+    <color name="unselectedBtnText">#C8E5E1</color>
 
     <color name="grey">#636363</color>
     <color name="lightgrey">#979797</color>

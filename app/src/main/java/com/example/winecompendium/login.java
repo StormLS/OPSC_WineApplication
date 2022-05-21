@@ -137,35 +137,40 @@ public class login extends AppCompatActivity
      */
     void LogUserIn()
     {
-        //progressBar.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+        if (email.getText().toString().trim().isEmpty() || password.getText().toString().trim().isEmpty())
         {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task)
+            Toast.makeText(login.this, "Please fill in all details!", Toast.LENGTH_SHORT).show();
+            if (email.getText().toString().trim().isEmpty())
             {
-                if (task.isSuccessful())
-                {
-                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                    if (!user.isEmailVerified())
-                    {
-                        Toast.makeText(login.this, "Unable to login, Please verify your email", Toast.LENGTH_SHORT).show();
-                        //Verify.setVisibility(View.VISIBLE);
-                        // progressBar.setVisibility(View.INVISIBLE);
-                    }
-                    else
-                    {
-                       // Toast.makeText(login.this, "Logged in successfully.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), dashboard.class));
-                        finish();
-                    }
-                }
-                else
-                {
-                    //progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                email.requestFocus();
+            }else
+            {
+                password.requestFocus();
             }
-        });
+        }
+        else {
+            //progressBar.setVisibility(View.VISIBLE);
+            mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        if (!user.isEmailVerified()) {
+                            Toast.makeText(login.this, "Unable to login, Please verify your email", Toast.LENGTH_SHORT).show();
+                            //Verify.setVisibility(View.VISIBLE);
+                            // progressBar.setVisibility(View.INVISIBLE);
+                        } else {
+                            // Toast.makeText(login.this, "Logged in successfully.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), dashboard.class));
+                            finish();
+                        }
+                    } else {
+                        //progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(login.this, "Login Failed, confirm you details are correct!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }

@@ -2,13 +2,14 @@ package com.example.winecompendium;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
@@ -16,8 +17,8 @@ import android.widget.TextView;
  * Use the {@link allwines_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class allwines_fragment extends Fragment {
-
+public class allwines_fragment extends Fragment
+{
     private TextView txtNavName;
     private Button btn_addwines;
 
@@ -30,8 +31,26 @@ public class allwines_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public allwines_fragment() {
-        // Required empty public constructor
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    public allwines_fragment()
+    {
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_allwines_fragment, container, false);
     }
 
     /**
@@ -43,7 +62,8 @@ public class allwines_fragment extends Fragment {
      * @return A new instance of fragment allwines_fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static allwines_fragment newInstance(String param1, String param2) {
+    public static allwines_fragment newInstance(String param1, String param2)
+    {
         allwines_fragment fragment = new allwines_fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -52,19 +72,5 @@ public class allwines_fragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_allwines_fragment, container, false);
-    }
 }
