@@ -95,7 +95,7 @@
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/button3"
+                                android:id="@+id/browseGallery"
                                 android:layout_width="110dp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="start"
@@ -235,7 +235,7 @@
                         android:textSize="17sp" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName"
+                        android:id="@+id/WineName"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
                         android:background="@drawable/textview_border"
@@ -385,7 +385,7 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:id="@+id/editTextNumber3"
+                            android:id="@+id/WineAlco"
                             android:layout_width="77dp"
                             android:layout_height="40dp"
                             android:background="@drawable/textview_border"
@@ -403,7 +403,7 @@
                             android:layout_weight="1" />
 
                         <EditText
-                            android:id="@+id/editTextNumber4"
+                            android:id="@+id/WineYear"
                             android:layout_width="50dp"
                             android:layout_height="40dp"
                             android:layout_weight="1"
@@ -441,7 +441,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button10"
+                    android:id="@+id/reset_addwine"
                     android:layout_width="150dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center_horizontal"
@@ -462,7 +462,7 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/button11"
+                    android:id="@+id/addwine"
                     android:layout_width="167dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center_horizontal"
@@ -474,6 +474,7 @@
                     android:text="Add Wine"
                     android:textAllCaps="false"
                     android:textSize="18sp"
+                    android:onClick="ClickAddWine"
                     app:cornerRadius="7dp" />
 
             </LinearLayout>

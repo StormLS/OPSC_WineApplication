@@ -1,7 +1,11 @@
 package com.example.winecompendium;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,9 +18,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,10 +41,11 @@ import java.util.List;
  * Use the {@link addwines_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class addwines_fragment extends Fragment
+public class addwines_fragment extends Fragment implements AdapterView.OnItemSelectedListener
 {
 
     private Button btnSetDesc;
+    private Button browseGallery;
 
     private Spinner spinner_wineType;
     private Spinner spinner_wineSubtype;
@@ -44,8 +53,17 @@ public class addwines_fragment extends Fragment
     private Spinner spinner_wineBottleType;
 
     DatabaseReference dbRef;
+
+    ArrayAdapter<String> adapter_wineType;
+    ArrayAdapter<String> adapter_wineSubtype;
+    ArrayAdapter<String> adapter_wineOrigin;
+    ArrayAdapter<String> adapter_wineBottleType;
+
     ArrayList<String> spinnerList_WineTypes;
-    ArrayAdapter<String> adapter;
+    ArrayList<String> spinnerList_wineSubtype;
+    ArrayList<String> spinnerList_wineOrigin;
+    ArrayList<String> spinnerList_wineBottleType;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -103,10 +121,12 @@ public class addwines_fragment extends Fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
+        populateAllSpinners();
         /*
         Implementation for showing the set description dialogue box
          */
         btnSetDesc = getView().findViewById(R.id.btn_set_desc);
+        browseGallery = getView().findViewById(R.id.browseGallery);
 
         btnSetDesc.setOnClickListener(new View.OnClickListener()
         {
@@ -117,74 +137,43 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        spinner_wineType = getView().findViewById(R.id.wineType);
-        dbRef = FirebaseDatabase.getInstance().getReference("WineType");
-
-        spinnerList_WineTypes = new ArrayList<>();
-
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_WineTypes);
-
-        spinner_wineType.setAdapter(adapter);
-
-        dbRef.addValueEventListener(new ValueEventListener()
+        browseGallery.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
+            public void onClick(View view)
             {
-                for(DataSnapshot item : snapshot.getChildren())
-                {
-                    spinnerList_WineTypes.add(item.getValue().toString());
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
+                openFileChooser();
             }
         });
+    }
 
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri mImageUri;
+    private ImageView wineImage;
 
-        /*
-        spinner_wineType = (Spinner) getView().findViewById(R.id.wineType);
+    private void openFileChooser()
+    {
+        Intent intent = new Intent();
+        intent.setType("Image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
 
-        WineTypes = new ArrayList<>();
-
-        dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child("WineType").addValueEventListener(new ValueEventListener()
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                for(DataSnapshot childSnapshot:snapshot.getChildren())
-                {
-                    String allWineTypes = snapshot.child("Type").getValue(String.class);
-                    WineTypes.add(allWineTypes);
-                }
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, WineTypes);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner_wineType.setAdapter(arrayAdapter);
-            }
+            mImageUri = data.getData();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
-            }
-        });
-        */
-
-        /*
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.wineType_array, android.R.layout.simple_spinner_item); // Create an ArrayAdapter using the string array and a default spinner layout
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Specify the layout to use when the list of choices appears
-        spinner_wineType.setAdapter(adapter);// Apply the adapter to the spinner
-         */
+            wineImage.setImageURI(mImageUri);
+        }
     }
 
     /*
-     Show the set description dialogue box
-    */
+         Show the set description dialogue box
+        */
     private void ShowDialogueBox()
     {
         FragmentManager fm =  getChildFragmentManager();
@@ -195,15 +184,149 @@ public class addwines_fragment extends Fragment
 
     private void populateAllSpinners()
     {
-        //Creating the findView for all spinners
+        //Populates a spinner (WineTypes) from the FireBase DB
+        spinner_wineType = getView().findViewById(R.id.wineType);
+        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("WineType");
+        spinnerList_WineTypes = new ArrayList<>();
+        adapter_wineType = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_WineTypes);
+        spinner_wineType.setAdapter(adapter_wineType);
+        dbRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for(DataSnapshot item : snapshot.getChildren())
+                {
+                    spinnerList_WineTypes.add(item.getValue().toString());
+                }
+                adapter_wineType.notifyDataSetChanged();
+            }
 
-        spinner_wineType = (Spinner) getView().findViewById(R.id.wineSubtype);
-        spinner_wineType = (Spinner) getView().findViewById(R.id.wineOrigin);
-        spinner_wineType = (Spinner) getView().findViewById(R.id.wineBottleType);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+        spinner_wineType.setOnItemSelectedListener(this);
+        //Populates a spinner (WineTypes) from the FireBase DB
+
+        //Populates a spinner (Subtype) from the FireBase DB
+        spinner_wineSubtype = getView().findViewById(R.id.wineSubtype);
+        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("Subtype").child("Sparkling");
+        spinnerList_wineSubtype = new ArrayList<>();
+        adapter_wineSubtype = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineSubtype);
+        spinner_wineSubtype.setAdapter(adapter_wineSubtype);
+        dbRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for(DataSnapshot item : snapshot.getChildren())
+                {
+                    spinnerList_wineSubtype.add(item.getValue().toString());
+                }
+                adapter_wineSubtype.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+        spinner_wineSubtype.setOnItemSelectedListener(this);
+        //Populates a spinner (Subtype) from the FireBase DB
+
+        //Populates a spinner (Origin) from the FireBase DB
+        spinner_wineOrigin = getView().findViewById(R.id.wineOrigin);
+        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("Origin");
+        spinnerList_wineOrigin = new ArrayList<>();
+        adapter_wineOrigin = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineOrigin);
+        spinner_wineOrigin.setAdapter(adapter_wineOrigin);
+        dbRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for(DataSnapshot item : snapshot.getChildren())
+                {
+                    spinnerList_wineOrigin.add(item.getValue().toString());
+                }
+                adapter_wineOrigin.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+
+        });
+        spinner_wineOrigin.setOnItemSelectedListener(this);
+        //Populates a spinner (Origin) from the FireBase DB
 
 
-        /*
+        //Populates a spinner (BottleType) from the FireBase DB
+        spinner_wineBottleType = getView().findViewById(R.id.wineBottleType);
+        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("BottleType");
+        spinnerList_wineBottleType = new ArrayList<>();
+        adapter_wineBottleType = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineBottleType);
+        spinner_wineBottleType.setAdapter(adapter_wineBottleType);
+        dbRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for(DataSnapshot item : snapshot.getChildren())
+                {
+                    spinnerList_wineBottleType.add(item.getValue().toString());
+                }
+                adapter_wineBottleType.notifyDataSetChanged();
+            }
 
-         */
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+        spinner_wineBottleType.setOnItemSelectedListener(this);
+        //Populates a spinner (BottleType) from the FireBase DB
+
+        Button addwine = (Button) getView().findViewById(R.id.addwine);
+        EditText WineName = (EditText) getView().findViewById(R.id.WineName);
+        EditText WineAlco = (EditText) getView().findViewById(R.id.WineAlco);
+        EditText WineYear = (EditText) getView().findViewById(R.id.WineYear);
+
+        addwine.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (WineName.getText().toString().isEmpty()
+                        || spinner_wineType.getSelectedItem().toString().isEmpty()
+                        || spinner_wineSubtype.getSelectedItem().toString().isEmpty()
+                        || spinner_wineOrigin.getSelectedItem().toString().isEmpty()
+                        || spinner_wineBottleType.getSelectedItem().toString().isEmpty()
+                        || WineAlco.getText().toString().isEmpty()
+                        || WineYear.getText().toString().isEmpty())
+                {
+                    Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

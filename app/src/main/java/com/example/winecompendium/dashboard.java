@@ -270,6 +270,7 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int i)
             {
+                FirebaseAuth.getInstance().signOut();
                 //Finish activity
                 activity.finishAffinity();
                 //Exit app
