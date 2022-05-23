@@ -79,7 +79,6 @@ public class addwines_fragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
         /*
         Implementation for showing the set description dialogue box
          */
