@@ -59,7 +59,7 @@
                             android:layout_weight="1" />
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/wineImage"
                             android:layout_width="160dp"
                             android:layout_height="144dp"
                             android:layout_gravity="center_horizontal|top"

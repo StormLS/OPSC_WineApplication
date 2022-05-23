@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     ArrayList<String> spinnerList_wineOrigin;
     ArrayList<String> spinnerList_wineBottleType;
 
-
+    private ImageView wineImage;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -126,7 +127,9 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         Implementation for showing the set description dialogue box
          */
         btnSetDesc = getView().findViewById(R.id.btn_set_desc);
+
         browseGallery = getView().findViewById(R.id.browseGallery);
+        wineImage = getView().findViewById(R.id.wineImage);
 
         btnSetDesc.setOnClickListener(new View.OnClickListener()
         {
@@ -149,25 +152,24 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri mImageUri;
-    private ImageView wineImage;
 
     private void openFileChooser()
     {
         Intent intent = new Intent();
-        intent.setType("Image/*");
+        intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
             mImageUri = data.getData();
 
-            wineImage.setImageURI(mImageUri);
+            Picasso.with(getView().getContext()).load(mImageUri).into(wineImage);
         }
     }
 
