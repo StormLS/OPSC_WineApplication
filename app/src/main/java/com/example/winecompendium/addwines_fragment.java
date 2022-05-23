@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
 
     private Button btnSetDesc;
     private Button browseGallery;
+    private Button openCamera;
 
     private Spinner spinner_wineType;
     private Spinner spinner_wineSubtype;
@@ -130,6 +133,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
 
         browseGallery = getView().findViewById(R.id.browseGallery);
         wineImage = getView().findViewById(R.id.wineImage);
+        openCamera = getView().findViewById(R.id.openCamera);
 
         btnSetDesc.setOnClickListener(new View.OnClickListener()
         {
@@ -148,10 +152,27 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
                 openFileChooser();
             }
         });
+
+        openCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                openCamera();
+            }
+
+
+        });
     }
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int TAKE_IMAGE_REQUEST = 100;
     private Uri mImageUri;
+
+    private void openCamera()
+    {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, TAKE_IMAGE_REQUEST);
+    }
 
     private void openFileChooser()
     {
@@ -165,6 +186,13 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == TAKE_IMAGE_REQUEST )
+        {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            wineImage.setImageBitmap(photo);
+        }
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
             mImageUri = data.getData();
