@@ -58,7 +58,7 @@
                             android:layout_weight="1" />
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/wineImage"
                             android:layout_width="160dp"
                             android:layout_height="144dp"
                             android:layout_gravity="center_horizontal|top"
@@ -94,7 +94,7 @@
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/button3"
+                                android:id="@+id/browseGallery"
                                 android:layout_width="110dp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="start"
@@ -109,7 +109,7 @@
                                 android:textSize="16sp" />
 
                             <Button
-                                android:id="@+id/button4"
+                                android:id="@+id/openCamera"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_marginLeft="4dp"
@@ -234,7 +234,7 @@
                         android:textSize="17sp" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName"
+                        android:id="@+id/WineName"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
                         android:background="@drawable/textview_border"
@@ -263,7 +263,7 @@
                         android:textSize="17sp" />
 
                     <Spinner
-                        android:id="@+id/spinner_item"
+                        android:id="@+id/wineType"
                         style="@style/SpinnerTheme"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
@@ -285,7 +285,7 @@
                         android:textSize="17sp" />
 
                     <Spinner
-                        android:id="@+id/spinner_item2"
+                        android:id="@+id/wineSubtype"
                         style="@style/SpinnerTheme"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
@@ -307,7 +307,7 @@
                         android:textSize="17sp" />
 
                     <Spinner
-                        android:id="@+id/spinner_item3"
+                        android:id="@+id/wineOrigin"
                         style="@style/SpinnerTheme"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
@@ -329,7 +329,7 @@
                         android:textSize="17sp" />
 
                     <Spinner
-                        android:id="@+id/spinner_item4"
+                        android:id="@+id/wineBottleType"
                         style="@style/SpinnerTheme"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
@@ -384,7 +384,7 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:id="@+id/editTextNumber3"
+                            android:id="@+id/WineAlco"
                             android:layout_width="77dp"
                             android:layout_height="40dp"
                             android:background="@drawable/textview_border"
@@ -402,7 +402,7 @@
                             android:layout_weight="1" />
 
                         <EditText
-                            android:id="@+id/editTextNumber4"
+                            android:id="@+id/WineYear"
                             android:layout_width="50dp"
                             android:layout_height="40dp"
                             android:layout_weight="1"
@@ -440,7 +440,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button10"
+                    android:id="@+id/reset_addwine"
                     android:layout_width="150dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center_horizontal"
@@ -461,7 +461,7 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/button11"
+                    android:id="@+id/addwine"
                     android:layout_width="167dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center_horizontal"
