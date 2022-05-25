@@ -2,21 +2,11 @@ package com.example.winecompendium;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,36 +18,34 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link addwines_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class addwines_fragment extends Fragment implements AdapterView.OnItemSelectedListener {
-
+public class addwines_fragment extends Fragment implements AdapterView.OnItemSelectedListener
+{
 
     private Button btnSetDesc;
     private Button browseGallery;
     private Button openCamera;
     private Button addwine;
-    private EditText WineName;
+    private  EditText WineName;
     private EditText WineAlco;
     private EditText WineYear;
-
-    private static final int PICK_IMAGE_REQUEST = 1;
-    private static final int TAKE_IMAGE_REQUEST = 100;
-    private Uri mImageUri;
 
     private Spinner spinner_wineType;
     private Spinner spinner_wineSubtype;
@@ -120,8 +108,6 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -133,7 +119,8 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
 
         spinner_wineType = getView().findViewById(R.id.wineType);
         spinner_wineSubtype = getView().findViewById(R.id.wineSubtype);
@@ -179,6 +166,10 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         });
     }
 
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int TAKE_IMAGE_REQUEST = 100;
+    private Uri mImageUri;
+
     private void openCamera()
     {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -208,14 +199,15 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         {
             mImageUri = data.getData();
 
-            Picasso.with(getView().getContext()).load(mImageUri).into(wineImage);
+           // Picasso.with(getView().getContext()).load(mImageUri).into(wineImage);
         }
     }
 
     /*
      Show the set description dialogue box
     */
-    private void ShowDialogueBox() {
+    private void ShowDialogueBox()
+    {
         FragmentManager fm =  getChildFragmentManager();
         setDesc_dialogue setDescriptionDialogue = setDesc_dialogue.newInstance("Wine Description");
         setDescriptionDialogue.show(fm, "fragment_edit_name");
@@ -248,7 +240,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             }
         });
 
-     //   spinner_wineType.setOnItemSelectedListener(this);
+        spinner_wineType.setOnItemSelectedListener(this);
         //Populates a spinner (WineTypes) from the FireBase DB
 
           /*
@@ -316,7 +308,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             }
 
         });
-       //  spinner_wineOrigin.setOnItemSelectedListener(this);
+        spinner_wineOrigin.setOnItemSelectedListener(this);
         //Populates a spinner (Origin) from the FireBase DB
 
         //Populates a spinner (BottleType) from the FireBase DB
@@ -345,10 +337,10 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         spinner_wineBottleType.setOnItemSelectedListener(this);
         //Populates a spinner (BottleType) from the FireBase DB
 
-        addwine = (Button) getView().findViewById(R.id.addwine);
-        WineName = (EditText) getView().findViewById(R.id.WineName);
-        WineAlco = (EditText) getView().findViewById(R.id.WineAlco);
-        WineYear = (EditText) getView().findViewById(R.id.WineYear);
+        Button addwine = (Button) getView().findViewById(R.id.addwine);
+        EditText WineName = (EditText) getView().findViewById(R.id.WineName);
+        EditText WineAlco = (EditText) getView().findViewById(R.id.WineAlco);
+        EditText WineYear = (EditText) getView().findViewById(R.id.WineYear);
 
         addwine.setOnClickListener(new View.OnClickListener()
         {
@@ -382,6 +374,4 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
-
 }
