@@ -1,20 +1,14 @@
 package com.example.winecompendium;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.res.ColorStateList;
-import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -31,8 +25,8 @@ public class MyCollections extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_collections);
 
-        btnAllWines = findViewById(R.id.btn_allwines_1);
-        btnAddWines = findViewById(R.id.btn_addwines_1);
+        btnAllWines = findViewById(R.id.btn_categories);
+        btnAddWines = findViewById(R.id.btn_add_category);
         btnFavourites = findViewById(R.id.btn_favs_1);
         drawerLayout = findViewById(R.id.drawer_layout);
         txtNavName = findViewById(R.id.txtNavUser);

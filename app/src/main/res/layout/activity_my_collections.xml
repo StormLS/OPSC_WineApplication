@@ -58,7 +58,7 @@
             android:layout_gravity="center_vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_allwines_1"
+                android:id="@+id/btn_categories"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="bottom|fill|fill_vertical"
@@ -75,7 +75,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_addwines_1"
+                android:id="@+id/btn_add_category"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="bottom|fill|fill_vertical"
