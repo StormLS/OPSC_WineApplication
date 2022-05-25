@@ -1,13 +1,15 @@
 package com.example.winecompendium;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.button.MaterialButton;
 
 public class categories extends AppCompatActivity
 {
@@ -15,8 +17,8 @@ public class categories extends AppCompatActivity
     DrawerLayout drawerLayout;
     private TextView txtNavName;
 
-    private Button btnCategories;
-    private Button btnAddCategory;
+    private MaterialButton btnCategories;
+    private MaterialButton btnAddCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,7 +41,7 @@ public class categories extends AppCompatActivity
         my_categories_fragment frag1 = new my_categories_fragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_layout,frag1,frag1.getTag()).commit();
-
+        ButtonSelected(btnCategories);
 
         //Navigation
         btnCategories.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +50,19 @@ public class categories extends AppCompatActivity
                 my_categories_fragment frag1 = new my_categories_fragment();
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fragment_layout,frag1,frag1.getTag()).commit();
+                ButtonSelected(btnCategories);
+                ButtonUnselected(btnAddCategory);
+            }
+        });
+
+        btnAddCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                add_category_fragment frag2 = new add_category_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag2,frag2.getTag()).commit();
+                ButtonSelected(btnAddCategory);
+                ButtonUnselected(btnCategories);
             }
         });
     }
@@ -136,4 +151,32 @@ public class categories extends AppCompatActivity
         //Close drawer
         dashboard.closeDrawer(drawerLayout);
     }
+
+
+    //------------------Updating the appearance of the button that is selected----------------------
+    public void ButtonSelected(MaterialButton selectedBtn) {
+
+        //background colour
+        selectedBtn.setBackgroundColor(selectedBtn.getContext().getResources().getColor(R.color.customColourFour));
+        //Button stroke appearance
+        selectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.selectedBtnStroke)));
+        //Text colour
+        selectedBtn.setTextColor(getResources().getColor(R.color.selectedBtnText));
+
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //------------------Returning to the appearance of the button that is unselected----------------
+    public void ButtonUnselected(MaterialButton unSelectedBtn) {
+
+        //background colour
+        unSelectedBtn.setBackgroundColor(unSelectedBtn.getContext().getResources().getColor(R.color.customColourFive));
+        //Button stroke appearance
+        unSelectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.unselectedBtnStroke)));
+        //Text colour
+        unSelectedBtn.setTextColor(getResources().getColor(R.color.unselectedBtnText));
+
+
+    }
+    //----------------------------------------------------------------------------------------------
 }

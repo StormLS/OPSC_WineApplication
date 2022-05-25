@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -52,6 +53,11 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     private Spinner spinner_wineOrigin;
     private Spinner spinner_wineBottleType;
 
+    private ImageButton btnAddItemType;
+    private ImageButton btnAddItemSubtype;
+    private ImageButton btnAddItemOrigin;
+    private ImageButton btnAddItemBottleType;
+
     DatabaseReference dbRef;
 
     ArrayAdapter<String> adapter_wineType;
@@ -64,6 +70,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     ArrayList<String> spinnerList_wineOrigin;
     ArrayList<String> spinnerList_wineBottleType;
 
+    public static String _heading = "text";
     private ImageView wineImage;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -121,7 +128,6 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
-
         spinner_wineType = getView().findViewById(R.id.wineType);
         spinner_wineSubtype = getView().findViewById(R.id.wineSubtype);
         spinner_wineOrigin = getView().findViewById(R.id.wineOrigin);
@@ -134,6 +140,10 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         WineName = getView().findViewById(R.id.WineName);
         WineAlco =  getView().findViewById(R.id.WineAlco);
         WineYear =  getView().findViewById(R.id.WineYear);
+        btnAddItemType = getView().findViewById(R.id.btnAddWines_Type);
+        btnAddItemSubtype = getView().findViewById(R.id.btn_AddWines_Subtype);
+        btnAddItemOrigin = getView().findViewById(R.id.btnAddWines_Origin);
+        btnAddItemBottleType = getView().findViewById(R.id.btnAddWines_BottleType);
 
         populateAllSpinners();
 
@@ -161,10 +171,41 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             {
                 openCamera();
             }
+        });
 
+        btnAddItemType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddItemDialogueBox();
+                _heading = "Wine Type";
+            }
+        });
 
+        btnAddItemSubtype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddItemDialogueBox();
+                _heading = "Wine Subtype";
+            }
+        });
+
+        btnAddItemOrigin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddItemDialogueBox();
+                _heading = "Origin";
+            }
+        });
+
+        btnAddItemBottleType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddItemDialogueBox();
+                _heading = "Bottle Type";
+            }
         });
     }
+
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int TAKE_IMAGE_REQUEST = 100;
@@ -213,6 +254,20 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         setDescriptionDialogue.show(fm, "fragment_edit_name");
 
     }
+
+    public String ReturnHeading() {
+        return _heading;
+    }
+
+    /*
+    Show the add new item to category dialogue box
+     */
+    private void ShowAddItemDialogueBox() {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_category_dialogue addItemDialogue = add_wines_category_dialogue.newInstance("Category Item");
+        addItemDialogue.show(fm, "fragment_add_item");
+    }
+
 
     private void populateAllSpinners()
     {

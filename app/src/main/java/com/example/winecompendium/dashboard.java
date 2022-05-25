@@ -1,11 +1,5 @@
 package com.example.winecompendium;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,8 +76,8 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Toast btn_all_categories_pressed = Toast.makeText(getApplicationContext(), "Button Pressed: All Categories", Toast.LENGTH_SHORT);
-                btn_all_categories_pressed.show();
+                Intent i = new Intent(dashboard.this,categories.class);
+                startActivity(i);
             }
         });
 

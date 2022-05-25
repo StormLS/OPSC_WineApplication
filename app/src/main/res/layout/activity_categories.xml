@@ -82,7 +82,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFive"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Add Category"
+                android:text="Add Subcategory"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
                 android:textSize="16sp"

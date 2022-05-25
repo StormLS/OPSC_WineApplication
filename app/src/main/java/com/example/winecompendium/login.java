@@ -1,9 +1,5 @@
 package com.example.winecompendium;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,6 +46,16 @@ public class login extends AppCompatActivity
         btn_forgotPassword = findViewById(R.id.btn_forgotPassword);
 
         mAuth = FirebaseAuth.getInstance();
+
+        /*
+        TODO: ------------------------- Quick Login - Must delete code! ----------------------------
+         */
+        email.setText("amber.bruil@gmail.com");
+        password.setText("test123");
+        /*
+        TODO: ------------------------- Quick Login - Must delete code! ----------------------------
+         */
+
 
         /*
          *  SUMMERY: A listener for when the user clicks the Register button, then moves to register
