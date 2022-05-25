@@ -43,7 +43,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     private Button browseGallery;
     private Button openCamera;
     private Button addwine;
-    private  EditText WineName;
+    private EditText WineName;
     private EditText WineAlco;
     private EditText WineYear;
 
@@ -130,10 +130,10 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         browseGallery = getView().findViewById(R.id.browseGallery);
         wineImage = getView().findViewById(R.id.wineImage);
         openCamera = getView().findViewById(R.id.openCamera);
-        addwine = (Button) getView().findViewById(R.id.addwine);
-        WineName = (EditText) getView().findViewById(R.id.WineName);
-        WineAlco = (EditText) getView().findViewById(R.id.WineAlco);
-        WineYear = (EditText) getView().findViewById(R.id.WineYear);
+        addwine = getView().findViewById(R.id.addwine);
+        WineName = getView().findViewById(R.id.WineName);
+        WineAlco =  getView().findViewById(R.id.WineAlco);
+        WineYear =  getView().findViewById(R.id.WineYear);
 
         populateAllSpinners();
 
@@ -337,10 +337,6 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         spinner_wineBottleType.setOnItemSelectedListener(this);
         //Populates a spinner (BottleType) from the FireBase DB
 
-        Button addwine = (Button) getView().findViewById(R.id.addwine);
-        EditText WineName = (EditText) getView().findViewById(R.id.WineName);
-        EditText WineAlco = (EditText) getView().findViewById(R.id.WineAlco);
-        EditText WineYear = (EditText) getView().findViewById(R.id.WineYear);
 
         addwine.setOnClickListener(new View.OnClickListener()
         {
