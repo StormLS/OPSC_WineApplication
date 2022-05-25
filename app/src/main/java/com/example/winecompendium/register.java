@@ -15,16 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class register extends AppCompatActivity
@@ -56,7 +52,6 @@ public class register extends AppCompatActivity
     users _user;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //add users to the path
     private DatabaseReference UsersRef = database.getReference("Users");
 
     @Override
@@ -240,29 +235,6 @@ public class register extends AppCompatActivity
         userID = mAuth.getCurrentUser().getUid();
 
         /*
-        TODO: Will it still be necessary to add users to a firestore database?
-         */
-
-        //Adding the user in registration to the firestore database
-        CollectionReference dbUsers = fstore.collection("UsersData");
-        users user = new users(_fname, _lname, _email, userID);
-
-        dbUsers.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d("onSuccess_TAG", "onSuccess: User profile and data saved" + userID);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("onFailure_USER", "onFailure: User Not Saved" + e.getMessage());
-            }
-        });
-
-        /*
-        TODO: -------------------------------------------------------------------
-         */
-
         //Adding user to Real-time database
         _user.setFirstName(_fname);
         _user.setLastName(_lname);
@@ -271,9 +243,48 @@ public class register extends AppCompatActivity
 
         //add user to users database
         UsersRef.push().setValue(_user);
+        */
+
+        String userID = mAuth.getCurrentUser().getUid().toString();
+        DatabaseReference ref = UsersRef.child(userID).child("Account");
+
+        _user.setFirstName(_fname);
+        _user.setLastName(_lname);
+        _user.setEmail(_email);
+        _user.setUserID(userID);
+        ref.push().setValue(_user);
+
+        AddCategoriesData();
 
     }
 
+    //----------------------------------------------------------------------------------------------
+
+    // ---------------- Write Categories accordingly to user's ID to database ----------------------
+    private void AddCategoriesData() {
+        Categories_Data data = new Categories_Data();
+        String userID = mAuth.getCurrentUser().getUid().toString();
+
+        /*
+        Update personal user's database with all the wine categories
+         */
+        DatabaseReference ref = UsersRef.child(userID);
+        DatabaseReference catRef = ref.child("Categories");
+        DatabaseReference subTypeRed = catRef.child("SubType");
+
+        catRef.child("WineType").updateChildren(data.WineTypesMap());
+
+        subTypeRed.child("Red").updateChildren(data.SubTypeRedMap());
+        subTypeRed.child("White").updateChildren(data.SubTypeWhite());
+        subTypeRed.child("Rosè").updateChildren(data.SubTypeRoseMap());
+        subTypeRed.child("Sparkling").updateChildren(data.SubTypeSparklingMap());
+        subTypeRed.child("Dessert").updateChildren(data.SubTypeDessertMap());
+        subTypeRed.child("Fortified").updateChildren(data.SubTypeFortifiedMap());
+
+        catRef.child("Origin").updateChildren(data.OriginMap());
+        catRef.child("BottleType").updateChildren(data.BottleTypeMap());
+
+    }
     //----------------------------------------------------------------------------------------------
 }
 /* -------------------------------------===< END OF FILE >===-------------------------------------*/

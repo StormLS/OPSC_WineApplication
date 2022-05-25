@@ -24,6 +24,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
  * Use the {@link addwines_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class addwines_fragment extends Fragment implements AdapterView.OnItemSelectedListener
+public class addwines_fragment extends Fragment
 {
 
     private Button btnSetDesc;
@@ -58,7 +60,8 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     private ImageButton btnAddItemOrigin;
     private ImageButton btnAddItemBottleType;
 
-    DatabaseReference dbRef;
+    private DatabaseReference dbRef;
+    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
     ArrayAdapter<String> adapter_wineType;
     ArrayAdapter<String> adapter_wineSubtype;
@@ -72,6 +75,9 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
 
     public static String _heading = "text";
     private ImageView wineImage;
+
+    private String userID;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -145,6 +151,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         btnAddItemOrigin = getView().findViewById(R.id.btnAddWines_Origin);
         btnAddItemBottleType = getView().findViewById(R.id.btnAddWines_BottleType);
 
+        userID = fUser.getUid();
         populateAllSpinners();
 
         btnSetDesc.setOnClickListener(new View.OnClickListener()
@@ -272,7 +279,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
     private void populateAllSpinners()
     {
         //Populates a spinner (WineTypes) from the FireBase DB
-        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("WineType");
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
         spinnerList_WineTypes = new ArrayList<>();
         adapter_wineType = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_WineTypes);
         spinner_wineType.setAdapter(adapter_wineType);
@@ -295,7 +302,6 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             }
         });
 
-        spinner_wineType.setOnItemSelectedListener(this);
         //Populates a spinner (WineTypes) from the FireBase DB
 
           /*
@@ -307,7 +313,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //Populates a spinner (Subtype) from the FireBase DB
                 String selectedWineType =spinner_wineType.getSelectedItem().toString();
-                dbRef = FirebaseDatabase.getInstance().getReference("Category").child("Subtype").child(selectedWineType);
+                dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("SubType").child(selectedWineType);
                 spinnerList_wineSubtype = new ArrayList<>();
                 adapter_wineSubtype = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineSubtype);
                 spinner_wineSubtype.setAdapter(adapter_wineSubtype);
@@ -340,7 +346,7 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         //Todo: ------------------------------------------------------------------------------------
 
         //Populates a spinner (Origin) from the FireBase DB
-        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("Origin");
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("Origin");
         spinnerList_wineOrigin = new ArrayList<>();
         adapter_wineOrigin = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineOrigin);
         spinner_wineOrigin.setAdapter(adapter_wineOrigin);
@@ -363,11 +369,10 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
             }
 
         });
-        spinner_wineOrigin.setOnItemSelectedListener(this);
         //Populates a spinner (Origin) from the FireBase DB
 
         //Populates a spinner (BottleType) from the FireBase DB
-        dbRef = FirebaseDatabase.getInstance().getReference("Category").child("BottleType");
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("BottleType");
         spinnerList_wineBottleType = new ArrayList<>();
         adapter_wineBottleType = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineBottleType);
         spinner_wineBottleType.setAdapter(adapter_wineBottleType);
@@ -389,7 +394,6 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
 
             }
         });
-        spinner_wineBottleType.setOnItemSelectedListener(this);
         //Populates a spinner (BottleType) from the FireBase DB
 
 
@@ -414,15 +418,4 @@ public class addwines_fragment extends Fragment implements AdapterView.OnItemSel
         });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-    {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }

@@ -112,7 +112,7 @@ public class dashboard extends AppCompatActivity {
 
         //query based on current user id. Finding the first name of current user to display on dashboard
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
-        Query query = dataRef.child("Users").orderByChild("userID").equalTo(userID);
+        Query query = dataRef.child("Users").child(userID).child("Account").orderByChild("userID").equalTo(userID);
 
         //check if current user is logged in
         if (fUser != null) {
