@@ -22,6 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link add_wines_category_dialogue#newInstance} factory method to
@@ -34,7 +37,6 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
     private EditText txtInput;
     private addwines_fragment addWines = new addwines_fragment();
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-    private DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Users");
     private String userID;
     private String input;
     private int tot; //the total number of elements within a child
@@ -133,22 +135,29 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
 
         input = txtInput.getText().toString();
 
-        DatabaseReference ref = dataRef.child(userID).child("Categories").child("WineType");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dataRef = database.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
 
+        Set<String> WineTypeList = new HashSet<>();
 
-        //Retrieve the number of wine types within the category
-        ref.addValueEventListener(new ValueEventListener() {
+        dataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tot = (int) snapshot.getChildrenCount();
+
+                for (DataSnapshot item: snapshot.getChildren()) {
+                    //Retrieve all the Wine Type items and populate string
+                    WineTypeList.add(item.getValue().toString());
+                }
+                //Retrieve the total number of items within the list
+                tot = WineTypeList.size();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                throw error.toException();
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        Toast.makeText(getContext(), "Count: " + tot + "\nUser ID: " + userID + "\nInput: " + input, Toast.LENGTH_LONG).show();
 
         /*
         Map<String, Object> WineTypeItem = new HashMap<>();
