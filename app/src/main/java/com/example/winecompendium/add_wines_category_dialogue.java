@@ -80,12 +80,12 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
         btnClose = getView().findViewById(R.id.btnCloseDialogue);
         txtInput = getView().findViewById(R.id.txtAddWinesCategory);
         userID = fUser.getUid().toString();
+        btnClose = getView().findViewById(R.id.btnCloseDialogue);
 
 
         //Set the heading of the dialogue
         DialogueHeading.setText("Add " + addWines.ReturnHeading());
 
-        btnClose = getView().findViewById(R.id.btnCloseDialogue);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +141,7 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
         DatabaseReference dataRef = database.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
 
         Set<String> WineTypeList = new HashSet<>();
-        int holdTot[] = new int[1];
+        Map<String, Object> WineTypeItem = new HashMap<>();
 
         dataRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -150,10 +150,13 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 for (DataSnapshot item: snapshot.getChildren()) {
                     //Retrieve all the Wine Type items and populate string
                     WineTypeList.add(item.getValue().toString());
+                    tot = WineTypeList.size();
+                    WineTypeItem.put(String.valueOf(tot), item.getValue());
+                    WineTypeItem.put(String.valueOf(tot+1),input);
                 }
-                //Retrieve the total number of items within the list
-                tot = WineTypeList.size();
-
+                //Update the child by overwriting previous Wine types with wine types + newly added wine type
+                dataRef.setValue(WineTypeItem);
+                Toast.makeText(getContext(),"Wine Type successfully added.",Toast.LENGTH_SHORT).show();;
             }
 
             @Override
@@ -162,12 +165,6 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
             }
         });
 
-        Map<String, Object> WineTypeItem = new HashMap<>();
-        WineTypeItem.put(String.valueOf(tot + 1), input);
-
-        //Add new wine type item
-        //  dataRef.push().updateChildren(WineTypeItem);
-        Toast.makeText(getContext(), "Count: " + holdTot[0] + "\nInput: " + input, Toast.LENGTH_SHORT).show();
 
     }
 
