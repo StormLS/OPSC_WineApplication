@@ -164,6 +164,6 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
    Close the dialogue box
     */
     private void CloseDialogueBox() {
-        dismiss();
+        this.dismiss();
     }
 }

@@ -31,6 +31,12 @@
                 android:textColor="@color/customColourTwelve"
                 android:textSize="25sp" />
 
+            <Button
+                android:id="@+id/btnrefresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Refresh spinners" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="5dp" />

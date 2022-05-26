@@ -92,10 +92,6 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
         btnDone = getView().findViewById(R.id.btnDone);
         btnClose = getView().findViewById(R.id.btnClose);
 
-        //Get string variables
-        selectedItem = spinnerWineType.getSelectedItem().toString();
-        input = txtInput.getText().toString();
-
          SetHeading();
          PopulateSpinner();
 
@@ -103,23 +99,21 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
             @Override
             public void onClick(View view) {
 
-                if (input.equals(null) || input.equals("") || input.equals(" ")) {
+                //Get string variables
+                selectedItem = spinnerWineType.getSelectedItem().toString();
+                input = txtInput.getText().toString();
 
-                Toast.makeText(getContext(),"Please enter a wine subtype",Toast.LENGTH_LONG).show();
-                txtInput.setFocusable(true);
-                return;
-                }
-                else if(selectedItem.equals(null) || selectedItem.equals("") || selectedItem.equals(" "))
+
+                if (input.equals(null) || input.equals("") || input.equals(" "))
                 {
-                        Toast.makeText(getContext(),"Please select a wine type",Toast.LENGTH_LONG).show();
-                        return;
+                    Toast.makeText(getContext(),"Please enter a wine subtype",Toast.LENGTH_LONG).show();
+                     txtInput.setFocusable(true);
+                     return;
                 }
                 else
                 {
-                    if (input != null || input != "" || input != " " && selectedItem != null || selectedItem != "" || selectedItem != " ")
-                    {
-                        AddItemToSubtype();
-                    }
+                    AddItemToSubtype();
+                    CloseDialogueBox();
                 }
             }
 
@@ -143,8 +137,7 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
     // --------------------------------- Populate spinner with the wine types ----------------------
     private void PopulateSpinner() {
 
-        Toast.makeText(getContext(),"running method",Toast.LENGTH_SHORT).show();
-        dbRef = db.getInstance().getReference("Users").child(userID).child("Categories/WineType").child(selectedItem);
+        dbRef = db.getInstance().getReference("Users").child(userID).child("Categories/WineType");
 
         dbRef.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -172,6 +165,7 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
 
             }
         });
+        spinnerWineType.setSelection(0);
 
     }
     //----------------------------------------------------------------------------------------------
@@ -183,29 +177,29 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
         tot = 0;
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference refWineType = database.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
+        DatabaseReference refSubType = database.getInstance().getReference("Users").child(userID).child("Categories").child("SubType").child(selectedItem);
 
-        Set<String> WineTypeList = new HashSet<>();
-        Map<String, Object> WineTypeItem = new HashMap<>();
+        Set<String> SubTypeList = new HashSet<>();
+        Map<String, Object> SubTypeItem = new HashMap<>();
 
-        refWineType.addListenerForSingleValueEvent(new ValueEventListener() {
+        refSubType.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot item: snapshot.getChildren()) {
-                    //Retrieve all the Wine Type items and populate to list string
-                    WineTypeList.add(item.getValue().toString());
+                    //Retrieve all the Subtype items and populate to list string
+                    SubTypeList.add(item.getValue().toString());
 
                     //Retrieve the total number of items in the list
-                    tot = WineTypeList.size();
+                    tot = SubTypeList.size();
 
                     //Populate map
-                    WineTypeItem.put(String.valueOf(tot), item.getValue());
-                    WineTypeItem.put(String.valueOf(tot+1),input);
+                    SubTypeItem.put(String.valueOf(tot), item.getValue());
+                    SubTypeItem.put(String.valueOf(tot+1),input);
                 }
-                //Update the child by overwriting previous Wine types with wine types + newly added wine type
-                refWineType.setValue(WineTypeItem);
-                Toast.makeText(getContext(),"Wine Type successfully added.",Toast.LENGTH_SHORT).show();;
+                //Update the child by overwriting previous subtypes types with subtypes + newly added subtype
+                refSubType.setValue(SubTypeItem);
+                Toast.makeText(getContext(),"Subtype successfully added.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -216,7 +210,10 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
     }
     //----------------------------------------------------------------------------------------------
 
+
     private void CloseDialogueBox() {
-        dismiss();
+       this.dismiss();
     }
+
+
 }
