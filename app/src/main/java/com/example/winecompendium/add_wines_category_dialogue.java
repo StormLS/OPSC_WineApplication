@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -139,6 +141,7 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
         DatabaseReference dataRef = database.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
 
         Set<String> WineTypeList = new HashSet<>();
+        int holdTot[] = new int[1];
 
         dataRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -150,6 +153,7 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 }
                 //Retrieve the total number of items within the list
                 tot = WineTypeList.size();
+
             }
 
             @Override
@@ -158,14 +162,13 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
             }
         });
 
-
-        /*
         Map<String, Object> WineTypeItem = new HashMap<>();
-        WineTypeItem.put(String.valueOf(tot), txtInput);
+        WineTypeItem.put(String.valueOf(tot + 1), input);
 
         //Add new wine type item
-        ref.updateChildren(WineTypeItem);
-*/
+        //  dataRef.push().updateChildren(WineTypeItem);
+        Toast.makeText(getContext(), "Count: " + holdTot[0] + "\nInput: " + input, Toast.LENGTH_SHORT).show();
+
     }
 
     //Implementation for if user wants to add a new origin
