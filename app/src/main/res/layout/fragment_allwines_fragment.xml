@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -82,16 +82,24 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/addwine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add a wine"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <ScrollView
+                android:id="@+id/wine_"
                 android:layout_width="match_parent"
-                android:layout_height="451dp">
+                android:layout_height="match_parent">
 
                 <GridLayout
+                    android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
