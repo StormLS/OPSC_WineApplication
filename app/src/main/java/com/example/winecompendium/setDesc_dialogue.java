@@ -54,7 +54,7 @@ public class setDesc_dialogue extends androidx.fragment.app.DialogFragment {
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
 
-        btnClose = getView().findViewById(R.id.btnCloseDialogue);
+        btnClose = getView().findViewById(R.id.btnClose);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

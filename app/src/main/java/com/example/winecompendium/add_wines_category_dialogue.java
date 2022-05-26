@@ -8,24 +8,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +29,8 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
     private EditText txtInput;
     private addwines_fragment addWines = new addwines_fragment();
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference UsersRef = database.getReference("Users");
     private String userID;
     private String input;
     private int tot; //the total number of elements within a child
@@ -67,7 +59,7 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
 
         super.onViewCreated(view, savedInstanceState);
         // Get field from view
-        TextView desc = (TextView) view.findViewById(R.id.txtAddWinesCategory);
+        TextView desc = (TextView) view.findViewById(R.id.txtAddCat);
         // Fetch arguments from bundle and set title
         String title = getArguments().getString("add", "Add Item");
         getDialog().setTitle(title);
@@ -76,11 +68,11 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
+
         DialogueHeading = getView().findViewById(R.id.txtHeading);
-        btnClose = getView().findViewById(R.id.btnCloseDialogue);
-        txtInput = getView().findViewById(R.id.txtAddWinesCategory);
+        txtInput = getView().findViewById(R.id.txtAddCat);
         userID = fUser.getUid().toString();
-        btnClose = getView().findViewById(R.id.btnCloseDialogue);
+        btnClose = getView().findViewById(R.id.btnClose);
 
 
         //Set the heading of the dialogue
@@ -111,15 +103,6 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
         String catType = addWines.ReturnHeading();
 
         switch (catType) {
-            case "Wine Type" :
-                {
-                    AddItemToWineType();
-                   // Toast.makeText(getContext(),"Running method",Toast.LENGTH_SHORT).show();
-                }
-            break;
-
-            case "Wine Subtype" : AddItemToSubtype();
-            break;
             case "Origin" : AddItemToOrigin();
             break;
             case "Bottle Type": AddItemToBottleType();
@@ -127,50 +110,16 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
         }
     }
 
-    //Implementation for if user wants to add a new subtype
-    private void AddItemToSubtype() {
+
+    //------------------Implementation for if user wants to add a new origin------------------------
+    private void AddItemToOrigin(){
 
     }
+    //----------------------------------------------------------------------------------------------
 
-    //Implementation for if user wants to add a new wine type
-    private void AddItemToWineType(){
-
-        input = txtInput.getText().toString();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataRef = database.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
-
-        Set<String> WineTypeList = new HashSet<>();
-        Map<String, Object> WineTypeItem = new HashMap<>();
-
-        dataRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot item: snapshot.getChildren()) {
-                    //Retrieve all the Wine Type items and populate string
-                    WineTypeList.add(item.getValue().toString());
-                    tot = WineTypeList.size();
-                    WineTypeItem.put(String.valueOf(tot), item.getValue());
-                    WineTypeItem.put(String.valueOf(tot+1),input);
-                }
-                //Update the child by overwriting previous Wine types with wine types + newly added wine type
-                dataRef.setValue(WineTypeItem);
-                Toast.makeText(getContext(),"Wine Type successfully added.",Toast.LENGTH_SHORT).show();;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+    //----------------Implementation for if user wants to add a new bottle type---------------------
+    private void AddItemToBottleType(){
 
     }
-
-    //Implementation for if user wants to add a new origin
-    private void AddItemToOrigin(){}
-
-    //Implementation for if user wants to add a new bottle type
-    private void AddItemToBottleType(){}
+    //----------------------------------------------------------------------------------------------
 }

@@ -183,7 +183,7 @@ public class addwines_fragment extends Fragment
         btnAddItemType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowAddItemDialogueBox();
+                ShowAddWineTypeDialogueBox();
                 _heading = "Wine Type";
             }
         });
@@ -191,7 +191,7 @@ public class addwines_fragment extends Fragment
         btnAddItemSubtype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowAddItemDialogueBox();
+                ShowAddSubtypeDialogueBox();
                 _heading = "Wine Subtype";
             }
         });
@@ -266,9 +266,28 @@ public class addwines_fragment extends Fragment
         return _heading;
     }
 
+
+    /*
+    Show the add new wine type to category dialogue box
+   */
+    private void ShowAddWineTypeDialogueBox() {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_add_winetype_dialogue addWineTypeDialogue = add_wines_add_winetype_dialogue.newInstance("WineType item");
+        addWineTypeDialogue.show(fm, "fragment_add_type");
+    }
+
+    /*
+    Show the add new subtype to category dialogue box
+    */
+    private void ShowAddSubtypeDialogueBox() {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_subtype_category_dialogue addSubtypeDialogue = add_wines_subtype_category_dialogue.newInstance("Subtype Item");
+        addSubtypeDialogue.show(fm, "fragment_add_subtype");
+    }
+
     /*
     Show the add new item to category dialogue box
-     */
+    */
     private void ShowAddItemDialogueBox() {
         FragmentManager fm =  getChildFragmentManager();
         add_wines_category_dialogue addItemDialogue = add_wines_category_dialogue.newInstance("Category Item");
@@ -302,7 +321,7 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        //Populates a spinner (WineTypes) from the FireBase DB
+
 
           /*
         TODO: ---------------Populate spinner according to the wine type selected-------------------

@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".add_wines_category_dialogue">
+    tools:context=".add_wines_add_winetype_dialogue" >
 
     <LinearLayout
-        android:layout_width="305dp"
+        android:layout_width="337dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/dialogue_background"
@@ -32,17 +32,57 @@
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Enter Wine Type here"
+            android:textColor="@color/customColourFour" />
+
         <EditText
             android:id="@+id/txtAddCat"
-            android:layout_width="285dp"
+            android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/textview_border"
             android:ems="10"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Enter here.."
+            android:hint="Wine Type"
             android:inputType="textPersonName"
             android:paddingLeft="10dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Please enter a subtype for this Wine Type"
+            android:textColor="@color/customColourFour" />
+
+        <EditText
+            android:id="@+id/txtAddSubtype"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/textview_border"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Subtype"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <Button
             android:id="@+id/btnClose"
