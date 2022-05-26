@@ -37,7 +37,8 @@ public class favourites_fragment extends Fragment {
      * @return A new instance of fragment favourites_fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static favourites_fragment newInstance(String param1, String param2) {
+    public static favourites_fragment newInstance(String param1, String param2)
+    {
         favourites_fragment fragment = new favourites_fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -47,9 +48,11 @@ public class favourites_fragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments() != null)
+        {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -57,7 +60,8 @@ public class favourites_fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favourites_fragment, container, false);
     }

@@ -101,7 +101,8 @@ public class addwines_fragment extends Fragment
      * @return A new instance of fragment addwines_fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static addwines_fragment newInstance(String param1, String param2) {
+    public static addwines_fragment newInstance(String param1, String param2)
+    {
         addwines_fragment fragment = new addwines_fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -111,7 +112,8 @@ public class addwines_fragment extends Fragment
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
 
         setDesc_dialogue df = new setDesc_dialogue();
         df.setCancelable(false); //prevent user from closing dialogue outside the box
@@ -172,7 +174,8 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        openCamera.setOnClickListener(new View.OnClickListener() {
+        openCamera.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -180,7 +183,8 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        btnAddItemType.setOnClickListener(new View.OnClickListener() {
+        btnAddItemType.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 ShowAddItemDialogueBox();
@@ -188,7 +192,8 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        btnAddItemSubtype.setOnClickListener(new View.OnClickListener() {
+        btnAddItemSubtype.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 ShowAddItemDialogueBox();
@@ -196,7 +201,8 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        btnAddItemOrigin.setOnClickListener(new View.OnClickListener() {
+        btnAddItemOrigin.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 ShowAddItemDialogueBox();
@@ -204,7 +210,8 @@ public class addwines_fragment extends Fragment
             }
         });
 
-        btnAddItemBottleType.setOnClickListener(new View.OnClickListener() {
+        btnAddItemBottleType.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 ShowAddItemDialogueBox();
@@ -246,8 +253,7 @@ public class addwines_fragment extends Fragment
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
             mImageUri = data.getData();
-
-           // Picasso.with(getView().getContext()).load(mImageUri).into(wineImage);
+            wineImage.setImageURI(mImageUri);
         }
     }
 
@@ -259,7 +265,6 @@ public class addwines_fragment extends Fragment
         FragmentManager fm =  getChildFragmentManager();
         setDesc_dialogue setDescriptionDialogue = setDesc_dialogue.newInstance("Wine Description");
         setDescriptionDialogue.show(fm, "fragment_edit_name");
-
     }
 
     public String ReturnHeading() {
@@ -338,7 +343,8 @@ public class addwines_fragment extends Fragment
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
                 spinner_wineType.setSelection(0);
             }
         });

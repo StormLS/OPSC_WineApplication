@@ -79,7 +79,11 @@ public class allwines_fragment extends Fragment {
     private GridLayout layout;
 
     DatabaseReference dbRef;
+
+    //When information isn't read properly from the DB
     public String WineName;
+    public String WineType;
+    public String WineDesc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,6 +96,7 @@ public class allwines_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
+        queryData();
         addwineTEST = getView().findViewById(R.id.addwine);
         layout = getView().findViewById(R.id.container);
 
@@ -100,31 +105,28 @@ public class allwines_fragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                populateCards();
+                addCard(WineName, WineType, WineDesc);
             }
         });
 
     }
 
-    private void populateCards()
+    private void queryData()
     {
         //Populates a spinner (WineTypes) from the FireBase DB
         dbRef = FirebaseDatabase.getInstance().getReference("WineExample");
-        Query query = dbRef.child("Name");
 
-        query.addListenerForSingleValueEvent(new ValueEventListener()
+        Query name_query = dbRef.child("Name");
+        name_query.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
                 if (snapshot.exists())
                 {
+                    //TODO Code for Database retrieval of information
                     WineName = snapshot.getValue(String.class);
-                    //Toast.makeText(getView().getContext(), "Output is: " + WineName, Toast.LENGTH_SHORT).show();
-
-                    String WineType = "White", WineDesc = "Its a white wine";
-
-                    addCard(WineName, WineType, WineDesc);
+                    //TODO Code for Database retrieval of information
                 }
             }
 
@@ -134,6 +136,71 @@ public class allwines_fragment extends Fragment {
                 Log.e("error", error.getMessage());
             }
         });
+
+        Query type_query = dbRef.child("Type");
+        type_query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if (snapshot.exists())
+                {
+                    //TODO Code for Database retrieval of information
+                    WineType = snapshot.getValue(String.class);
+                    //TODO Code for Database retrieval of information
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Log.e("error", error.getMessage());
+            }
+        });
+
+        Query desc_query = dbRef.child("Desc");
+        desc_query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if (snapshot.exists())
+                {
+                    //TODO Code for Database retrieval of information
+                    WineDesc = snapshot.getValue(String.class);
+                    //TODO Code for Database retrieval of information
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Log.e("error", error.getMessage());
+            }
+        });
+
+        /*--------------------- STILL NEED TO ADD CODE FOR IMAGE RETRIEVAL -------------------------
+        Query desc_query = dbRef.child("Desc");
+        type_query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if (snapshot.exists())
+                {
+                    //TODO Code for Database retrieval of information
+                    WineType = snapshot.getValue(String.class);
+                    //TODO Code for Database retrieval of information
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Log.e("error", error.getMessage());
+            }
+        });
+        --------------------- STILL NEED TO ADD CODE FOR IMAGE RETRIEVAL -------------------------*/
     }
 
     private void addCard(String WineName, String WineType, String WineDesc)
@@ -144,6 +211,20 @@ public class allwines_fragment extends Fragment {
         TextView type = wine_cardview.findViewById(R.id.card_WineType);
         TextView desc = wine_cardview.findViewById(R.id.card_WineDesc);
 
-        layout.addView(wine_cardview);
+        name.setText(WineName);
+        type.setText(WineType);
+        desc.setText(WineDesc);
+
+        if (name.getText().toString().isEmpty() || type.getText().toString().isEmpty() || desc.getText().toString().isEmpty())
+        {
+            Log.d("Data was empty: (", name.getText().toString() + ") (" + type.getText().toString() + "( )" + desc.getText().toString() + ")");
+        }
+        else
+        {
+            Log.d("Output: ", name.getText().toString() + " " + type.getText().toString() + " " + desc.getText().toString());
+
+            layout.addView(wine_cardview);
+        }
+
     }
 }

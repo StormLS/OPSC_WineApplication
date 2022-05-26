@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -131,25 +133,32 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
     }
 
     //Implementation for if user wants to add a new wine type
-    private void AddItemToWineType(){
-
+    private void AddItemToWineType()
+    {
         input = txtInput.getText().toString();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = database.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
 
         Set<String> WineTypeList = new HashSet<>();
+        Map<String, Object> WineTypeItem = new HashMap<>();
 
-        dataRef.addValueEventListener(new ValueEventListener() {
+        dataRef.addListenerForSingleValueEvent(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot item: snapshot.getChildren()) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for (DataSnapshot item: snapshot.getChildren())
+                {
                     //Retrieve all the Wine Type items and populate string
                     WineTypeList.add(item.getValue().toString());
+                    tot = WineTypeList.size();
+                    WineTypeItem.put(String.valueOf(tot), item.getValue());
+                    WineTypeItem.put(String.valueOf(tot+1),input);
                 }
-                //Retrieve the total number of items within the list
-                tot = WineTypeList.size();
+                //Update the child by overwriting previous Wine types with wine types + newly added wine type
+                dataRef.setValue(WineTypeItem);
+                Toast.makeText(getContext(),"Wine Type successfully added.",Toast.LENGTH_SHORT).show();;
             }
 
             @Override
@@ -157,15 +166,6 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        /*
-        Map<String, Object> WineTypeItem = new HashMap<>();
-        WineTypeItem.put(String.valueOf(tot), txtInput);
-
-        //Add new wine type item
-        ref.updateChildren(WineTypeItem);
-*/
     }
 
     //Implementation for if user wants to add a new origin
