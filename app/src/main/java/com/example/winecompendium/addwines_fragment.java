@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -50,16 +51,17 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private Button browseGallery;
     private Button openCamera;
     private Button addwine;
-    private Button btnShowDate;
     private EditText WineName;
     private EditText WineAlco;
     private EditText WineYear;
     private EditText txtDesc;
 
-    public Spinner spinner_wineType;
-    public Spinner spinner_wineSubtype;
-    public Spinner spinner_wineOrigin;
-    public Spinner spinner_wineBottleType;
+    private Spinner spinner_wineType;
+    private Spinner spinner_wineSubtype;
+    private Spinner spinner_wineOrigin;
+    private Spinner spinner_wineBottleType;
+
+    private CalendarView viewCalendar;
 
     private ImageButton btnAddItemType;
     private ImageButton btnAddItemSubtype;
@@ -101,6 +103,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private String wineDateAcquired;
     private Float wineRating;
     private String wineDesc;
+    private String wineImgString;
 
     private DatePickerDialog datePickerDialog;
 
@@ -179,6 +182,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         btnAddItemBottleType = getView().findViewById(R.id.btnAddWines_BottleType);
         myBar = getView().findViewById(R.id.wineRatingBar);
         txtDesc = getView().findViewById(R.id.txtDesc2);
+        viewCalendar = getView().findViewById(R.id.calendarView);
 
         userID = fUser.getUid();
         RefreshSpinners();
@@ -254,11 +258,13 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                         || spinner_wineOrigin.getSelectedItem().toString().isEmpty()
                         || spinner_wineBottleType.getSelectedItem().toString().isEmpty()
                         || WineAlco.getText().toString().isEmpty()
-                        || WineYear.getText().toString().isEmpty())
-
+                        || WineYear.getText().toString().isEmpty()
+                        || WineName.getText().toString().isEmpty()
+                        || txtDesc.getText().toString().isEmpty())
+                //Implementation for adding wine to database
                 AddWine();
                 {
-                    Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please make sure that all fields have been selected and entered.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -492,6 +498,11 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         wineYear = WineYear.getText().toString();
         wineRating = myBar.getRating();
         wineDesc = txtDesc.getText().toString();
+        wineDateAcquired = String.valueOf(viewCalendar.getDate());
+
+
+        //TODO: Still need Image implementation!
+      //  wineImgString = wineImage
 
         //Flags used for error checking
         Boolean flag = false;
@@ -508,9 +519,29 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             flag = true;
         } else {
             WineYear.setError("Value must be a year e.g. 2013");
+            return;
         }
 
+        if (WineName.getText().toString().isEmpty()) {
+            WineName.setError("Please enter a Wine Type");
+            return;
+        } else {
+            flag = true;
+        }
 
+        if (flag) {
+            /*
+            TODO: Implementation for if all values are entered and valid
+            /
+            /
+            /
+            /
+            /
+            */
+
+        } else {
+            Toast.makeText(getContext(),"Please make sure all values entered are valid.",Toast.LENGTH_SHORT).show();
+        }
 
 
     }

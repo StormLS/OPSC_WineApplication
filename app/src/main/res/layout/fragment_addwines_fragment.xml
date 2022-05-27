@@ -7,18 +7,18 @@
     android:orientation="vertical"
     tools:context=".addwines_fragment">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="14dp" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="900dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -59,7 +59,7 @@
 
                         <ImageView
                             android:id="@+id/wineImage"
-                            android:layout_width="160dp"
+                            android:layout_width="162dp"
                             android:layout_height="210dp"
                             android:layout_gravity="center_horizontal|top"
                             android:layout_marginStart="20dp"
@@ -97,7 +97,7 @@
                                 <Button
                                     android:id="@+id/browseGallery"
                                     android:layout_width="110dp"
-                                    android:layout_height="50dp"
+                                    android:layout_height="48dp"
                                     android:layout_gravity="start"
                                     android:layout_marginRight="2dp"
                                     android:layout_weight="1"
@@ -131,7 +131,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="4dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="2dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -140,7 +140,7 @@
                             android:layout_height="8dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="-28dp"
+                            android:layout_marginBottom="-25dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
@@ -165,6 +165,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="25dp"
                                 android:layout_marginEnd="18dp"
+                                android:layout_marginRight="15dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/poppins_regular"
                                 android:letterSpacing="0.03"
@@ -204,6 +205,7 @@
                                 android:id="@+id/WineYear"
                                 android:layout_width="77dp"
                                 android:layout_height="40dp"
+                                android:layout_marginRight="15dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/textview_border"
                                 android:ems="10"
@@ -489,6 +491,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -534,6 +548,18 @@
 
                 <Space
                     android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <Space
+                    android:layout_width="match_parent"
                     android:layout_height="10dp"
                     android:layout_weight="1" />
 
@@ -549,7 +575,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/poppins_regular"
                         android:paddingStart="0dp"
                         android:paddingBottom="0dp"
                         android:text="Date Acquired"
@@ -559,11 +585,25 @@
                     <CalendarView
                         android:id="@+id/calendarView"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="300dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:dateTextAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:focusedMonthDateColor="@color/customColourTwo" />
 
                 </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -601,6 +641,18 @@
                         android:stepSize="1" />
 
                 </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
                 <Space
                     android:layout_width="match_parent"
