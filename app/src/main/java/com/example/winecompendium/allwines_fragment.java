@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,17 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link allwines_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class allwines_fragment extends Fragment {
+import java.util.ArrayList;
 
+public class allwines_fragment extends Fragment
+{
     private TextView txtNavName;
     private Button btn_addwines;
-
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,19 +42,11 @@ public class allwines_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public allwines_fragment() {
+    public allwines_fragment()
+    {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment allwines_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static allwines_fragment newInstance(String param1, String param2) {
         allwines_fragment fragment = new allwines_fragment();
         Bundle args = new Bundle();
@@ -75,16 +66,6 @@ public class allwines_fragment extends Fragment {
         }
     }
 
-    private Button addwineTEST;
-    private GridLayout layout;
-
-    DatabaseReference dbRef;
-
-    //When information isn't read properly from the DB
-    public String WineName;
-    public String WineType;
-    public String WineDesc;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -92,6 +73,16 @@ public class allwines_fragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_allwines_fragment, container, false);
     }
+
+    private Button addwineTEST;
+    private GridLayout layout;
+
+    private DatabaseReference dbRef;
+
+    //When information isn't read properly from the DB
+    public String WineName;
+    public String WineType;
+    public String WineDesc;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
@@ -108,7 +99,6 @@ public class allwines_fragment extends Fragment {
                 addCard(WineName, WineType, WineDesc);
             }
         });
-
     }
 
     private void queryData()

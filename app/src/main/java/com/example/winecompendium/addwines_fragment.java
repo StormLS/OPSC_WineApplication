@@ -2,6 +2,9 @@ package com.example.winecompendium;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +13,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +28,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,8 +38,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +54,6 @@ import java.util.ArrayList;
  */
 public class addwines_fragment extends Fragment
 {
-
     private Button btnSetDesc;
     private Button browseGallery;
     private Button openCamera;
@@ -218,43 +230,31 @@ public class addwines_fragment extends Fragment
                 _heading = "Bottle Type";
             }
         });
-    }
 
-
-    private static final int PICK_IMAGE_REQUEST = 1;
-    private static final int TAKE_IMAGE_REQUEST = 100;
-    private Uri mImageUri;
-
-    private void openCamera()
-    {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, TAKE_IMAGE_REQUEST);
-    }
-
-    private void openFileChooser()
-    {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == TAKE_IMAGE_REQUEST )
+        addwine.setOnClickListener(new View.OnClickListener()
         {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            wineImage.setImageBitmap(photo);
-        }
+            @Override
+            public void onClick(View view)
+            {
+                if (mImageUri == null ||
+                    WineName.getText().toString().isEmpty() ||
+                    spinner_wineType.getSelectedItem().toString().isEmpty() ||
+                    spinner_wineSubtype.getSelectedItem().toString().isEmpty() ||
+                    spinner_wineOrigin.getSelectedItem().toString().isEmpty() ||
+                    spinner_wineBottleType.getSelectedItem().toString().isEmpty() ||
+                    WineAlco.getText().toString().isEmpty() ||
+                    WineYear.getText().toString().isEmpty())
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
-        {
-            mImageUri = data.getData();
-            wineImage.setImageURI(mImageUri);
-        }
+                //TODO: Add wine implementation
+                {
+                    Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    uploadFile();
+                }
+            }
+        });
     }
 
     /*
@@ -267,19 +267,20 @@ public class addwines_fragment extends Fragment
         setDescriptionDialogue.show(fm, "fragment_edit_name");
     }
 
-    public String ReturnHeading() {
+    public String ReturnHeading()
+    {
         return _heading;
     }
 
     /*
     Show the add new item to category dialogue box
      */
-    private void ShowAddItemDialogueBox() {
+    private void ShowAddItemDialogueBox()
+    {
         FragmentManager fm =  getChildFragmentManager();
         add_wines_category_dialogue addItemDialogue = add_wines_category_dialogue.newInstance("Category Item");
         addItemDialogue.show(fm, "fragment_add_item");
     }
-
 
     private void populateAllSpinners()
     {
@@ -306,7 +307,6 @@ public class addwines_fragment extends Fragment
 
             }
         });
-
         //Populates a spinner (WineTypes) from the FireBase DB
 
           /*
@@ -401,27 +401,114 @@ public class addwines_fragment extends Fragment
             }
         });
         //Populates a spinner (BottleType) from the FireBase DB
+    }
 
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int TAKE_IMAGE_REQUEST = 100;
+    private Uri mImageUri;
 
-        addwine.setOnClickListener(new View.OnClickListener()
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
+    private void openCamera()
+    {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, TAKE_IMAGE_REQUEST);
+    }
+
+    private void openFileChooser()
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == TAKE_IMAGE_REQUEST && resultCode == RESULT_OK)
+        {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(getView().getContext().getApplicationContext().getContentResolver(), photo, "val", null);
+            Uri uri = Uri.parse(path);
+
+            mImageUri = uri;
+            wineImage.setImageURI(mImageUri);
+        }
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            mImageUri = data.getData();
+            wineImage.setImageURI(mImageUri);
+        }
+    }
+
+    private void uploadFile()
+    {
+        final ProgressDialog pd = new ProgressDialog(getView().getContext());
+        pd.setTitle("Uploading Wine...");
+        pd.show();
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("CollectedWines");
+
+        final String randomKey = UUID.randomUUID().toString();
+        final StorageReference fileRef = storageReference.child("WineImage/").child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+
+        fileRef.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
         {
             @Override
-            public void onClick(View view)
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
-                if (WineName.getText().toString().isEmpty()
-                        || spinner_wineType.getSelectedItem().toString().isEmpty()
-                        || spinner_wineSubtype.getSelectedItem().toString().isEmpty()
-                        || spinner_wineOrigin.getSelectedItem().toString().isEmpty()
-                        || spinner_wineBottleType.getSelectedItem().toString().isEmpty()
-                        || WineAlco.getText().toString().isEmpty()
-                        || WineYear.getText().toString().isEmpty())
-
-                //TODO: Add wine implementation
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
                 {
-                    Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
-                }
+                    @Override
+                    public void onSuccess(Uri uri)
+                    {
+                        wines newWine = new wines(mImageUri.toString());
+
+                        String modelID = dbRef.push().getKey();
+                        dbRef.child(modelID).setValue(newWine);
+
+                        pd.dismiss();
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Wine Was Uploaded.", Snackbar.LENGTH_LONG).show();
+                        wineImage.setImageResource(R.drawable.no_image);
+
+                        mImageUri = null;
+                        wineImage.setImageURI(mImageUri);
+                    }
+                });
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
+        {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot)
+            {
+                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                pd.setMessage("Percentage: " + (int) progressPercent + "%");
+            }
+        }).addOnFailureListener(new OnFailureListener()
+        {
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+                pd.dismiss();
+                Toast.makeText(getContext(), "Failed to Uploaded Image.", Toast.LENGTH_LONG).show();
             }
         });
     }
 
+    private String getFileExtension(Uri mUri)
+    {
+        ContentResolver cr = getView().getContext().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+
+        return mime.getExtensionFromMimeType(cr.getType(mUri));
+    }
 }
