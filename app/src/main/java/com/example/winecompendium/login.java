@@ -50,8 +50,8 @@ public class login extends AppCompatActivity
         /*
         TODO: ------------------------- Quick Login - Must delete code! ----------------------------
          */
-        email.setText("amber.bruil@gmail.com");
-        password.setText("test123");
+        email.setText("lstuebchen@gmail.com");
+        password.setText("123456789");
         /*
         TODO: ------------------------- Quick Login - Must delete code! ----------------------------
          */
