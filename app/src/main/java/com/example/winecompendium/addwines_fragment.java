@@ -46,7 +46,6 @@ public class addwines_fragment extends Fragment
     private Button browseGallery;
     private Button openCamera;
     private Button addwine;
-    private Button btnRefresh;
     private EditText WineName;
     private EditText WineAlco;
     private EditText WineYear;
@@ -162,7 +161,6 @@ public class addwines_fragment extends Fragment
         RefreshSpinners();
         populateAllSpinners();
 
-
         btnSetDesc.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -242,18 +240,6 @@ public class addwines_fragment extends Fragment
             }
         });
 
-
-        btnRefresh = getView().findViewById(R.id.btnrefresh);
-
-        btnRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
-
     }
 
 
@@ -263,6 +249,7 @@ public class addwines_fragment extends Fragment
 
     private void openCamera()
     {
+        wineImage.setImageURI(mImageUri);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, TAKE_IMAGE_REQUEST);
     }
@@ -474,10 +461,13 @@ public class addwines_fragment extends Fragment
     }
 
     private void RefreshSpinners() {
+
         spinner_wineType.setAdapter(null);
         spinner_wineSubtype.setAdapter(null);
         spinner_wineOrigin.setAdapter(null);
         spinner_wineBottleType.setAdapter(null);
+
+        populateAllSpinners();
 
     }
 
