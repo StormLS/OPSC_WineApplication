@@ -2,6 +2,7 @@ package com.example.winecompendium;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -13,9 +14,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,23 +35,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link addwines_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class addwines_fragment extends Fragment
+public class addwines_fragment extends Fragment implements DatePickerDialog.OnDateSetListener
 {
 
-    private Button btnSetDesc;
     private Button browseGallery;
     private Button openCamera;
     private Button addwine;
+    private Button btnShowDate;
     private EditText WineName;
     private EditText WineAlco;
     private EditText WineYear;
+    private EditText txtDesc;
 
     public Spinner spinner_wineType;
     public Spinner spinner_wineSubtype;
@@ -60,10 +66,13 @@ public class addwines_fragment extends Fragment
     private ImageButton btnAddItemOrigin;
     private ImageButton btnAddItemBottleType;
 
+
     private DatabaseReference refWineType;
     private DatabaseReference refSubtype;
     private DatabaseReference refOrigin;
     private DatabaseReference refBottleType;
+
+    private RatingBar myBar;
 
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -81,7 +90,20 @@ public class addwines_fragment extends Fragment
     private ImageView wineImage;
 
     private String userID;
+
     private String selectedWineType;
+    private String selectedSubtype;
+    private String selectedOrigin;
+    private String selectedBottleType;
+    private String wineName;
+    private Float winePerc;
+    private String wineYear;
+    private String wineDateAcquired;
+    private Float wineRating;
+    private String wineDesc;
+
+    private DatePickerDialog datePickerDialog;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -144,7 +166,6 @@ public class addwines_fragment extends Fragment
         spinner_wineSubtype = getView().findViewById(R.id.wineSubtype);
         spinner_wineOrigin = getView().findViewById(R.id.wineOrigin);
         spinner_wineBottleType = getView().findViewById(R.id.wineBottleType);
-        btnSetDesc = getView().findViewById(R.id.btn_set_desc);
         browseGallery = getView().findViewById(R.id.browseGallery);
         wineImage = getView().findViewById(R.id.wineImage);
         openCamera = getView().findViewById(R.id.openCamera);
@@ -156,19 +177,13 @@ public class addwines_fragment extends Fragment
         btnAddItemSubtype = getView().findViewById(R.id.btn_AddWines_Subtype);
         btnAddItemOrigin = getView().findViewById(R.id.btnAddWines_Origin);
         btnAddItemBottleType = getView().findViewById(R.id.btnAddWines_BottleType);
+        myBar = getView().findViewById(R.id.wineRatingBar);
+        txtDesc = getView().findViewById(R.id.txtDesc2);
 
         userID = fUser.getUid();
         RefreshSpinners();
         populateAllSpinners();
 
-        btnSetDesc.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                ShowDialogueBox();
-            }
-        });
 
         browseGallery.setOnClickListener(new View.OnClickListener()
         {
@@ -219,6 +234,14 @@ public class addwines_fragment extends Fragment
             }
         });
 
+        //Set rating bar to a minimum of 1 star
+        myBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override public void onRatingChanged(RatingBar ratingBar, float rating,
+                                                  boolean fromUser) {
+                if(rating<1.0f)
+                    ratingBar.setRating(1.0f);
+            }
+        });
 
         addwine.setOnClickListener(new View.OnClickListener()
         {
@@ -233,7 +256,7 @@ public class addwines_fragment extends Fragment
                         || WineAlco.getText().toString().isEmpty()
                         || WineYear.getText().toString().isEmpty())
 
-                //TODO: Add wine implementation
+                AddWine();
                 {
                     Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
                 }
@@ -242,6 +265,19 @@ public class addwines_fragment extends Fragment
 
     }
 
+
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+    }
+
+    public String ReturnHeading() {
+        return _heading;
+
+    }
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int TAKE_IMAGE_REQUEST = 100;
@@ -279,21 +315,6 @@ public class addwines_fragment extends Fragment
 
            // Picasso.with(getView().getContext()).load(mImageUri).into(wineImage);
         }
-    }
-
-    /*
-     Show the set description dialogue box
-    */
-    private void ShowDialogueBox()
-    {
-        FragmentManager fm =  getChildFragmentManager();
-        setDesc_dialogue setDescriptionDialogue = setDesc_dialogue.newInstance("Wine Description");
-        setDescriptionDialogue.show(fm, "fragment_edit_name");
-
-    }
-
-    public String ReturnHeading() {
-        return _heading;
     }
 
 
@@ -457,6 +478,40 @@ public class addwines_fragment extends Fragment
             }
         });
         //------------------------------------------------------------------------------------------
+
+    }
+
+    private void AddWine() {
+
+        //Getting string values
+        selectedWineType = spinner_wineType.getSelectedItem().toString();
+        selectedSubtype = spinner_wineSubtype.getSelectedItem().toString();
+        selectedBottleType = spinner_wineBottleType.getSelectedItem().toString();
+        selectedOrigin = spinner_wineOrigin.getSelectedItem().toString();
+        winePerc = Float.valueOf(WineAlco.getText().toString());
+        wineYear = WineYear.getText().toString();
+        wineRating = myBar.getRating();
+        wineDesc = txtDesc.getText().toString();
+
+        //Flags used for error checking
+        Boolean flag = false;
+
+
+        if (winePerc < 0 || winePerc > 100) {
+            WineAlco.setError("Value must be between 0-100");
+            return;
+        } else {
+            flag = true;
+        }
+
+        if (wineYear.length() == 4) {
+            flag = true;
+        } else {
+            WineYear.setError("Value must be a year e.g. 2013");
+        }
+
+
+
 
     }
 
