@@ -2,18 +2,40 @@ package com.example.winecompendium;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link favourites_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class favourites_fragment extends Fragment {
+public class favourites_fragment extends Fragment
+{
+    private Button addwineTEST;
+    private GridLayout layout;
+
+    DatabaseReference dbRef;
+
+    //When information isn't read properly from the DB
+    public String WineName;
+    public String WineType;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,5 +86,89 @@ public class favourites_fragment extends Fragment {
     {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favourites_fragment, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        queryData();
+        addwineTEST = getView().findViewById(R.id.addfav);
+        layout = getView().findViewById(R.id.container);
+
+        addwineTEST.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                addCard(WineName, WineType);
+            }
+        });
+
+    }
+
+    private void queryData() {
+        //Populates a spinner (WineTypes) from the FireBase DB
+        dbRef = FirebaseDatabase.getInstance().getReference("WineExample");
+
+        Query name_query = dbRef.child("Name");
+        name_query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    //TODO Code for Database retrieval of information
+                    WineName = snapshot.getValue(String.class);
+                    //TODO Code for Database retrieval of information
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("error", error.getMessage());
+            }
+        });
+
+        Query type_query = dbRef.child("Type");
+        type_query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if (snapshot.exists())
+                {
+                    //TODO Code for Database retrieval of information
+                    WineType = snapshot.getValue(String.class);
+                    //TODO Code for Database retrieval of information
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Log.e("error", error.getMessage());
+            }
+        });
+    }
+
+    private void addCard(String WineName, String WineType)
+    {
+        View wine_cardview = getLayoutInflater().inflate(R.layout.cardfavourites_wine, null);
+
+        TextView name = wine_cardview.findViewById(R.id.name);
+        TextView type = wine_cardview.findViewById(R.id.type);
+
+        name.setText(WineName);
+        type.setText(WineType);
+
+        if (name.getText().toString().isEmpty() || type.getText().toString().isEmpty())
+        {
+            Log.d("Data was empty: (", name.getText().toString() + ") (" + type.getText().toString() + ")");
+        }
+        else
+        {
+            Log.d("Output: ", name.getText().toString() + " " + type.getText().toString());
+
+            layout.addView(wine_cardview);
+        }
+
     }
 }
