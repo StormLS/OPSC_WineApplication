@@ -103,14 +103,15 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
                 selectedItem = spinnerWineType.getSelectedItem().toString();
                 input = txtInput.getText().toString();
 
-
+                //Check if field has been entered
                 if (input.equals(null) || input.equals("") || input.equals(" "))
                 {
-                    Toast.makeText(getContext(),"Please enter a wine subtype",Toast.LENGTH_LONG).show();
+                    //If field has not been entered
+                    Toast.makeText(getContext(),"Please make sure the field has been entered.",Toast.LENGTH_LONG).show();
                      txtInput.setFocusable(true);
                      return;
                 }
-                else
+                else //If field has been entered
                 {
                     AddItemToSubtype();
                     CloseDialogueBox();

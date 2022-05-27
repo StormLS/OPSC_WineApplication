@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -158,6 +159,7 @@ public class addwines_fragment extends Fragment
         btnAddItemBottleType = getView().findViewById(R.id.btnAddWines_BottleType);
 
         userID = fUser.getUid();
+        RefreshSpinners();
         populateAllSpinners();
 
 
@@ -219,6 +221,28 @@ public class addwines_fragment extends Fragment
             }
         });
 
+
+        addwine.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (WineName.getText().toString().isEmpty()
+                        || spinner_wineType.getSelectedItem().toString().isEmpty()
+                        || spinner_wineSubtype.getSelectedItem().toString().isEmpty()
+                        || spinner_wineOrigin.getSelectedItem().toString().isEmpty()
+                        || spinner_wineBottleType.getSelectedItem().toString().isEmpty()
+                        || WineAlco.getText().toString().isEmpty()
+                        || WineYear.getText().toString().isEmpty())
+
+                //TODO: Add wine implementation
+                {
+                    Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
         btnRefresh = getView().findViewById(R.id.btnrefresh);
 
         btnRefresh.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +251,8 @@ public class addwines_fragment extends Fragment
 
             }
         });
+
+
 
     }
 
@@ -314,14 +340,12 @@ public class addwines_fragment extends Fragment
 
     public void populateAllSpinners()
     {
-
         /*
          ------------------------------- Populate Wine Type Spinner --------------------------------
         */
         refWineType = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("WineType");
 
         spinnerList_WineTypes = new ArrayList<>();
-
 
         refWineType.addValueEventListener(new ValueEventListener()
         {
@@ -350,14 +374,12 @@ public class addwines_fragment extends Fragment
          ------------------------------- Populate SubType Spinner ----------------------------------
          */
 
-        //Get string value
-        selectedWineType = spinner_wineType.getSelectedItem().toString();
-
-        refSubtype = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("SubType").child(selectedWineType);
-
         spinner_wineType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String selectedWineType =spinner_wineType.getSelectedItem().toString();
+                refSubtype = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("SubType").child(selectedWineType);
 
                 spinnerList_wineSubtype = new ArrayList<>();
 
@@ -370,6 +392,7 @@ public class addwines_fragment extends Fragment
                         {
                             spinnerList_wineSubtype.add(item.getValue().toString());
                         }
+
                         adapter_wineSubtype = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerList_wineSubtype);
                         spinner_wineSubtype.setAdapter(adapter_wineSubtype);
                     }
@@ -379,13 +402,12 @@ public class addwines_fragment extends Fragment
                     {
 
                     }
-
                 });
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                spinner_wineSubtype.setSelection(0);
+                spinner_wineType.setSelection(0);
             }
         });
         //------------------------------------------------------------------------------------------
@@ -449,26 +471,14 @@ public class addwines_fragment extends Fragment
         });
         //------------------------------------------------------------------------------------------
 
+    }
 
-        addwine.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if (WineName.getText().toString().isEmpty()
-                        || spinner_wineType.getSelectedItem().toString().isEmpty()
-                        || spinner_wineSubtype.getSelectedItem().toString().isEmpty()
-                        || spinner_wineOrigin.getSelectedItem().toString().isEmpty()
-                        || spinner_wineBottleType.getSelectedItem().toString().isEmpty()
-                        || WineAlco.getText().toString().isEmpty()
-                        || WineYear.getText().toString().isEmpty())
+    private void RefreshSpinners() {
+        spinner_wineType.setAdapter(null);
+        spinner_wineSubtype.setAdapter(null);
+        spinner_wineOrigin.setAdapter(null);
+        spinner_wineBottleType.setAdapter(null);
 
-                //TODO: Add wine implementation
-                {
-                    Toast.makeText(getContext(), "Please fill in all details!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
 

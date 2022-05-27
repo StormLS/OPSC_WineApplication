@@ -44,15 +44,50 @@
             android:inputType="textPersonName"
             android:paddingLeft="10dp" />
 
-        <Button
-            android:id="@+id/btnClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/customColourTwo"
-            android:text="Done"
-            android:textColor="#FFFFFF" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/customColourFour"
+                android:fontFamily="@font/poppins_regular"
+                android:letterSpacing="0.03"
+                android:text="Close"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="21dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnDone"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/customColourTwo"
+                android:fontFamily="@font/poppins_regular"
+                android:letterSpacing="0.03"
+                android:text="Done"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"

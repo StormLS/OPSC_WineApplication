@@ -34,6 +34,7 @@ import java.util.Set;
 public class add_wines_add_winetype_dialogue extends androidx.fragment.app.DialogFragment {
 
     private Button btnClose;
+    private Button btnDone;
     private TextView DialogueHeading;
     private EditText txtInput;
     private EditText txtSubtype;
@@ -77,6 +78,7 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
 
         DialogueHeading = getView().findViewById(R.id.txtHeading);
         btnClose = getView().findViewById(R.id.btnClose);
+        btnDone = getView().findViewById(R.id.btnDone);
         txtInput = getView().findViewById(R.id.txtAddCat);
         txtSubtype = getView().findViewById(R.id.txtAddSubtype);
         userID = fUser.getUid().toString();
@@ -86,7 +88,7 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
         //Set the heading of the dialogue
         DialogueHeading.setText("Add " + addWines.ReturnHeading());
 
-        btnClose.setOnClickListener(new View.OnClickListener() {
+        btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -94,12 +96,30 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
                 input = txtInput.getText().toString();
                 subtype = txtSubtype.getText().toString();
 
-                if (txtInput != null) {
-                   AddItemToWineType();
-                   AddItemToSubType();
+                //Check if both fields have been entered
+                if (input.equals(" ") || input.equals("") || input.equals(null))
+                {
+                    if (subtype.equals(" ") || subtype.equals("") || subtype.equals(null))
+                    {
+                        //If one or neither are entered
+                        Toast.makeText(getContext(), "Please make sure both fields have been entered.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else //If both fields are entered
+                {
+                    AddItemToWineType();
+                    AddItemToSubType();
+                    CloseDialogueBox();
                 }
 
-              CloseDialogueBox();
+            }
+        });
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CloseDialogueBox();
             }
         });
     }
@@ -156,6 +176,7 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
 
         //Update the child
         refSubType.updateChildren(SubTypeItem);
+        Toast.makeText(getContext(),"Wine type and Subtype successfully added.",Toast.LENGTH_SHORT).show();
 
     }
     //----------------------------------------------------------------------------------------------
