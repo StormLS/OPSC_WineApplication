@@ -48,8 +48,11 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -59,13 +62,13 @@ import java.util.UUID;
  */
 public class addwines_fragment extends Fragment implements DatePickerDialog.OnDateSetListener
 {
-    private Button browseGallery;
-    private Button openCamera;
-    private Button addwine;
-    private Button resetwine;
-    private EditText WineName;
-    private EditText WineAlco;
-    private EditText WineYear;
+    private Button btnBrowseGallery;
+    private Button btnOpenCamera;
+    private Button btnAddWine;
+    private Button btnResetWine;
+    private EditText txtWineName;
+    private EditText txtWinePerc;
+    private EditText txtWineYear;
     private EditText txtDesc;
 
     private Spinner spinner_wineType;
@@ -80,7 +83,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private ImageButton btnAddItemOrigin;
     private ImageButton btnAddItemBottleType;
 
-
     private DatabaseReference refWineType;
     private DatabaseReference refSubtype;
     private DatabaseReference refOrigin;
@@ -90,17 +92,16 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
-    ArrayAdapter<String> adapter_wineType;
-    ArrayAdapter<String> adapter_wineSubtype;
-    ArrayAdapter<String> adapter_wineOrigin;
-    ArrayAdapter<String> adapter_wineBottleType;
+    private ArrayAdapter<String> adapter_wineType;
+    private ArrayAdapter<String> adapter_wineSubtype;
+    private ArrayAdapter<String> adapter_wineOrigin;
+    private ArrayAdapter<String> adapter_wineBottleType;
 
-    ArrayList<String> spinnerList_WineTypes;
-    ArrayList<String> spinnerList_wineSubtype;
-    ArrayList<String> spinnerList_wineOrigin;
-    ArrayList<String> spinnerList_wineBottleType;
+    private ArrayList<String> spinnerList_WineTypes;
+    private ArrayList<String> spinnerList_wineSubtype;
+    private ArrayList<String> spinnerList_wineOrigin;
+    private ArrayList<String> spinnerList_wineBottleType;
 
-    public static String _heading = "text";
     private ImageView wineImage;
 
     private String userID;
@@ -112,12 +113,11 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private String wineName;
     private Float winePerc;
     private String wineYear;
-    private String wineDateAcquired;
+    private String wineDateAcquired = "";
     private Float wineRating;
     private String wineDesc;
-    private String wineImgString;
-
-    private DatePickerDialog datePickerDialog;
+    private String date;
+    public static String _heading = "text";
 
 
 
@@ -181,27 +181,31 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         spinner_wineSubtype = getView().findViewById(R.id.wineSubtype);
         spinner_wineOrigin = getView().findViewById(R.id.wineOrigin);
         spinner_wineBottleType = getView().findViewById(R.id.wineBottleType);
-        browseGallery = getView().findViewById(R.id.browseGallery);
+        btnBrowseGallery = getView().findViewById(R.id.browseGallery);
         wineImage = getView().findViewById(R.id.wineImage);
-        openCamera = getView().findViewById(R.id.openCamera);
-        addwine = getView().findViewById(R.id.addwine);
-        WineName = getView().findViewById(R.id.WineName);
-        WineAlco =  getView().findViewById(R.id.WineAlco);
-        WineYear =  getView().findViewById(R.id.WineYear);
+        btnOpenCamera = getView().findViewById(R.id.openCamera);
+        btnAddWine = getView().findViewById(R.id.addwine);
+        txtWineName = getView().findViewById(R.id.WineName);
+        txtWinePerc =  getView().findViewById(R.id.WineAlco);
+        txtWineYear =  getView().findViewById(R.id.WineYear);
         btnAddItemType = getView().findViewById(R.id.btnAddWines_Type);
         btnAddItemSubtype = getView().findViewById(R.id.btn_AddWines_Subtype);
         btnAddItemOrigin = getView().findViewById(R.id.btnAddWines_Origin);
         btnAddItemBottleType = getView().findViewById(R.id.btnAddWines_BottleType);
         myBar = getView().findViewById(R.id.wineRatingBar);
         txtDesc = getView().findViewById(R.id.txtDesc2);
-        viewCalendar = getView().findViewById(R.id.calendarView);
-        resetwine = getView().findViewById(R.id.reset_addwine);
+        viewCalendar = (CalendarView) getView().findViewById(R.id.calendarView);
+        btnResetWine = getView().findViewById(R.id.reset_addwine);
 
+        //Getting today's date
+        date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+        //Getting currently logged in user's ID
         userID = fUser.getUid();
-        RefreshSpinners();
-        //populateAllSpinners();
 
-        browseGallery.setOnClickListener(new View.OnClickListener()
+        RefreshSpinners();
+
+        btnBrowseGallery.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -210,7 +214,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
-        openCamera.setOnClickListener(new View.OnClickListener() {
+        btnOpenCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -259,20 +263,20 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
-        addwine.setOnClickListener(new View.OnClickListener()
+        btnAddWine.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 //Implementation for adding wine to database
                 if (mImageUri == null ||
-                    WineName.getText().toString().isEmpty() ||
+                    txtWineName.getText().toString().isEmpty() ||
                     spinner_wineType.getSelectedItem().toString().isEmpty() ||
                     spinner_wineSubtype.getSelectedItem().toString().isEmpty() ||
                     spinner_wineOrigin.getSelectedItem().toString().isEmpty() ||
                     spinner_wineBottleType.getSelectedItem().toString().isEmpty() ||
-                    WineAlco.getText().toString().isEmpty() ||
-                    WineYear.getText().toString().isEmpty())
+                    txtWinePerc.getText().toString().isEmpty() ||
+                    txtWineYear.getText().toString().isEmpty())
                 {
                     Toast.makeText(getContext(), "Please make sure that all fields have been selected and entered.", Toast.LENGTH_LONG).show();
                 }
@@ -283,12 +287,12 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
-        resetwine.setOnClickListener(new View.OnClickListener()
+        btnResetWine.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-
+                ResetUI();
             }
         });
 
@@ -529,19 +533,35 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         //---------------------------- Storing the image in the STORAGE ----------------------------
 
         //Getting string values
-        wineName = WineName.getText().toString();
+        wineName = txtWineName.getText().toString();
         selectedWineType = spinner_wineType.getSelectedItem().toString();
         selectedSubtype = spinner_wineSubtype.getSelectedItem().toString();
         selectedBottleType = spinner_wineBottleType.getSelectedItem().toString();
         selectedOrigin = spinner_wineOrigin.getSelectedItem().toString();
-        winePerc = Float.valueOf(WineAlco.getText().toString());
-        wineYear = WineYear.getText().toString();
+        winePerc = Float.valueOf(txtWinePerc.getText().toString());
+        wineYear = txtWineYear.getText().toString();
         wineRating = myBar.getRating();
         wineDesc = txtDesc.getText().toString();
-        wineDateAcquired = String.valueOf(viewCalendar.getDate());
 
-        //Flags used for error checking
-        Boolean flag = false;
+        /*
+         -------------------------Retrieving the date of the calendar view--------------------------
+         */
+        //Retrieving the date acquired
+        viewCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,
+                                            int dayOfMonth) {
+                wineDateAcquired = String.valueOf(dayOfMonth + "/" + (month + 1) + "/" + year);
+            }
+        });
+
+        //If no date other than today's date has been selected, set the retrieval date to today
+        if (wineDateAcquired.equals("")) {
+            wineDateAcquired = date;
+        }
+       //-------------------------------------------------------------------------------------------
+
 
         //TODO: Still need Image implementation!
         //wineImgString = wineImage
@@ -550,9 +570,17 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
         //TODO: Still need Image implementation!
 
-        if (WineName.getText().toString().isEmpty())                                    // Wine Name
+
+        /*
+        -------------------------------User input Validation checking ------------------------------
+         */
+        //Flags used for error checking
+        Boolean flag = false;
+
+        if (txtWineName.getText().toString().isEmpty())
         {
-            WineName.setError("Please enter a Wine Type");
+            flag = false;
+            txtWineName.setError("Please enter a wine name.");
             return;
         }
         else
@@ -560,15 +588,14 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             flag = true;
         }
 
-        //----------------------------- Error Checking for Spinner ---------------------------------
-
-        //----------------------------- Error Checking for Spinner ---------------------------------
-
         if (winePerc < 0 || winePerc > 100)
         {
-            WineAlco.setError("Value must be between 0-100");
+            flag = false;
+            txtWinePerc.setError("Value must be between 0-100");
             return;
-        } else {
+        }
+        else
+        {
             flag = true;
         }
 
@@ -578,19 +605,22 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         }
         else
         {
-            WineYear.setError("Value must be a year e.g. 2013");
+            flag = false;
+            txtWineYear.setError("Value must be a year e.g. 2013");
 
             return;
         }
 
         if(wineDesc.isEmpty())
         {
+            txtDesc.setError("Please enter a description.");
             flag = false;
         }
         else
         {
             flag = true;
         }
+        //------------------------------------------------------------------------------------------
 
 
         //--------------------------- Once all values have been verified ---------------------------
@@ -608,21 +638,22 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                         @Override
                         public void onSuccess(Uri uri)
                         {
-                            wines newWine = new wines(mImageUri.toString(), wineName, wineDesc, selectedWineType, selectedSubtype, selectedOrigin, selectedBottleType, winePerc, wineYear, wineDateAcquired, wineRating);
+                            wines newWine = new wines(wineName, selectedWineType, selectedSubtype, selectedOrigin, selectedBottleType, mImageUri.toString(), winePerc ,wineYear, wineDesc, wineDateAcquired, wineRating);
 
-                            String modelID = dbRef.push().getKey();
-                            dbRef.child(modelID).setValue(newWine);
+                           String modelID = dbRef.push().getKey();
+                           dbRef.child(modelID).setValue(newWine);
 
                             pd.dismiss();
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Wine Was Uploaded.", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Your new wine has been uploaded.", Snackbar.LENGTH_LONG).show();
                             wineImage.setImageResource(R.drawable.no_image);
+                            ResetUI();
 
                             mImageUri = null;
                             wineImage.setImageURI(mImageUri);
                         }
                     });
                 }
-                //When it is successful it will store the Wine in the DV
+                //When it is successful it will store the Wine in the DB
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
             {
                 @Override
@@ -637,16 +668,15 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                 public void onFailure(@NonNull Exception e)
                 {
                     pd.dismiss();
-                    Toast.makeText(getContext(), "Failed to Uploaded Winee.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Failed to Uploaded Wine.", Toast.LENGTH_LONG).show();
                 }
             });
-            //TODO: ------------ Implementation for if all values are entered and valid ------------
         }
         else
         {
             Toast.makeText(getContext(),"Please make sure all values entered are valid.",Toast.LENGTH_SHORT).show();
         }
-        //--------------------------- Once all values have been verified ---------------------------
+        //------------------------------------------------------------------------------------------
     }
 
     private void RefreshSpinners()
@@ -665,5 +695,19 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         MimeTypeMap mime = MimeTypeMap.getSingleton();
 
         return mime.getExtensionFromMimeType(cr.getType(mUri));
+    }
+
+    //Update the ui
+    private void ResetUI() {
+        txtWineName.setText("");
+        spinner_wineType.setAdapter(null);
+        spinner_wineSubtype.setAdapter(null);
+        spinner_wineOrigin.setAdapter(null);
+        spinner_wineBottleType.setAdapter(null);
+        txtWinePerc.setText("");
+        txtWineYear.setText("");
+        txtDesc.setText("");
+        myBar.setRating(1);
+        txtWineName.setFocusable(true);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.winecompendium;
 
-import android.net.Uri;
-
 public class wines
 {
     private String WineImage;
@@ -12,13 +10,11 @@ public class wines
     private String WineSubtype;
     private String WineOrigin;
     private String WineBottleType;
-
     private Float WinePerc;
     private String WineYear;
-
     private String WineDate;
-
     private Float WineRating;
+    private String WineDateAcquired;
 
     public wines()
     {
@@ -30,34 +26,26 @@ public class wines
         WineImage = wineImage;
     }
 
-    public wines(String wineImage,
-                 String wineName,
-                 String wineDesc,
-                 String wineType,
-                 String wineSubtype,
-                 String wineOrigin,
-                 String wineBottleType,
-                 Float winePerc,
-                 String wineYear,
-                 String wineDate,
-                 Float wineRating)
+    public wines(String wineName, String wineType, String wineSubtype, String wineOrigin, String wineBottleType, String wineImage, Float winePerc,
+                 String wineYear, String wineDesc, String wineDateAcquired, Float wineRating)
     {
         if (wineName.trim().equals(""))
         {
             wineName = "No Name";
         }
 
-        WineImage = wineImage;
         WineName = wineName;
-        WineDesc = wineDesc;
         WineType = wineType;
         WineSubtype = wineSubtype;
         WineOrigin = wineOrigin;
         WineBottleType = wineBottleType;
+        WineImage = wineImage;
         WinePerc = winePerc;
         WineYear = wineYear;
-        WineDate = wineDate;
+        WineDesc = wineDesc;
+        WineDateAcquired = wineDateAcquired;
         WineRating = wineRating;
+
     }
 
     public String getWineImage() {
@@ -146,5 +134,13 @@ public class wines
 
     public void setWineRating(Float wineRating) {
         WineRating = wineRating;
+    }
+
+    public String getWineDateAcquired() {
+        return WineDateAcquired;
+    }
+
+    public void setWineDateAcquired(String wineDateAcquired) {
+        WineDateAcquired = wineDateAcquired;
     }
 }
