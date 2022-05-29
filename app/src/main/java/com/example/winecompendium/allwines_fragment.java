@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +34,8 @@ public class allwines_fragment extends Fragment {
     private TextView txtNavName;
     private Button btn_addwines;
 
-
+    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String userID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,6 +95,8 @@ public class allwines_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
+        userID = fUser.getUid();
+        //populateCards(); This will run as soon as you load the page when it works
         addwineTEST = getView().findViewById(R.id.addwine);
         layout = getView().findViewById(R.id.container);
 

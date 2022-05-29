@@ -199,7 +199,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
         userID = fUser.getUid();
         RefreshSpinners();
-        populateAllSpinners();
+        //populateAllSpinners();
 
         browseGallery.setOnClickListener(new View.OnClickListener()
         {
@@ -525,7 +525,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
         //---------------------------- Storing the image in the STORAGE ----------------------------
         final String randomKey = UUID.randomUUID().toString();
-        final StorageReference fileRef = storageReference.child("WineImage/").child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+        final StorageReference fileRef = storageReference.child("WineImage/" + userID).child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
         //---------------------------- Storing the image in the STORAGE ----------------------------
 
         //Getting string values
@@ -579,7 +579,17 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         else
         {
             WineYear.setError("Value must be a year e.g. 2013");
+
             return;
+        }
+
+        if(wineDesc.isEmpty())
+        {
+            flag = false;
+        }
+        else
+        {
+            flag = true;
         }
 
 
@@ -598,7 +608,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                         @Override
                         public void onSuccess(Uri uri)
                         {
-                            wines newWine = new wines(wineName, mImageUri.toString(), wineDesc, selectedWineType, selectedSubtype, selectedOrigin, selectedBottleType, winePerc, wineYear, wineDateAcquired, wineRating);
+                            wines newWine = new wines(mImageUri.toString(), wineName, wineDesc, selectedWineType, selectedSubtype, selectedOrigin, selectedBottleType, winePerc, wineYear, wineDateAcquired, wineRating);
 
                             String modelID = dbRef.push().getKey();
                             dbRef.child(modelID).setValue(newWine);
