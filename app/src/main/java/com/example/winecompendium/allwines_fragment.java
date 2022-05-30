@@ -1,12 +1,6 @@
 package com.example.winecompendium;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,11 +30,22 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class allwines_fragment extends Fragment {
 
+    private TextView txtWName;
+    private TextView txtWType;
+    private TextView txtWDesc;
     private TextView txtNavName;
     private Button btn_addwines;
+    private Button addwineTEST;
+    private GridLayout layout;
 
-    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
     private String userID;
+    private String wineName;
+    private String wineType;
+    private String wineDesc;
+
+    private DatabaseReference dbRef;
+    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,11 +88,6 @@ public class allwines_fragment extends Fragment {
         }
     }
 
-    private Button addwineTEST;
-    private GridLayout layout;
-
-    DatabaseReference dbRef;
-    public String WineName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,10 +100,16 @@ public class allwines_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
-        userID = fUser.getUid();
-        //populateCards(); This will run as soon as you load the page when it works
+
         addwineTEST = getView().findViewById(R.id.addwine);
         layout = getView().findViewById(R.id.container);
+        txtWName = getView().findViewById(R.id.txtWineTitle);
+        txtWType = getView().findViewById(R.id.txtWineType);
+        txtWDesc = getView().findViewById(R.id.txtWineDesc);
+
+        userID = fUser.getUid();
+        //populateCards(); This will run as soon as you load the page when it works
+
 
         addwineTEST.setOnClickListener(new View.OnClickListener()
         {
@@ -113,41 +124,58 @@ public class allwines_fragment extends Fragment {
 
     private void populateCards()
     {
-        //Populates a spinner (WineTypes) from the FireBase DB
-        dbRef = FirebaseDatabase.getInstance().getReference("WineExample");
-        Query query = dbRef.child("Name");
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        userID = fUser.getUid();
 
-        query.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                if (snapshot.exists())
-                {
-                    WineName = snapshot.getValue(String.class);
-                    //Toast.makeText(getView().getContext(), "Output is: " + WineName, Toast.LENGTH_SHORT).show();
+        //query based on current user id. Finding the first name of current user to display on dashboard
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+        Query query = dataRef.child("Users").child(userID).child("CollectedWines");
 
-                    String WineType = "White", WineDesc = "Its a white wine";
+        //check if current user is logged in
+        if (fUser != null) {
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            //Getting the first name value
+                            wines wine = ds.getValue(wines.class);
+                            wineName = wine.getWineName();
+                            wineType = wine.getWineType();
+                            wineDesc = wine.getWineDesc();
 
-                    addCard(WineName, WineType, WineDesc);
+                            addCard(wineName,wineType,wineDesc);
+
+                            Log.d("wine card","display wine card");
+                        }
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-                Log.e("error", error.getMessage());
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("error", error.getMessage());
+                }
+            });
+
+        } else {
+            Toast.makeText(getContext(),"Error populating wine cards",Toast.LENGTH_SHORT).show();
+        }
+
+
+
     }
 
     private void addCard(String WineName, String WineType, String WineDesc)
     {
         View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
 
-        TextView name = wine_cardview.findViewById(R.id.card_wineName);
-        TextView type = wine_cardview.findViewById(R.id.card_WineType);
-        TextView desc = wine_cardview.findViewById(R.id.card_WineDesc);
+       TextView name = wine_cardview.findViewById(R.id.card_wineName);
+       TextView type = wine_cardview.findViewById(R.id.card_WineType);
+       TextView desc = wine_cardview.findViewById(R.id.card_WineDesc);
+
+       name.setText(WineName);
+       type.setText(WineType);
+       desc.setText(WineDesc);
 
         layout.addView(wine_cardview);
     }

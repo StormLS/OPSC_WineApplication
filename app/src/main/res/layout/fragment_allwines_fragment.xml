@@ -142,6 +142,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txtWineTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="30dp"
@@ -158,6 +159,7 @@
                                     android:textSize="15sp" />
 
                                 <TextView
+                                    android:id="@+id/txtWineDesc"
                                     android:layout_width="match_parent"
                                     android:layout_height="47dp"
                                     android:layout_marginTop="10dp"
