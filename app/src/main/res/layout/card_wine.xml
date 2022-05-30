@@ -70,7 +70,7 @@
                         android:layout_marginTop="10dp">
 
                         <Button
-                            android:id="@+id/button"
+                            android:id="@+id/btnViewWine"
                             android:layout_width="51dp"
                             android:layout_height="41dp"
                             android:layout_weight="1"

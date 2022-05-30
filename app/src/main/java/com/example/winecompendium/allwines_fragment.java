@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,12 +37,14 @@ public class allwines_fragment extends Fragment {
     private TextView txtNavName;
     private Button btn_addwines;
     private Button addwineTEST;
+    private Button btnViewWine;
     private GridLayout layout;
 
     private String userID;
     private String wineName;
     private String wineType;
     private String wineDesc;
+    private String wineImageLink;
 
     private DatabaseReference dbRef;
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -101,24 +104,22 @@ public class allwines_fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
 
+        View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
+
         addwineTEST = getView().findViewById(R.id.addwine);
         layout = getView().findViewById(R.id.container);
-        txtWName = getView().findViewById(R.id.txtWineTitle);
-        txtWType = getView().findViewById(R.id.txtWineType);
-        txtWDesc = getView().findViewById(R.id.txtWineDesc);
+        btnViewWine = getView().findViewById(R.id.button6);
 
         userID = fUser.getUid();
-        //populateCards(); This will run as soon as you load the page when it works
+        populateCards();
 
-
-        addwineTEST.setOnClickListener(new View.OnClickListener()
-        {
+        btnViewWine.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                populateCards();
+            public void onClick(View view) {
+                ShowViewWineDialogue();
             }
         });
+
 
     }
 
@@ -143,6 +144,7 @@ public class allwines_fragment extends Fragment {
                             wineName = wine.getWineName();
                             wineType = wine.getWineType();
                             wineDesc = wine.getWineDesc();
+                            wineImageLink = wine.getWineImage();
 
                             addCard(wineName,wineType,wineDesc);
 
@@ -162,7 +164,16 @@ public class allwines_fragment extends Fragment {
         }
 
 
+    }
 
+    /*
+    Show the add new wine type to category dialogue box
+   */
+    private void ShowViewWineDialogue()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        viewwine_fragment_dialogue viewWineDialogue = viewwine_fragment_dialogue.newInstance("WineType item");
+        viewWineDialogue.show(fm, "view_wine_dialogue");
     }
 
     private void addCard(String WineName, String WineType, String WineDesc)

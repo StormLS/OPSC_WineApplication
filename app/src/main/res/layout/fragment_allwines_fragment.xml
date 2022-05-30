@@ -82,12 +82,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/addwine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add a wine"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -96,7 +90,8 @@
             <ScrollView
                 android:id="@+id/wine_"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="SpeakableTextPresentCheck">
 
                 <GridLayout
                     android:id="@+id/container"
@@ -106,115 +101,7 @@
                     android:layout_margin="5dp"
                     android:columnCount="1"
                     android:columnOrderPreserved="false"
-                    android:rowCount="4">
-
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="@color/customColourNine"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center"
-
-                        android:layout_margin="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="150dp"
-                                android:layout_height="180dp"
-                                android:layout_marginRight="20dp"
-                                android:background="@color/customColourThree">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:src="@drawable/no_image"></ImageView>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="180dp"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txtWineTitle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="30dp"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:text="Example Wine"
-                                    android:textSize="16sp"></TextView>
-
-                                <TextView
-                                    android:id="@+id/txtWineType"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:text="Wine Type"
-                                    android:textSize="15sp" />
-
-                                <TextView
-                                    android:id="@+id/txtWineDesc"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="47dp"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:text="The description of a wine will go here."
-                                    android:textSize="14sp"></TextView>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="35dp"
-                                    android:layout_marginTop="10dp">
-
-                                    <Button
-                                        android:id="@+id/button"
-                                        android:layout_width="51dp"
-                                        android:layout_height="41dp"
-                                        android:layout_weight="1"
-                                        android:background="@android:color/transparent"
-                                        android:fontFamily="@font/poppins_regular"
-                                        android:gravity="bottom|start|top|left"
-                                        android:paddingStart="1dp"
-                                        android:text="View"
-                                        android:textAllCaps="false"
-                                        android:textColor="@color/customColourFour"
-                                        tools:ignore="TouchTargetSizeCheck" />
-
-                                    <Button
-                                        android:id="@+id/button2"
-                                        android:layout_width="65dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:background="@android:color/transparent"
-                                        android:fontFamily="@font/poppins_regular"
-                                        android:gravity="bottom|start|top|left"
-                                        android:paddingStart="1dp"
-                                        android:text="Edit"
-                                        android:textAllCaps="false"
-                                        android:textColor="@color/customColourFour"
-                                        tools:ignore="TouchTargetSizeCheck" />
-
-                                    <ImageButton
-                                        android:layout_width="50dp"
-                                        android:layout_height="48dp"
-                                        android:layout_gravity="center_vertical"
-                                        android:background="@color/customColourNine"
-                                        android:contentDescription="heart"
-                                        android:gravity="right"
-                                        android:src="@drawable/ic_heart">
-
-                                    </ImageButton>
-                                </LinearLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </GridLayout>
+                    android:rowCount="4" />
             </ScrollView>
         </LinearLayout>
     </LinearLayout>
