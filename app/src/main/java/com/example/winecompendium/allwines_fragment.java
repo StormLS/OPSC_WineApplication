@@ -50,12 +50,15 @@ public class allwines_fragment extends Fragment {
     private Button btnViewWine;
     private GridLayout layout;
 
+    private TextView txtViewKey;
+
     private String userID;
     private String wineName;
     private String wineType;
     private String wineDesc;
     private String wineImageLink;
     private String wineKey;
+    public static String currentKey = "TestKey";
 
     private DatabaseReference dbRef;
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -116,17 +119,14 @@ public class allwines_fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
 
-        View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
-
         addwineTEST = getView().findViewById(R.id.addwine);
         layout = getView().findViewById(R.id.container);
         btnViewWine = getView().findViewById(R.id.button6);
 
+        txtViewKey = getView().findViewById(R.id.txtNumWines);
 
         userID = fUser.getUid();
         populateCards();
-
-
 
     }
 
@@ -159,7 +159,7 @@ public class allwines_fragment extends Fragment {
                             wineType = wine.getWineType();
                             wineDesc = wine.getWineDesc();
                             wineImageLink = wine.getWineImage();
-                            wineKey = dataRef.getKey();
+                            wineKey = ds.getKey();
 
                             addCard(wineName,wineType,wineDesc, wineImageLink, wineKey);
 
@@ -180,6 +180,12 @@ public class allwines_fragment extends Fragment {
     }
 
 
+    public String ReturnCurrentKey() {
+
+        return currentKey;
+    }
+
+
     private void addCard(String WineName, String WineType, String WineDesc, String WineImageLink, String WineKey)
     {
         View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
@@ -193,6 +199,7 @@ public class allwines_fragment extends Fragment {
         name.setText(WineName);
         type.setText(WineType);
         desc.setText(WineDesc);
+
 
         //Retrieving the image based on the image link
         StorageReference fileRef = storageReference.child("WineImage/" + userID ).child(WineImageLink);
@@ -226,14 +233,18 @@ public class allwines_fragment extends Fragment {
         //Load the cards
         layout.addView(wine_cardview);
 
+
         //If the user clicks on the view wine button
         btnViewWine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentKey = WineKey;
                 ShowViewWineDialogue();
             }
         });
+
     }
+
 
     /*
     Show the add View Wine dialogue box
@@ -245,6 +256,7 @@ public class allwines_fragment extends Fragment {
         viewWineDialogue.show(fm, "view_wine_dialogue");
 
     }
+
 
 
 }

@@ -84,7 +84,6 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
         userID = fUser.getUid().toString();
 
 
-
         //Set the heading of the dialogue
         DialogueHeading.setText("Add " + addWines.ReturnHeading());
 

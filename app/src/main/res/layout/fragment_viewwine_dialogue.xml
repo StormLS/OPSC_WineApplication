@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/container_2"
+        android:background="@drawable/container_view_wine"
         android:orientation="vertical">
 
         <Space
@@ -20,18 +20,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="55dp"
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="21dp"
+                android:layout_width="67dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/txtHeadingView"
+                android:layout_width="135dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_semibold"
@@ -62,341 +62,594 @@
                 android:textSize="30sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
         </LinearLayout>
 
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="22dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <Space
-                    android:layout_width="17dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="418dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="24dp" />
+                        android:layout_width="37dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView27"
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="11dp" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Name"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtWineName"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:text="Zonnebloem"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/textView27"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Name"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/txtWineName"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:text="Zonnebloem"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp" />
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
 
-                        <TextView
-                            android:id="@+id/textView28"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Type"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtWineType"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:text="Red"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/textView28"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Type"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp" />
+                            <TextView
+                                android:id="@+id/txtWineType"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:text="Red"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
 
-                        <TextView
-                            android:id="@+id/textView29"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Subtype"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtWineSubtype"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:text="Pinotage"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/textView29"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Subtype"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp" />
+                            <TextView
+                                android:id="@+id/txtWineSubtype"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:text="Pinotage"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
 
-                        <TextView
-                            android:id="@+id/textView30"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Origin"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtOrigin"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:text="South Africa"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/textView30"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Origin"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp" />
+                            <TextView
+                                android:id="@+id/txtOrigin"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:text="South Africa"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
 
-                        <TextView
-                            android:id="@+id/textView31"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView31"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Bottle Type"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/txtBottleType"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:text="Bordeaux"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Bottle Type"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtBottleType"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:text="Bordeaux"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/textView34"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Date acquired"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/txtDateAcquired"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:paddingTop="2dp"
+                                android:text="01/14/2022"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView32"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Percent"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/txtPercent"
+                                android:layout_width="160dp"
+                                android:layout_height="39dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:text="12%"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp" />
+                        android:layout_width="17dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="175dp"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView32"
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp" />
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="159dp"
+                            android:layout_height="250dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="#D6D6D6"
+                            android:src="@drawable/no_image" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Percent"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:layout_marginStart="6dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtPercent"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:text="12%"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/textView46"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Year"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/txtYear"
+                                android:layout_width="160dp"
+                                android:layout_height="38dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_vertical"
+                                android:paddingStart="3dp"
+                                android:paddingTop="2dp"
+                                android:text="2013"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView48"
+                                android:layout_width="159dp"
+                                android:layout_height="2dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Description"
+                                android:textColor="#505050"
+                                android:textSize="16dp" />
+
+                            <EditText
+                                android:id="@+id/txtDesc3"
+                                style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+                                android:layout_width="160dp"
+                                android:layout_height="86dp"
+                                android:layout_gravity="top"
+                                android:layout_weight="1"
+                                android:background="@drawable/view_wine_edit_text"
+                                android:clickable="false"
+                                android:ems="10"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="start|left"
+                                android:inputType="textMultiLine"
+                                android:lines="4"
+                                android:maxLines="4"
+                                android:paddingStart="5dp"
+                                android:paddingTop="2dp"
+                                android:text="My description of this wine"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
                     </LinearLayout>
+
+                    <Space
+                        android:layout_width="37dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                 </LinearLayout>
 
                 <Space
-                    android:layout_width="17dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="418dp"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="49dp" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="179dp"
-                        android:layout_height="227dp"
-                        android:background="#D6D6D6"
-                        android:src="@drawable/no_image" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp" />
+                        android:layout_width="51dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/textView33"
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="50dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/view_rating_btn" />
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="65dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView43"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginTop="17dp"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="View"
+                                android:textColor="@color/black"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:id="@+id/txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Rating"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnViewRating"
+                            android:layout_width="23dp"
+                            android:layout_height="27dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@drawable/view_arror"
+                            android:backgroundTint="@color/customColourFive"
+                            android:contentDescription="view rating"
+                            android:drawableTint="@color/customColourFive"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <Space
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="50dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/view_category_btn" />
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView44"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginTop="17dp"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="View"
+                                android:textColor="@color/black"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:id="@+id/txt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Category"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Year"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
-                        <TextView
-                            android:id="@+id/txtYear"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
+                        <Button
+                            android:id="@+id/btnViewCategory"
+                            android:layout_width="23dp"
+                            android:layout_height="27dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
                             android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:paddingTop="2dp"
-                            android:text="2013"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:background="@drawable/view_arror"
+                            android:backgroundTint="@color/customColourFive"
+                            android:contentDescription="view category"
+                            android:drawableTint="@color/customColourFive"
+                            tools:ignore="TouchTargetSizeCheck" />
+
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp" />
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
-                    <LinearLayout
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Space
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_weight="1" />
 
-                        <TextView
-                            android:id="@+id/textView34"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Date acquired"
-                            android:textColor="#505050"
-                            android:textSize="16dp" />
+                    <Button
+                        android:id="@+id/btnCloseViewing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/customColourTwo"
+                        android:fontFamily="@font/poppins_regular"
+                        android:letterSpacing="0.03"
+                        android:text="OK"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
 
-                        <TextView
-                            android:id="@+id/txtDateAcquired"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/view_wine_edit_text"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:paddingStart="3dp"
-                            android:paddingTop="2dp"
-                            android:text="01/14/2022"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
                 </LinearLayout>
+
             </LinearLayout>
-
-        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </LinearLayout>
