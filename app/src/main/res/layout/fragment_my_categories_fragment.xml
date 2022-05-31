@@ -7,262 +7,102 @@
     android:orientation="vertical"
     tools:context=".my_categories_fragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="14dp" />
+        android:contentDescription="categories">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
                 android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="297dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/poppins_regular"
-                android:gravity="center_horizontal"
-                android:text="Here we have classified the essential categories in which will be defined your newly acquired wine. If you wish to create your own category, press Add Category located above in the menu bar."
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/customColourTwo"
-                android:contentDescription="search"
-                android:src="@drawable/search_icon" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-                <androidx.gridlayout.widget.GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="297dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_horizontal"
+                    android:text="These pre-defined categories contain your wines that are automatically added. Press OPEN to view your respective category."
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="23dp" />
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="48dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/customColourTwo"
+                    android:contentDescription="search"
+                    android:src="@drawable/search_icon" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" />
-
-                                <ImageButton
-                                    android:id="@+id/btnWineTypes"
-                                    android:layout_width="70dp"
-                                    android:layout_height="100dp"
-                                    android:layout_weight="1"
-                                    android:backgroundTint="@color/white"
-                                    android:contentDescription="wine_types"
-                                    android:src="@drawable/custom_folder" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" />
-
-                                <ImageButton
-                                    android:id="@+id/btnSubtypes"
-                                    android:layout_width="70dp"
-                                    android:layout_height="100dp"
-                                    android:layout_weight="1"
-                                    android:backgroundTint="@color/white"
-                                    android:contentDescription="subtypes"
-                                    android:src="@drawable/custom_folder" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <Space
-                                    android:layout_width="29dp"
-                                    android:layout_height="25dp"
-                                    android:layout_weight="1" />
-
-                                <TextView
-                                    android:id="@+id/winetypes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:gravity="center_horizontal"
-                                    android:text="Wine Types"
-                                    android:textColor="@color/customColourFour"
-                                    android:textSize="16sp" />
-
-                                <Space
-                                    android:layout_width="42dp"
-                                    android:layout_height="26dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_weight="1" />
-
-                                <TextView
-                                    android:id="@+id/subtypes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:gravity="center_horizontal"
-                                    android:text="Wine Subtypes"
-                                    android:textColor="@color/customColourFour"
-                                    android:textSize="16sp" />
-
-                                <Space
-                                    android:layout_width="17dp"
-                                    android:layout_height="26dp"
-                                    android:layout_weight="1" />
-                            </LinearLayout>
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="34dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" />
-
-                                <ImageButton
-                                    android:id="@+id/btnOrigin"
-                                    android:layout_width="70dp"
-                                    android:layout_height="100dp"
-                                    android:layout_weight="1"
-                                    android:backgroundTint="@color/white"
-                                    android:contentDescription="wine_types"
-                                    android:src="@drawable/custom_folder" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" />
-
-                                <ImageButton
-                                    android:id="@+id/btnBottleType"
-                                    android:layout_width="70dp"
-                                    android:layout_height="100dp"
-                                    android:layout_weight="1"
-                                    android:backgroundTint="@color/white"
-                                    android:contentDescription="subtypes"
-                                    android:src="@drawable/custom_folder" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <Space
-                                    android:layout_width="61dp"
-                                    android:layout_height="25dp"
-                                    android:layout_weight="1" />
-
-                                <TextView
-                                    android:id="@+id/txtorigin"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:gravity="center_horizontal"
-                                    android:text="Origin"
-                                    android:textColor="@color/customColourFour"
-                                    android:textSize="16sp" />
-
-                                <Space
-                                    android:layout_width="88dp"
-                                    android:layout_height="26dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_weight="1" />
-
-                                <TextView
-                                    android:id="@+id/bottletype"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:gravity="center_horizontal"
-                                    android:text="Bottle Type"
-                                    android:textColor="@color/customColourFour"
-                                    android:textSize="16sp" />
-
-                                <Space
-                                    android:layout_width="41dp"
-                                    android:layout_height="26dp"
-                                    android:layout_weight="1" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                </androidx.gridlayout.widget.GridLayout>
-
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
             </LinearLayout>
-        </ScrollView>
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="232dp"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="winetype"
+                android:src="@drawable/winetype_category" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="match_parent"
+                android:layout_height="241dp"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="subtype"
+                android:src="@drawable/subtype_category" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="origin"
+                android:src="@drawable/origin_category" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="match_parent"
+                android:layout_height="218dp"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="bottletype"
+                android:src="@drawable/bottletype_category" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
