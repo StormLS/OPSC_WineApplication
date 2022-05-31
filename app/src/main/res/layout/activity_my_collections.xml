@@ -75,7 +75,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_add_category"
+                android:id="@+id/btnShowCategory"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="bottom|fill|fill_vertical"

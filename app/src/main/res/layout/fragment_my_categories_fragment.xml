@@ -40,7 +40,7 @@
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center_horizontal"
-                    android:text="These pre-defined categories contain your wines that are automatically added. Press OPEN to view your respective category."
+                    android:text="These pre-defined categories contain your wines that are automatically added. Press to view your respective category."
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -67,7 +67,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnViewWineType"
                 android:layout_width="match_parent"
                 android:layout_height="232dp"
                 android:layout_weight="1"
@@ -76,7 +76,7 @@
                 android:src="@drawable/winetype_category" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/btnViewSubtype"
                 android:layout_width="match_parent"
                 android:layout_height="241dp"
                 android:layout_weight="1"
@@ -85,7 +85,7 @@
                 android:src="@drawable/subtype_category" />
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/btnViewOrigin"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:layout_weight="1"
@@ -94,7 +94,7 @@
                 android:src="@drawable/origin_category" />
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/btnViewBottleType"
                 android:layout_width="match_parent"
                 android:layout_height="218dp"
                 android:layout_weight="1"

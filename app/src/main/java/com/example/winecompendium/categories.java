@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,7 +19,7 @@ public class categories extends AppCompatActivity
     private TextView txtNavName;
 
     private MaterialButton btnCategories;
-    private MaterialButton btnAddCategory;
+    private MaterialButton btnViewCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,7 +31,7 @@ public class categories extends AppCompatActivity
         drawerLayout = findViewById(R.id.drawer_layout_);
         txtNavName = findViewById(R.id.txtNavUser);
         btnCategories = findViewById(R.id.btn_categories);
-        btnAddCategory = findViewById(R.id.btn_add_category);
+        btnViewCategory = findViewById(R.id.btnShowCategory);
 
         dashboard dash = new dashboard();
         SetNavDrawerName(dash._name);
@@ -51,17 +52,17 @@ public class categories extends AppCompatActivity
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fragment_layout,frag1,frag1.getTag()).commit();
                 ButtonSelected(btnCategories);
-                ButtonUnselected(btnAddCategory);
+                ButtonUnselected(btnViewCategory);
             }
         });
 
-        btnAddCategory.setOnClickListener(new View.OnClickListener() {
+        btnViewCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                add_category_fragment frag2 = new add_category_fragment();
+                view_winetype_category frag2 = new view_winetype_category();
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fragment_layout,frag2,frag2.getTag()).commit();
-                ButtonSelected(btnAddCategory);
+                ButtonSelected(btnViewCategory);
                 ButtonUnselected(btnCategories);
             }
         });
@@ -150,6 +151,48 @@ public class categories extends AppCompatActivity
         super.onPause();
         //Close drawer
         dashboard.closeDrawer(drawerLayout);
+    }
+
+    public void ReplaceFragment() {
+
+        /*
+        Display the correct fragment on the fragment layout
+         */
+        my_categories_fragment myCatFrag = new my_categories_fragment();
+       // String fragNum = myCatFrag.ReturnFragmentNumber();
+        Toast.makeText(this, myCatFrag.ReturnFragmentNumber(),Toast.LENGTH_SHORT).show();
+
+        /*
+        switch (fragNum) {
+            case  "1":  {
+                view_winetype_category frag = new view_winetype_category();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
+            }
+            break;
+            case "2": {
+                view_subtype_category frag = new view_subtype_category();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
+            }
+            break;
+            case "3": {
+                view_origin_category frag = new view_origin_category();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
+            }
+            break;
+            case "4": {
+                view_bottletype_category frag = new view_bottletype_category();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
+            }
+            break;
+        }*/
+
+        ButtonSelected(btnViewCategory);
+        ButtonUnselected(btnCategories);
+
     }
 
 

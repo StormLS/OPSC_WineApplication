@@ -26,7 +26,7 @@ public class MyCollections extends AppCompatActivity {
         setContentView(R.layout.activity_my_collections);
 
         btnAllWines = findViewById(R.id.btn_categories);
-        btnAddWines = findViewById(R.id.btn_add_category);
+        btnAddWines = findViewById(R.id.btnShowCategory);
         btnFavourites = findViewById(R.id.btn_favs_1);
         drawerLayout = findViewById(R.id.drawer_layout);
         txtNavName = findViewById(R.id.txtNavUser);

@@ -117,7 +117,6 @@ public class allwines_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
-
         layout = getView().findViewById(R.id.container);
 
         userID = fUser.getUid();

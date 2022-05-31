@@ -86,8 +86,6 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
 
-
-
         txtInput = getView().findViewById(R.id.txtAddCat);
         userID = fUser.getUid().toString();
         btnClose = getView().findViewById(R.id.btnClose);

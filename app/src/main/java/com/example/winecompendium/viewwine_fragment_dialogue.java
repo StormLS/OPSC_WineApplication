@@ -67,9 +67,6 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
     private static Float wineRating;
     private Bitmap wineImage;
     private String wineImgLink;
-
-
-
     private String userID;
     private static String currentKey;
 

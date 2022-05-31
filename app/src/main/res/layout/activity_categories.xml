@@ -75,14 +75,14 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_add_category"
+                android:id="@+id/btnShowCategory"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="bottom|fill|fill_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFive"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Add Subcategory"
+                android:text="View Category"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
                 android:textSize="16sp"
