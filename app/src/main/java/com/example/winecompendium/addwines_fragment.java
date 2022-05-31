@@ -203,6 +203,27 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         //Getting currently logged in user's ID
         userID = fUser.getUid();
 
+
+         /*
+         -------------------------Retrieving the date of the calendar view--------------------------
+         */
+        //Retrieving the date acquired
+        viewCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,int dayOfMonth)
+            {
+                wineDateAcquired = String.valueOf(dayOfMonth + "/" + (month + 1) + "/" + year);
+            }
+        });
+
+        //If no date other than today's date has been selected, set the retrieval date to today
+        if (wineDateAcquired.isEmpty())
+        {
+            wineDateAcquired = date;
+        }
+        //-------------------------------------------------------------------------------------------
+
         RefreshSpinners();
 
         btnBrowseGallery.setOnClickListener(new View.OnClickListener()
@@ -282,7 +303,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                 }
                 else
                 {
-                    AddWine();
+                   AddWine();
                 }
             }
         });
@@ -539,27 +560,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         wineDesc = txtDesc.getText().toString();
 
 
-
-        /*
-         -------------------------Retrieving the date of the calendar view--------------------------
-         */
-        //Retrieving the date acquired
-        viewCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month,int dayOfMonth)
-            {
-                wineDateAcquired = String.valueOf(dayOfMonth + "/" + (month + 1) + "/" + year);
-            }
-        });
-
-        //If no date other than today's date has been selected, set the retrieval date to today
-        if (wineDateAcquired.equals(""))
-        {
-            wineDateAcquired = date;
-        }
-       //-------------------------------------------------------------------------------------------
-
         /*
         -------------------------------User input Validation checking ------------------------------
          */
@@ -678,7 +678,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         spinner_wineSubtype.setAdapter(null);
         spinner_wineOrigin.setAdapter(null);
         spinner_wineBottleType.setAdapter(null);
-
         populateAllSpinners();
     }
 
@@ -702,5 +701,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         txtDesc.setText("");
         myBar.setRating(1);
         txtWineName.setFocusable(true);
+        populateAllSpinners();
     }
 }
