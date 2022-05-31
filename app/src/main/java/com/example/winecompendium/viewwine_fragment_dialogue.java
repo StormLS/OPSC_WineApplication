@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFragment {
+
+    private Button btnCloseDialogue;
 
     public viewwine_fragment_dialogue() {
         // Required empty public constructor
@@ -41,5 +44,19 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        btnCloseDialogue = getView().findViewById(R.id.btnCloseViewWine);
+
+
+        btnCloseDialogue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CloseDialogueBox();
+            }
+        });
     }
+
+    private void CloseDialogueBox() {
+        this.dismiss();
+    }
+
 }

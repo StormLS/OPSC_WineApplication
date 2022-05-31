@@ -55,9 +55,11 @@ public class allwines_fragment extends Fragment {
     private String wineType;
     private String wineDesc;
     private String wineImageLink;
+    private String wineKey;
 
     private DatabaseReference dbRef;
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -120,15 +122,10 @@ public class allwines_fragment extends Fragment {
         layout = getView().findViewById(R.id.container);
         btnViewWine = getView().findViewById(R.id.button6);
 
+
         userID = fUser.getUid();
         populateCards();
 
-        btnViewWine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ShowViewWineDialogue();
-            }
-        });
 
 
     }
@@ -141,9 +138,7 @@ public class allwines_fragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         userID = fUser.getUid();
-        Bitmap wineBitmap = null;
 
-        //query based on current user id. Finding the first name of current user to display on dashboard
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
         Query query = dataRef.child("Users").child(userID).child("CollectedWines");
 
@@ -158,41 +153,15 @@ public class allwines_fragment extends Fragment {
                     if (snapshot.exists()) {
                         for (DataSnapshot ds : snapshot.getChildren())
                         {
-                            //Getting the first name value
+                            //Getting the wine values
                             wines wine = ds.getValue(wines.class);
                             wineName = wine.getWineName();
                             wineType = wine.getWineType();
                             wineDesc = wine.getWineDesc();
                             wineImageLink = wine.getWineImage();
+                            wineKey = dataRef.getKey();
 
-                            Bitmap wineBitmap = null;
-                            StorageReference fileRef = storageReference.child("WineImage/" + userID ).child(wineImageLink);
-                            try
-                            {
-                                final File localFile = File.createTempFile("wineImage", "jpg");
-                                fileRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>()
-                                {
-                                    @Override
-                                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot)
-                                    {
-                                        Bitmap wineBitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                        addCard(wineName,wineType,wineDesc, wineBitmap);
-
-                                        Toast.makeText(getView().getContext(), "Image was retrieved", Toast.LENGTH_LONG).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener()
-                                {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e)
-                                    {
-                                        Toast.makeText(getView().getContext(), "Error in image retrieval\n" + e, Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                            }
-                            catch (Exception e)
-                            {
-                                Toast.makeText(getView().getContext(), "Major Error:\n" + e, Toast.LENGTH_LONG).show();
-                            }
+                            addCard(wineName,wineType,wineDesc, wineImageLink, wineKey);
 
                             Log.d("wine card","display wine card");
                         }
@@ -210,17 +179,8 @@ public class allwines_fragment extends Fragment {
         }
     }
 
-    /*
-    Show the add new wine type to category dialogue box
-   */
-    private void ShowViewWineDialogue()
-    {
-        FragmentManager fm =  getChildFragmentManager();
-        viewwine_fragment_dialogue viewWineDialogue = viewwine_fragment_dialogue.newInstance("WineType item");
-        viewWineDialogue.show(fm, "view_wine_dialogue");
-    }
 
-    private void addCard(String WineName, String WineType, String WineDesc, Bitmap WineImage)
+    private void addCard(String WineName, String WineType, String WineDesc, String WineImageLink, String WineKey)
     {
         View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
 
@@ -228,14 +188,63 @@ public class allwines_fragment extends Fragment {
         TextView type = wine_cardview.findViewById(R.id.card_WineType);
         TextView desc = wine_cardview.findViewById(R.id.card_WineDesc);
         ImageView image = wine_cardview.findViewById(R.id.card_WineImage);
+        Button btnViewWine = wine_cardview.findViewById(R.id.btnViewWine);
 
         name.setText(WineName);
         type.setText(WineType);
         desc.setText(WineDesc);
-        image.setImageBitmap(WineImage);
 
-        name.setText(WineName);
+        //Retrieving the image based on the image link
+        StorageReference fileRef = storageReference.child("WineImage/" + userID ).child(WineImageLink);
+        try
+        {
 
+            final File localFile = File.createTempFile("wineImage", "jpg");
+            fileRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>()
+            {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot)
+                {
+                    Bitmap wineBitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+
+                    image.setImageBitmap(wineBitmap);
+                }
+            }).addOnFailureListener(new OnFailureListener()
+            {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                    Log.e("error", e.getMessage());
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getView().getContext(), "Major Error:\n" + e, Toast.LENGTH_LONG).show();
+        }
+
+        //Load the cards
         layout.addView(wine_cardview);
+
+        //If the user clicks on the view wine button
+        btnViewWine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowViewWineDialogue();
+            }
+        });
     }
+
+    /*
+    Show the add View Wine dialogue box
+    */
+    private void ShowViewWineDialogue()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        viewwine_fragment_dialogue viewWineDialogue = viewwine_fragment_dialogue.newInstance("WineType item");
+        viewWineDialogue.show(fm, "view_wine_dialogue");
+
+    }
+
+
 }
