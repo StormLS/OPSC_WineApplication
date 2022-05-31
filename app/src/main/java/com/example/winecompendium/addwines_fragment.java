@@ -527,11 +527,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         storageReference = FirebaseStorage.getInstance().getReference();
         dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("CollectedWines");
 
-        //---------------------------- Storing the image in the STORAGE ----------------------------
-        final String randomKey = UUID.randomUUID().toString();
-        final StorageReference fileRef = storageReference.child("WineImage/" + userID).child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
-        //---------------------------- Storing the image in the STORAGE ----------------------------
-
         //Getting string values
         wineName = txtWineName.getText().toString();
         selectedWineType = spinner_wineType.getSelectedItem().toString();
@@ -543,6 +538,8 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         wineRating = myBar.getRating();
         wineDesc = txtDesc.getText().toString();
 
+
+
         /*
          -------------------------Retrieving the date of the calendar view--------------------------
          */
@@ -550,26 +547,18 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         viewCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month,
-                                            int dayOfMonth) {
+            public void onSelectedDayChange(CalendarView view, int year, int month,int dayOfMonth)
+            {
                 wineDateAcquired = String.valueOf(dayOfMonth + "/" + (month + 1) + "/" + year);
             }
         });
 
         //If no date other than today's date has been selected, set the retrieval date to today
-        if (wineDateAcquired.equals("")) {
+        if (wineDateAcquired.equals(""))
+        {
             wineDateAcquired = date;
         }
        //-------------------------------------------------------------------------------------------
-
-
-        //TODO: Still need Image implementation!
-        //wineImgString = wineImage
-
-
-
-        //TODO: Still need Image implementation!
-
 
         /*
         -------------------------------User input Validation checking ------------------------------
@@ -622,6 +611,12 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         }
         //------------------------------------------------------------------------------------------
 
+        //---------------------------- Storing the image in the STORAGE ----------------------------
+        final String randomKey = UUID.randomUUID().toString();
+        final StorageReference fileRef = storageReference.child("WineImage/" + userID).child(randomKey);
+
+        //final StorageReference fileRef = storageReference.child("WineImage/" + userID).child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+        //---------------------------- Storing the image in the STORAGE ----------------------------
 
         //--------------------------- Once all values have been verified ---------------------------
         if (flag)
@@ -638,10 +633,10 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                         @Override
                         public void onSuccess(Uri uri)
                         {
-                            wines newWine = new wines(wineName, selectedWineType, selectedSubtype, selectedOrigin, selectedBottleType, mImageUri.toString(), winePerc ,wineYear, wineDesc, wineDateAcquired, wineRating);
+                            wines newWine = new wines(wineName, selectedWineType, selectedSubtype, selectedOrigin, selectedBottleType, randomKey, winePerc ,wineYear, wineDesc, wineDateAcquired, wineRating);
 
-                           String modelID = dbRef.push().getKey();
-                           dbRef.child(modelID).setValue(newWine);
+                            String modelID = dbRef.push().getKey();
+                            dbRef.child(modelID).setValue(newWine);
 
                             pd.dismiss();
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Your new wine has been uploaded.", Snackbar.LENGTH_LONG).show();

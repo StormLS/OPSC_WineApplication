@@ -1,5 +1,7 @@
 package com.example.winecompendium;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +28,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -123,22 +133,31 @@ public class allwines_fragment extends Fragment {
 
     }
 
+    private StorageReference storageReference;
+
     private void populateCards()
     {
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
         userID = fUser.getUid();
+        Bitmap wineBitmap = null;
 
         //query based on current user id. Finding the first name of current user to display on dashboard
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
         Query query = dataRef.child("Users").child(userID).child("CollectedWines");
 
         //check if current user is logged in
-        if (fUser != null) {
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
+        if (fUser != null)
+        {
+            query.addListenerForSingleValueEvent(new ValueEventListener()
+            {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                public void onDataChange(@NonNull DataSnapshot snapshot)
+                {
                     if (snapshot.exists()) {
-                        for (DataSnapshot ds : snapshot.getChildren()) {
+                        for (DataSnapshot ds : snapshot.getChildren())
+                        {
                             //Getting the first name value
                             wines wine = ds.getValue(wines.class);
                             wineName = wine.getWineName();
@@ -146,7 +165,34 @@ public class allwines_fragment extends Fragment {
                             wineDesc = wine.getWineDesc();
                             wineImageLink = wine.getWineImage();
 
-                            addCard(wineName,wineType,wineDesc);
+                            Bitmap wineBitmap = null;
+                            StorageReference fileRef = storageReference.child("WineImage/" + userID ).child(wineImageLink);
+                            try
+                            {
+                                final File localFile = File.createTempFile("wineImage", "jpg");
+                                fileRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>()
+                                {
+                                    @Override
+                                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot)
+                                    {
+                                        Bitmap wineBitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                        addCard(wineName,wineType,wineDesc, wineBitmap);
+
+                                        Toast.makeText(getView().getContext(), "Image was retrieved", Toast.LENGTH_LONG).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener()
+                                {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e)
+                                    {
+                                        Toast.makeText(getView().getContext(), "Error in image retrieval\n" + e, Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            catch (Exception e)
+                            {
+                                Toast.makeText(getView().getContext(), "Major Error:\n" + e, Toast.LENGTH_LONG).show();
+                            }
 
                             Log.d("wine card","display wine card");
                         }
@@ -162,8 +208,6 @@ public class allwines_fragment extends Fragment {
         } else {
             Toast.makeText(getContext(),"Error populating wine cards",Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     /*
@@ -176,17 +220,21 @@ public class allwines_fragment extends Fragment {
         viewWineDialogue.show(fm, "view_wine_dialogue");
     }
 
-    private void addCard(String WineName, String WineType, String WineDesc)
+    private void addCard(String WineName, String WineType, String WineDesc, Bitmap WineImage)
     {
         View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
 
-       TextView name = wine_cardview.findViewById(R.id.card_wineName);
-       TextView type = wine_cardview.findViewById(R.id.card_WineType);
-       TextView desc = wine_cardview.findViewById(R.id.card_WineDesc);
+        TextView name = wine_cardview.findViewById(R.id.card_wineName);
+        TextView type = wine_cardview.findViewById(R.id.card_WineType);
+        TextView desc = wine_cardview.findViewById(R.id.card_WineDesc);
+        ImageView image = wine_cardview.findViewById(R.id.card_WineImage);
 
-       name.setText(WineName);
-       type.setText(WineType);
-       desc.setText(WineDesc);
+        name.setText(WineName);
+        type.setText(WineType);
+        desc.setText(WineDesc);
+        image.setImageBitmap(WineImage);
+
+        name.setText(WineName);
 
         layout.addView(wine_cardview);
     }
