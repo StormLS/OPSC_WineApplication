@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,8 @@ import androidx.fragment.app.Fragment;
 public class view_rating_fragment extends androidx.fragment.app.DialogFragment {
 
     private Button btnClose;
+    private RatingBar ratingBar;
+    private Float rating;
 
 
     // TODO: Rename and change types and number of parameters
@@ -42,6 +45,13 @@ public class view_rating_fragment extends androidx.fragment.app.DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         btnClose = getView().findViewById(R.id.btnCloseRating);
+        ratingBar = getView().findViewById(R.id.ratingBar);
+
+        //Retrieving the progress of the rating from View Wine fragment
+        viewwine_fragment_dialogue frag = new viewwine_fragment_dialogue();
+        rating = frag.ReturnProgress();
+        SetProgress();
+
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +59,10 @@ public class view_rating_fragment extends androidx.fragment.app.DialogFragment {
                 CloseDialogueBox();
             }
         });
+    }
+
+    private void SetProgress() {
+        ratingBar.setRating(rating);
     }
 
     private void CloseDialogueBox() {

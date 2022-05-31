@@ -614,17 +614,15 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         //---------------------------- Storing the image in the STORAGE ----------------------------
         final String randomKey = UUID.randomUUID().toString();
         final StorageReference fileRef = storageReference.child("WineImage/" + userID).child(randomKey);
+        //------------------------------------------------------------------------------------------
 
-        //final StorageReference fileRef = storageReference.child("WineImage/" + userID).child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
-        //---------------------------- Storing the image in the STORAGE ----------------------------
 
         //--------------------------- Once all values have been verified ---------------------------
         if (flag)
         {
-            //TODO: ------------ Implementation for if all values are entered and valid ------------
             fileRef.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
             {
-                //When it is successful it will store the Wine in the DV
+                //When it is successful it will store the Wine in the DB
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                 {
@@ -648,7 +646,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
                         }
                     });
                 }
-                //When it is successful it will store the Wine in the DB
+
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
             {
                 @Override

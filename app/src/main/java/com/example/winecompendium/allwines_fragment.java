@@ -1,8 +1,10 @@
 package com.example.winecompendium;
 
+import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,12 +47,8 @@ public class allwines_fragment extends Fragment {
     private TextView txtWType;
     private TextView txtWDesc;
     private TextView txtNavName;
-    private Button btn_addwines;
-    private Button addwineTEST;
-    private Button btnViewWine;
     private GridLayout layout;
 
-    private TextView txtViewKey;
 
     private String userID;
     private String wineName;
@@ -62,6 +60,7 @@ public class allwines_fragment extends Fragment {
 
     private DatabaseReference dbRef;
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+    private StorageReference storageReference;
 
 
 
@@ -119,18 +118,42 @@ public class allwines_fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
 
-        addwineTEST = getView().findViewById(R.id.addwine);
         layout = getView().findViewById(R.id.container);
-        btnViewWine = getView().findViewById(R.id.button6);
-
-        txtViewKey = getView().findViewById(R.id.txtNumWines);
 
         userID = fUser.getUid();
         populateCards();
+        RunLoadingScreen();
 
     }
 
-    private StorageReference storageReference;
+    /*
+     ---------Display Loading screen dialogue to allow for the all wines fragment to fully load-----
+    */
+    private void RunLoadingScreen() {
+
+        AlertDialog alertDialog;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+
+        builder.setView(inflater.inflate(R.layout.custom_loading_dialogue,null));
+        builder.setCancelable(false);
+
+        alertDialog = builder.create();
+        alertDialog.show();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.dismiss();
+            }
+        },3900); //Loading screen will run for 5 seconds
+    }
+    //----------------------------------------------------------------------------------------------
+
+
 
     private void populateCards()
     {
@@ -143,16 +166,14 @@ public class allwines_fragment extends Fragment {
         Query query = dataRef.child("Users").child(userID).child("CollectedWines");
 
         //check if current user is logged in
-        if (fUser != null)
-        {
-            query.addListenerForSingleValueEvent(new ValueEventListener()
-            {
+        if (fUser != null) {
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot)
-                {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                     if (snapshot.exists()) {
-                        for (DataSnapshot ds : snapshot.getChildren())
-                        {
+
+                        for (DataSnapshot ds : snapshot.getChildren()) {
                             //Getting the wine values
                             wines wine = ds.getValue(wines.class);
                             wineName = wine.getWineName();
@@ -161,9 +182,9 @@ public class allwines_fragment extends Fragment {
                             wineImageLink = wine.getWineImage();
                             wineKey = ds.getKey();
 
-                            addCard(wineName,wineType,wineDesc, wineImageLink, wineKey);
+                            addCard(wineName, wineType, wineDesc, wineImageLink, wineKey);
 
-                            Log.d("wine card","display wine card");
+                            Log.d("wine card", "display wine card");
                         }
                     }
                 }
@@ -173,9 +194,6 @@ public class allwines_fragment extends Fragment {
                     Log.e("error", error.getMessage());
                 }
             });
-
-        } else {
-            Toast.makeText(getContext(),"Error populating wine cards",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -244,7 +262,6 @@ public class allwines_fragment extends Fragment {
         });
 
     }
-
 
     /*
     Show the add View Wine dialogue box

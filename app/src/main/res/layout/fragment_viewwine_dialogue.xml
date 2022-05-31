@@ -24,23 +24,23 @@
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="67dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/txtHeadingView"
-                android:layout_width="135dp"
+                android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="View"
+                android:text="View Wine"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 
             <Space
-                android:layout_width="222dp"
+                android:layout_width="94dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
@@ -362,7 +362,7 @@
                             android:layout_height="37dp" />
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/imgWine"
                             android:layout_width="159dp"
                             android:layout_height="250dp"
                             android:layout_gravity="center_horizontal"
@@ -627,19 +627,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
-
-                    <Button
-                        android:id="@+id/btnCloseViewing"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/customColourTwo"
-                        android:fontFamily="@font/poppins_regular"
-                        android:letterSpacing="0.03"
-                        android:text="OK"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="17sp" />
 
                     <Space
                         android:layout_width="wrap_content"

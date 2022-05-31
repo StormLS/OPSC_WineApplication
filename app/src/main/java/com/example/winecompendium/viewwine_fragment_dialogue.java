@@ -1,12 +1,15 @@
 package com.example.winecompendium;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +28,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +43,7 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
 
     private Button btnCloseDialogue;
     private Button btnShowRating;
+    private Button btnShowCategory;
     private TextView txtwineName;
     private TextView txtwineType;
     private TextView txtwineSubtype;
@@ -42,7 +53,7 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
     private TextView txtwinePerc;
     private TextView txtwineYear;
     private TextView txtwineAcquired;
-    private TextView txtwineRating;
+    private ImageView imgViewWine;
 
     private String wineName;
     private String wineType;
@@ -53,7 +64,7 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
     private Float winePerc;
     private String wineYear;
     private String wineAcquired;
-    private Float wineRating;
+    private static Float wineRating;
     private Bitmap wineImage;
     private String wineImgLink;
 
@@ -63,6 +74,7 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
     private static String currentKey;
 
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
     public viewwine_fragment_dialogue() {
@@ -91,9 +103,11 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        userID = fUser.getUid();
+
         btnCloseDialogue = getView().findViewById(R.id.btnCloseViewWine);
         btnShowRating = getView().findViewById(R.id.btnViewRating);
-        userID = fUser.getUid();
+        btnShowCategory = getView().findViewById(R.id.btnViewCategory);
         txtwineName = getView().findViewById(R.id.txtWineName);
         txtwineType = getView().findViewById(R.id.txtWineType);
         txtwineSubtype = getView().findViewById(R.id.txtWineSubtype);
@@ -103,9 +117,12 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
         txtwineYear = getView().findViewById(R.id.txtYear);
         txtwinePerc = getView().findViewById(R.id.txtPercent);
         txtwineDesc = getView().findViewById(R.id.txtDesc3);
+        imgViewWine = getView().findViewById(R.id.imgWine);
+
+        txtwineDesc.setEnabled(false);
 
         allwines_fragment frag = new allwines_fragment();
-        currentKey = frag.ReturnCurrentKey();
+        currentKey = frag.ReturnCurrentKey(); //the key of the wine that is currently selected
 
         PopulateViewing();
 
@@ -122,17 +139,22 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
                 ShowRatingDialogueBox();
             }
         });
+
+        btnShowCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(),categories.class);
+                startActivity(i);
+                CloseDialogueBox();
+            }
+        });
     }
 
     private void PopulateViewing() {
 
-        userID = fUser.getUid();
-
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
-        Query ref2 = dataRef.child("Users").child(userID).child("CollectedWines").child(currentKey);
+        Query ref2 = dataRef.child("Users").child(userID).child("CollectedWines").orderByKey().equalTo(currentKey);
 
-
-        Toast.makeText(getContext(),currentKey,Toast.LENGTH_SHORT).show();
 
         ref2.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -156,6 +178,7 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
                         wineDesc = wine.getWineDesc();
                         wineImgLink = wine.getWineImage();
                         wineRating = wine.getWineRating();
+
                     }
 
                     txtwineName.setText(wineName);
@@ -167,6 +190,7 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
                     txtwineYear.setText(wineYear);
                     txtwinePerc.setText((winePerc) + "%");
                     txtwineDesc.setText(wineDesc);
+                    RetrieveImage(wineImgLink);
                 }
             }
 
@@ -175,6 +199,44 @@ public class viewwine_fragment_dialogue extends androidx.fragment.app.DialogFrag
                     Log.e("error", error.getMessage());
             }
             });
+
+    }
+
+    public Float ReturnProgress() {
+        return wineRating;
+    }
+
+    private void RetrieveImage(String imgLink) {
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
+        //Retrieving the image based on the image link
+        StorageReference fileRef = storageReference.child("WineImage/" + userID ).child(imgLink);
+        try
+        {
+
+            final File localFile = File.createTempFile("wineImage", "jpg");
+            fileRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>()
+            {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot)
+                {
+                    wineImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    imgViewWine.setImageBitmap(wineImage);
+                }
+            }).addOnFailureListener(new OnFailureListener()
+            {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                    Log.e("error_retrieving_img", e.getMessage());
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getView().getContext(), "Major Error:\n" + e, Toast.LENGTH_LONG).show();
+        }
 
     }
 
