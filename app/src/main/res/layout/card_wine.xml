@@ -30,6 +30,8 @@
                         android:id="@+id/card_WineImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/customColourNine"
+                        android:backgroundTint="@color/customColourNine"
                         android:src="@drawable/no_image"></ImageView>
                 </LinearLayout>
 

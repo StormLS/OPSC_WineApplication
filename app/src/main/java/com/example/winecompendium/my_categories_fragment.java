@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,45 +69,59 @@ public class my_categories_fragment extends Fragment {
         btnOrigin = getView().findViewById(R.id.btnViewOrigin);
         btnBottleType = getView().findViewById(R.id.btnViewBottleType);
 
-        categories cat = new categories();
-        cat.ReplaceFragment();
 
         btnType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               fragmentNum = "1";
-             //   cat.ReplaceFragment(fragmentNum);
+               ShowViewWineTypeDialogue();
             }
         });
 
         btnSubtype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragmentNum = "2";
-              //  cat.ReplaceFragment(fragmentNum);
+                ShowViewSubtypeDialogue();
             }
         });
 
         btnOrigin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragmentNum = "3";
-             //  cat.ReplaceFragment(fragmentNum);
+                ShowViewOriginDialogue();
             }
         });
 
         btnBottleType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragmentNum = "4";
-             //   cat.ReplaceFragment(fragmentNum);
+                ShowViewBottleTypeDialogue();
             }
         });
 
     }
 
-    public String ReturnFragmentNumber() {
-        return fragmentNum;
+    private void ShowViewWineTypeDialogue() {
+        FragmentManager fm =  getChildFragmentManager();
+        view_winetype_category viewWineTypeCat = view_winetype_category.newInstance("WineType item");
+        viewWineTypeCat.show(fm, "view_winetype_dialogue");
+    }
+
+    private void ShowViewSubtypeDialogue() {
+        FragmentManager fm =  getChildFragmentManager();
+        view_subtype_category viewSubtypeCat = view_subtype_category.newInstance("Subtype item");
+        viewSubtypeCat.show(fm, "view_subtype_dialogue");
+    }
+
+    private void ShowViewOriginDialogue() {
+        FragmentManager fm =  getChildFragmentManager();
+        view_origin_category viewOriginCat = view_origin_category.newInstance("Origin item");
+        viewOriginCat.show(fm, "view_origin_dialogue");
+    }
+
+    private void ShowViewBottleTypeDialogue() {
+        FragmentManager fm =  getChildFragmentManager();
+        view_bottletype_category viewBottleTypeCat = view_bottletype_category.newInstance("Bottle type item");
+        viewBottleTypeCat.show(fm, "view_bottletype_dialogue");
     }
 
 }

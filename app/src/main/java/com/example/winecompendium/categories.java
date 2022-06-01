@@ -4,7 +4,6 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -151,48 +150,6 @@ public class categories extends AppCompatActivity
         super.onPause();
         //Close drawer
         dashboard.closeDrawer(drawerLayout);
-    }
-
-    public void ReplaceFragment() {
-
-        /*
-        Display the correct fragment on the fragment layout
-         */
-        my_categories_fragment myCatFrag = new my_categories_fragment();
-       // String fragNum = myCatFrag.ReturnFragmentNumber();
-        Toast.makeText(this, myCatFrag.ReturnFragmentNumber(),Toast.LENGTH_SHORT).show();
-
-        /*
-        switch (fragNum) {
-            case  "1":  {
-                view_winetype_category frag = new view_winetype_category();
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
-            }
-            break;
-            case "2": {
-                view_subtype_category frag = new view_subtype_category();
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
-            }
-            break;
-            case "3": {
-                view_origin_category frag = new view_origin_category();
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
-            }
-            break;
-            case "4": {
-                view_bottletype_category frag = new view_bottletype_category();
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.fragment_layout,frag,frag.getTag()).commit();
-            }
-            break;
-        }*/
-
-        ButtonSelected(btnViewCategory);
-        ButtonUnselected(btnCategories);
-
     }
 
 
