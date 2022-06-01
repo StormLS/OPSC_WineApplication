@@ -35,12 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="14dp" />
 
-        <View
-            android:id="@+id/divider5"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
-
         <ScrollView
             android:id="@+id/origin"
             android:layout_width="match_parent"

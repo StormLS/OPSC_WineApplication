@@ -108,9 +108,6 @@ public class my_categories_fragment extends Fragment {
         ft.replace(R.id.fragment_layout, new view_winetype_category(), null);
         ft.addToBackStack(view_winetype_category.class.getName());
         ft.commit();
-
-        cat.ButtonUnselectedCat();
-        cat.ButtonSelectedViewCat();
     }
 
     private void ShowViewSubtypeDialogue() {
@@ -119,9 +116,6 @@ public class my_categories_fragment extends Fragment {
         ft.replace(R.id.fragment_layout, new view_subtype_category(), null);
         ft.addToBackStack(view_subtype_category.class.getName());
         ft.commit();
-
-        cat.ButtonUnselectedCat();
-        cat.ButtonSelectedViewCat();
     }
 
     private void ShowViewOriginDialogue() {
@@ -140,8 +134,6 @@ public class my_categories_fragment extends Fragment {
         ft.addToBackStack(view_bottletype_category.class.getName());
         ft.commit();
 
-        cat.ButtonUnselectedCat();
-        cat.ButtonSelectedViewCat();
     }
 
 }

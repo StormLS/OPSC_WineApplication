@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -28,27 +27,26 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="71dp"
-                    android:layout_height="63dp"
+                    android:layout_width="67dp"
+                    android:layout_height="64dp"
                     android:layout_gravity="start|center_vertical"
                     android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/globe_png" />
+                    app:srcCompat="@drawable/subtype_png" />
 
                 <LinearLayout
-                    android:layout_width="137dp"
+                    android:layout_width="171dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="7dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtOriginTitle"
+                        android:id="@+id/txtSubtypeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:layout_marginTop="25dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="South Africa"
+                        android:text="Sauvignon Blanc"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -56,11 +54,10 @@
                         android:id="@+id/textView39"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:layout_marginBottom="28dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Origin"
+                        android:text="Wine Subtype"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -77,7 +74,7 @@
                     android:textAllCaps="false" />
 
                 <Space
-                    android:layout_width="15dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
 

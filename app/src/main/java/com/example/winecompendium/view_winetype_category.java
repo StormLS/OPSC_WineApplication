@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -12,7 +15,7 @@ import androidx.fragment.app.Fragment;
  * Use the {@link view_winetype_category#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class view_winetype_category extends androidx.fragment.app.DialogFragment {
+public class view_winetype_category extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +30,7 @@ public class view_winetype_category extends androidx.fragment.app.DialogFragment
         // Required empty public constructor
     }
 
+    private GridLayout layout;
 
     // TODO: Rename and change types and number of parameters
     public static view_winetype_category newInstance(String title) {
@@ -51,5 +55,23 @@ public class view_winetype_category extends androidx.fragment.app.DialogFragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_view_winetype_category_dialogue, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        layout = getView().findViewById(R.id.container);
+        AddCard("White");
+        AddCard("Red");
+    }
+
+    private void AddCard(String WinetypeName) {
+
+        View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_winetype, null);
+        TextView title = cardView.findViewById(R.id.txtWinetypeTitle);
+
+        title.setText(WinetypeName);
+
+        layout.addView(cardView);
     }
 }
