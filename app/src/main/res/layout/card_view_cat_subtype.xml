@@ -34,7 +34,7 @@
                     app:srcCompat="@drawable/subtype_png" />
 
                 <LinearLayout
-                    android:layout_width="161dp"
+                    android:layout_width="183dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="7dp"
                     android:orientation="vertical">
@@ -63,8 +63,8 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button4"
-                    android:layout_width="92dp"
+                    android:id="@+id/btnViewWinetypeWines"
+                    android:layout_width="98dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="23dp"
                     android:layout_weight="1"

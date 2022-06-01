@@ -105,7 +105,7 @@ public class Categories_Data {
         Map<String, Object> WhiteMap = new HashMap<>();
         WhiteMap.put("1","Chardonnay");
         WhiteMap.put("2","Chenin Blanc");
-        WhiteMap.put("3","Sauvignon Blan");
+        WhiteMap.put("3","Sauvignon Blanc");
         WhiteMap.put("4","Moscato");
         WhiteMap.put("5","Pinot Grigio");
         WhiteMap.put("6","Gewürztraminer");

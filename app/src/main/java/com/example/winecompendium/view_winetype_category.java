@@ -1,14 +1,29 @@
 package com.example.winecompendium;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +46,9 @@ public class view_winetype_category extends Fragment {
     }
 
     private GridLayout layout;
+    private String wine_name;
+    private String userID;
+
 
     // TODO: Rename and change types and number of parameters
     public static view_winetype_category newInstance(String title) {
@@ -61,17 +79,79 @@ public class view_winetype_category extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         layout = getView().findViewById(R.id.container);
-        AddCard("White");
-        AddCard("Red");
+        PopulateCards();
+    }
+
+    private void PopulateCards() {
+
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+
+        userID = fUser.getUid();
+        Query query = dataRef.child("Users").child(userID).child("Categories").child("WineType");
+        ArrayList<String> winetypeList = new ArrayList<>();
+
+        //check if current user is logged in
+        if (fUser != null) {
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (snapshot.exists()) {
+
+                        for(DataSnapshot item : snapshot.getChildren())
+                        {
+                            //Retrieving the wine type category names
+                            winetypeList.add(item.getValue().toString());
+
+                            //Removes any square brackets from the array
+                            String wines = winetypeList.toString().replace("[", "").
+                                           replace("]", "");
+
+                            //Display the card with the retrieved wine type name
+                            AddCard(wines);
+                            winetypeList.clear();
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("error", error.getMessage());
+                }
+            });
+        }
     }
 
     private void AddCard(String WinetypeName) {
 
         View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_winetype, null);
         TextView title = cardView.findViewById(R.id.txtWinetypeTitle);
+        Button btnViewWine = cardView.findViewById(R.id.btnViewWinetypeWines);
 
         title.setText(WinetypeName);
 
         layout.addView(cardView);
+
+        //If user wants to display the wines in that category
+        btnViewWine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowWinesPerCatDialogue();
+            }
+        });
     }
+
+
+    /*
+    ----------- Show the dialogue that will display the wines respectively to the category ---------
+    */
+    private void ShowWinesPerCatDialogue()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        view_wines_per_category_dialogue winesPerCat = view_wines_per_category_dialogue.newInstance("Wines per Category");
+        winesPerCat.show(fm, "wines_per_cat");
+    }
+    //----------------------------------------------------------------------------------------------
 }

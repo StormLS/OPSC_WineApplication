@@ -1,14 +1,27 @@
 package com.example.winecompendium;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +44,7 @@ public class view_bottletype_category extends Fragment {
     }
 
     private GridLayout layout;
+    private String userID;
 
     // TODO: Rename and change types and number of parameters
     public static view_bottletype_category newInstance(String title) {
@@ -61,8 +75,49 @@ public class view_bottletype_category extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         layout = getView().findViewById(R.id.container);
-        AddCard("Bordeaux");
-        AddCard("Sparkling");
+        PopulateCards();
+    }
+
+    private void PopulateCards() {
+
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+
+        userID = fUser.getUid();
+        Query query = dataRef.child("Users").child(userID).child("Categories").child("BottleType");
+        ArrayList<String> bottleTypeList = new ArrayList<>();
+
+        //check if current user is logged in
+        if (fUser != null) {
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (snapshot.exists()) {
+
+                        for(DataSnapshot item : snapshot.getChildren())
+                        {
+                            //Retrieving the wine type category names
+                            bottleTypeList.add(item.getValue().toString());
+
+                            //Removes any square brackets from the array
+                            String bottles = bottleTypeList.toString().replace("[", "").
+                                    replace("]", "");
+
+                            //Display the card with the retrieved wine type name
+                            AddCard(bottles);
+                            bottleTypeList.clear();
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("error", error.getMessage());
+                }
+            });
+        }
     }
 
     private void AddCard(String BottletypeName) {

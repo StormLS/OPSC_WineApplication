@@ -44,7 +44,7 @@
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/spinner_arrow.xml" value="0.345" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/spinner_style.xml" value="0.345" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/textview_border.xml" value="0.345" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_categories.xml" value="0.5248730964467005" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_categories.xml" value="0.25" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_contact.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_dashboard.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_dashboard2.xml" value="0.3625" />
@@ -84,6 +84,7 @@
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_rating_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_subtype_category.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_wine_dialogue.xml" value="0.19067028985507245" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_wines_per_category_dialogue.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_winetype_category_dialogue.xml" value="0.25" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_viewwine_dialogue.xml" value="0.25" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/main_nav_drawer.xml" value="0.3625" />

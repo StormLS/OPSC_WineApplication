@@ -108,6 +108,8 @@ public class my_categories_fragment extends Fragment {
         ft.replace(R.id.fragment_layout, new view_winetype_category(), null);
         ft.addToBackStack(view_winetype_category.class.getName());
         ft.commit();
+
+        AccessButtons();
     }
 
     private void ShowViewSubtypeDialogue() {
@@ -116,6 +118,7 @@ public class my_categories_fragment extends Fragment {
         ft.replace(R.id.fragment_layout, new view_subtype_category(), null);
         ft.addToBackStack(view_subtype_category.class.getName());
         ft.commit();
+        AccessButtons();
     }
 
     private void ShowViewOriginDialogue() {
@@ -125,6 +128,7 @@ public class my_categories_fragment extends Fragment {
         ft.addToBackStack(view_origin_category.class.getName());
         ft.commit();
 
+        AccessButtons();
     }
 
     private void ShowViewBottleTypeDialogue() {
@@ -134,6 +138,19 @@ public class my_categories_fragment extends Fragment {
         ft.addToBackStack(view_bottletype_category.class.getName());
         ft.commit();
 
+        AccessButtons();
     }
+
+
+    /*
+    ---------- Change the background colours of the menu buttons on categories page ----------------
+    */
+    private void AccessButtons() {
+
+        ((categories)getActivity()).ButtonSelectedViewCat();
+        ((categories)getActivity()).ButtonUnselectedCat();
+
+    }
+    //----------------------------------------------------------------------------------------------
 
 }

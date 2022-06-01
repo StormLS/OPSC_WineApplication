@@ -65,7 +65,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/btnViewWinetypeWines"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="23dp"
