@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -54,6 +55,9 @@ public class view_subtype_category extends Fragment {
     private ArrayAdapter<String> adapter_wineType;
     private Spinner spinner;
     private ArrayList<String> spinnerList_wineSubtype;
+    private ProgressBar pBar;
+    private TextView txtGoal;
+    private TextView txtTotal;
 
 
     // TODO: Rename and change types and number of parameters
@@ -89,10 +93,40 @@ public class view_subtype_category extends Fragment {
         userID = fUser.getUid();
         spinner = getView().findViewById(R.id.spinner);
         layout = getView().findViewById(R.id.container);
+        pBar = getView().findViewById(R.id.pBarSubtypes);
+        txtTotal = getView().findViewById(R.id.txtTotalSubtypes);
+        txtGoal = getView().findViewById(R.id.txtGoalSubtypes);
 
+        CheckForGoalImplementation();
         PopulateSpinner();
         RunLoadingScreen();
     }
+
+    /*
+   --------------------------Check if user has entered a goal amount-------------------------------
+    */
+    private void CheckForGoalImplementation() {
+
+        DatabaseReference ref;
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals").child("SubType");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                if (snapshot.hasChildren())
+                {
+                    RetrieveGoalData();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    //----------------------------------------------------------------------------------------------
 
     /*
     ---------Display Loading screen dialogue to allow for the all wines fragment to fully load-----
@@ -121,6 +155,56 @@ public class view_subtype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
+    private void RetrieveGoalData() {
+        DatabaseReference ref;
+        ref = FirebaseDatabase.getInstance().getReference("Users");
+
+        //Retrieving goal number
+        ref.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                Integer value = dataSnapshot.child(userID).child("AddGoal_Categories").child("Goals").child("SubType").
+                        child("Goal Num").getValue(Integer.class);
+
+                SetProgressBar(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void SetProgressBar(Integer goal) {
+
+        DatabaseReference ref;
+        ref = FirebaseDatabase.getInstance().getReference("Users");
+
+        //Retrieving goal number
+        ref.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                Integer value = dataSnapshot.child(userID).child("AddGoal_Categories").child("Goals").child("SubType").
+                        child("Total Wines").getValue(Integer.class);
+
+                pBar.setMax(goal);
+                pBar.setProgress(value);
+
+                txtGoal.setText(String.valueOf(goal));
+                txtTotal.setText(String.valueOf(value));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
 
     /*
      ----------------------------------- Populate Wine Type Spinner --------------------------------

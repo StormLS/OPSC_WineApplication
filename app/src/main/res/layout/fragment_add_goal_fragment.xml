@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/textView33"
-        android:layout_width="361dp"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/poppins_regular"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/textView38"
-            android:layout_width="wrap_content"
+            android:layout_width="96dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
@@ -45,8 +45,13 @@
             android:text="Select Category:"
             android:textSize="16sp" />
 
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerCat"
             style="@style/SpinnerTheme"
             android:layout_width="200dp"
             android:layout_height="48dp"
@@ -54,48 +59,10 @@
             android:contentDescription="spinner1" />
 
         <Space
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/textView39"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Select Subcategory:"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinner3"
-            style="@style/SpinnerTheme"
-            android:layout_width="200dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="spinner1" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -118,19 +85,38 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/txtGoal"
             android:layout_width="85dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:background="@drawable/textview_border"
             android:ems="10"
-            android:inputType="number" />
+            android:fontFamily="@font/poppins_regular"
+            android:hint="16"
+            android:inputType="number"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp" />
 
         <Space
-            android:layout_width="24dp"
+            android:layout_width="62dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <Button
+        android:id="@+id/btnSetGoal"
+        android:layout_width="198dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/customColourFour"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Set Goal"
+        android:textAllCaps="false"
+        android:textSize="17sp" />
 
 </LinearLayout>

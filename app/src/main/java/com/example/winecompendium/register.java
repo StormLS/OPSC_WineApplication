@@ -234,17 +234,6 @@ public class register extends AppCompatActivity
 
         userID = mAuth.getCurrentUser().getUid();
 
-        /*
-        //Adding user to Real-time database
-        _user.setFirstName(_fname);
-        _user.setLastName(_lname);
-        _user.setEmail(_email);
-        _user.setUserID(userID);
-
-        //add user to users database
-        UsersRef.push().setValue(_user);
-        */
-
         String userID = mAuth.getCurrentUser().getUid().toString();
         DatabaseReference ref = UsersRef.child(userID).child("Account");
 
@@ -255,6 +244,7 @@ public class register extends AppCompatActivity
         ref.push().setValue(_user);
 
         AddCategoriesData();
+        AddCategoriesAddGoal();
 
     }
 
@@ -283,6 +273,21 @@ public class register extends AppCompatActivity
 
         catRef.child("Origin").updateChildren(data.OriginMap());
         catRef.child("BottleType").updateChildren(data.BottleTypeMap());
+
+    }
+    //----------------------------------------------------------------------------------------------
+
+    // ---------------- Write Categories for Add Goal accordingly to user's ID to database ----------------------
+    private void AddCategoriesAddGoal() {
+
+        Categories_Data_Add_Goal data = new Categories_Data_Add_Goal();
+        String userID = mAuth.getCurrentUser().getUid().toString();
+
+        DatabaseReference ref = UsersRef.child(userID);
+        DatabaseReference catRef = ref.child("AddGoal_Categories").child("AllCategories");
+
+        catRef.updateChildren(data.Categories());
+
 
     }
     //----------------------------------------------------------------------------------------------

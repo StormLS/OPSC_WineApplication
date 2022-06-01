@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,12 @@ public class view_origin_category extends Fragment{
 
     private GridLayout layout;
     private String userID;
+    private Float numTotalWines;
+    private Float numGoalWines;
+    private DatabaseReference ref;
+    private ProgressBar pBar;
+    private TextView txtGoal;
+    private TextView txtTotal;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,10 +84,47 @@ public class view_origin_category extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        userID = fUser.getUid();
+
         layout = getView().findViewById(R.id.container);
+        pBar = getView().findViewById(R.id.pBarOrigin);
+        txtGoal = getView().findViewById(R.id.txtGoalOrigin);
+        txtTotal = getView().findViewById(R.id.txtTotalOrigin);
+
+        CheckForGoalImplementation();
         PopulateCards();
         RunLoadingScreen();
+
     }
+
+    /*
+   --------------------------Check if user has entered a goal amount-------------------------------
+    */
+    private void CheckForGoalImplementation() {
+
+        DatabaseReference ref;
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals").child("Origin");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                if (snapshot.hasChildren())
+                {
+                    RetrieveGoalData();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    //----------------------------------------------------------------------------------------------
 
     /*
     ---------Display Loading screen dialogue to allow for the all wines fragment to fully load-----
@@ -108,6 +152,56 @@ public class view_origin_category extends Fragment{
         },1300); //Loading screen will run for 5 seconds
     }
     //----------------------------------------------------------------------------------------------
+
+
+
+    private void RetrieveGoalData() {
+
+        ref = FirebaseDatabase.getInstance().getReference("Users");
+
+        //Retrieving goal number
+        ref.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                Integer value = dataSnapshot.child(userID).child("AddGoal_Categories").child("Goals").child("Origin").
+                        child("Goal Num").getValue(Integer.class);
+
+                SetProgressBar(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void SetProgressBar(Integer goal) {
+
+        //Retrieving goal number
+        ref.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                Integer value = dataSnapshot.child(userID).child("AddGoal_Categories").child("Goals").child("Origin").
+                        child("Total Wines").getValue(Integer.class);
+
+                pBar.setMax(goal);
+                pBar.setProgress(value);
+
+                txtGoal.setText(String.valueOf(goal));
+                txtTotal.setText(String.valueOf(value));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
 
     private void PopulateCards() {
 
@@ -150,6 +244,7 @@ public class view_origin_category extends Fragment{
             });
         }
     }
+
 
     private void AddCard(String originName) {
 
