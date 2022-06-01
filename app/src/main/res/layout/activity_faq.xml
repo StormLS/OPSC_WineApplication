@@ -14,13 +14,152 @@
         android:orientation="vertical">
         <include
             layout="@layout/main_toolbar"/>
-        <TextView
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="FAQ"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FAQ"
+                    android:textSize="50sp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="How we can help you">
+                </TextView>
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="1. How do I create a new category?">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Once you have logged into the app and you are on the home screen, select the icon all categories and then click add category and you will be able to customize your own category. Or you can make use of the pre-existing categories.">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="2. What’s a subcategory?">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="A subcategory is a new category that can be custom created that will be added to a collection.">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="3. How do I edit information about a wine I entered?">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="On the home screen click on my collections, from there you will see all your wine in your collections. Click on the wine you are looking for and at the bottom it will say edit, after clicking on edit you will be taken to a screen where all the information about the wine is displayed, and you are able to modify it and once you are done just click reset.">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="4. Can I remove wines from a category?">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Yes you can, you can remove a wine from a custom category that you created.">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="5. How do I find a certain wine?">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="If you are on your collection page there is a search function where you are able to enter the wines name and it will appear, you can also filter your search, this helps you define certain criteria you are looking for.">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="6. How do I favourite a wine?">
+                        </TextView>
+
+                        <TextView
+                            android:paddingBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="When viewing your wines in the collection section you will see that there is a heart next to each wine at the bottom right corner, if you wish to favourite that specific wine click the heart. To find your favourite wines click on the favourite tab under my collections.">
+                        </TextView>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout

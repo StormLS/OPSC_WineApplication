@@ -50,6 +50,9 @@ public class allwines_fragment extends Fragment {
     private GridLayout layout;
 
 
+    private int wineCounterINT = 0;
+    private TextView wineCounterUI;
+
     private String userID;
     private String wineName;
     private String wineType;
@@ -117,13 +120,12 @@ public class allwines_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
-
+        wineCounterUI = getView().findViewById(R.id.wineCounter);
         layout = getView().findViewById(R.id.container);
 
         userID = fUser.getUid();
         populateCards();
         RunLoadingScreen();
-
     }
 
     /*
@@ -206,6 +208,8 @@ public class allwines_fragment extends Fragment {
 
     private void addCard(String WineName, String WineType, String WineDesc, String WineImageLink, String WineKey)
     {
+        wineCounterINT++;
+
         View wine_cardview = getLayoutInflater().inflate(R.layout.card_wine, null);
 
         TextView name = wine_cardview.findViewById(R.id.card_wineName);
@@ -261,6 +265,8 @@ public class allwines_fragment extends Fragment {
             }
         });
 
+        String temp = String.valueOf(wineCounterINT);
+        wineCounterUI.setText(temp);
     }
 
     /*

@@ -11,16 +11,90 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
         <include
             layout="@layout/main_toolbar"/>
-        <TextView
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact Us"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Need to have a wine about something?">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Contact Us"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:text="If you happen to have any problem that our FAQ page can't answer please do not hesitate to reach us on one, or more of the bellow contact measures.">
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Location: 844 Langley St, Cape Town, Western Cape">
+                </TextView>
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Email: wcompendium@gmail.com">
+                </TextView>
+
+                <TextView
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Contact No. 082 730 6461">
+                </TextView>
+
+            </LinearLayout>
+
+            <TextView
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:text="Thank you for your continued support!">
+            </TextView>
+
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout

@@ -9,12 +9,7 @@
     tools:context=".settings"
     android:background="@color/customColourOne.5">
 
-    <TextView
-        android:id="@+id/hyperlink2"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/support_hyperlink"></TextView>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -163,12 +158,15 @@
                                         android:background="@color/customColourFive">
                                     </LinearLayout>
                                 </LinearLayout>
+
                                 <CheckBox
                                     android:id="@+id/ThemeOne"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Active"/>
+                                    android:checked="true"
+                                    android:clickable="true"
+                                    android:text="Active" />
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -212,12 +210,14 @@
                                         android:background="@color/customColourFive">
                                     </LinearLayout>
                                 </LinearLayout>
+
                                 <CheckBox
                                     android:id="@+id/ThemeTwo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Active"/>
+                                    android:clickable="false"
+                                    android:text="Active" />
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -261,12 +261,14 @@
                                         android:background="@color/customColourFive">
                                     </LinearLayout>
                                 </LinearLayout>
+
                                 <CheckBox
                                     android:id="@+id/ThemeThree"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Active"/>
+                                    android:clickable="false"
+                                    android:text="Active" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
