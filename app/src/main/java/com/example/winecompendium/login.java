@@ -47,15 +47,6 @@ public class login extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
-        /*
-        TODO: ------------------------- Quick Login - Must delete code! ----------------------------
-         */
-        email.setText("amber.bruil@gmail.com");
-        password.setText("test123");
-        /*
-        TODO: ------------------------- Quick Login - Must delete code! ----------------------------
-         */
-
 
         /*
          *  SUMMERY: A listener for when the user clicks the Register button, then moves to register
@@ -66,9 +57,6 @@ public class login extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(login.this,"Register Button is clicked", Toast.LENGTH_LONG).show();
-                //Intent i = new Intent(MainActivity.this, registerPage.class);
-                //startActivity(i);
                 Intent moveToRegisterPage = new Intent(login.this, register.class);
                 startActivity(moveToRegisterPage);
             }
@@ -147,7 +135,6 @@ public class login extends AppCompatActivity
      */
     void LogUserIn()
     {
-        //progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>()
         {
             @Override
@@ -160,12 +147,9 @@ public class login extends AppCompatActivity
                     if (!user.isEmailVerified())
                     {
                         Toast.makeText(login.this, "Unable to login, Please verify your email", Toast.LENGTH_SHORT).show();
-                        //Verify.setVisibility(View.VISIBLE);
-                        // progressBar.setVisibility(View.INVISIBLE);
                     }
                     else
                     {
-                       // Toast.makeText(login.this, "Logged in successfully.", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), dashboard.class));
                         finish();
                     }

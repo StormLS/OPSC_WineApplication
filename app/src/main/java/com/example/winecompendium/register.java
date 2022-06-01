@@ -32,18 +32,14 @@ public class register extends AppCompatActivity
 
     //Declaring any UI element for interaction
 
-    //Declaring EditText Fields on Register page
-    //TODO: Add input verification for all variables
     EditText Email;
     EditText name;
     EditText surname;
     EditText password;
     EditText confirmPassword;
-    //Declaring EditText Fields on Register page
 
     private static final String TAG = "EmailPassword";
 
-    //Code for firebase database
     FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
     String userID;
@@ -66,36 +62,16 @@ public class register extends AppCompatActivity
         surname = findViewById(R.id.surname_input);
         password = findViewById(R.id.password_input);
         confirmPassword = findViewById(R.id.confirmPassword_input);
-
         btn_register = findViewById(R.id.btn_register);
         btn_alreadyMember = findViewById(R.id.btn_alreadyMember);
-        //All the findViewById methods are created
 
         //Code for firebase database
         mAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         fuser = mAuth.getCurrentUser();
-        //Code for firebase database
 
         _user = new users();
 
-
-        //Todo: is code below necessary?
-        /*
-        if(mAuth.getCurrentUser() != null) //Checks to see which user is signed in
-        {
-            if (!fuser.isEmailVerified())
-            {
-                Log.d("mytag", "email not verified");
-            }
-            else
-            {
-                //TODO: Figure out wtf this does XD
-                //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                //finish();
-            }
-        }
-        */
 
         /*
          *  SUMMERY: When the user clicks on the Register button, Proceed to WriteDate to Firebase
