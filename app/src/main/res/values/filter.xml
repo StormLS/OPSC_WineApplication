@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filter_array">
+        <item>None</item>
+        <item>White</item>
+        <item>Red</item>
+        <item>Rosè</item>
+        <item>Sparkling</item>
+        <item>Dessert</item>
+        <item>Fortified</item>
+    </string-array>
+</resources>

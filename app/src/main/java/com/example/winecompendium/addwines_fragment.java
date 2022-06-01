@@ -643,6 +643,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
                             mImageUri = null;
                             wineImage.setImageURI(mImageUri);
+                            RefreshSpinners();
                         }
                     });
                 }

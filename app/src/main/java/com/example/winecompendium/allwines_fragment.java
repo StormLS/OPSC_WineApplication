@@ -9,9 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +53,7 @@ public class allwines_fragment extends Fragment {
     private TextView txtNavName;
     private GridLayout layout;
 
+    private Spinner filter;
 
     private int wineCounterINT = 0;
     private TextView wineCounterUI;
@@ -123,8 +128,34 @@ public class allwines_fragment extends Fragment {
         wineCounterUI = getView().findViewById(R.id.wineCounter);
         layout = getView().findViewById(R.id.container);
 
+        filter = getView().findViewById(R.id.wineTypeFilter);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.filter_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filter.setAdapter(adapter);
+
+        String x = filter.getSelectedItem().toString();
+        Toast.makeText(getContext(), x, Toast.LENGTH_LONG).show();
+
+        filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                wineCounterINT = 0;
+                layout.removeAllViews();
+                populateCards();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+
+        //spinner_wineType = getView().findViewById(R.id.wineType);
+
         userID = fUser.getUid();
-        populateCards();
         RunLoadingScreen();
     }
 
@@ -155,8 +186,6 @@ public class allwines_fragment extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
-
-
     private void populateCards()
     {
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -175,16 +204,31 @@ public class allwines_fragment extends Fragment {
 
                     if (snapshot.exists()) {
 
-                        for (DataSnapshot ds : snapshot.getChildren()) {
+                        for (DataSnapshot ds : snapshot.getChildren())
+                        {
                             //Getting the wine values
                             wines wine = ds.getValue(wines.class);
-                            wineName = wine.getWineName();
-                            wineType = wine.getWineType();
-                            wineDesc = wine.getWineDesc();
-                            wineImageLink = wine.getWineImage();
+                            wineName = wine.getWineName().trim();
+                            wineType = wine.getWineType().trim();
+                            wineDesc = wine.getWineDesc().trim();
+                            wineImageLink = wine.getWineImage().trim();
                             wineKey = ds.getKey();
 
-                            addCard(wineName, wineType, wineDesc, wineImageLink, wineKey);
+                            String winetypeFilter = filter.getSelectedItem().toString();
+
+                            if(winetypeFilter.equals("None"))
+                            {
+                                addCard(wineName, wineType, wineDesc, wineImageLink, wineKey);
+                            }
+                            else if(winetypeFilter.equals(wineType))
+                            {
+                                addCard(wineName, wineType, wineDesc, wineImageLink, wineKey);
+                            }
+                            else
+                            {
+                                String temp = String.valueOf(wineCounterINT);
+                                wineCounterUI.setText(temp);
+                            }
 
                             Log.d("wine card", "display wine card");
                         }
@@ -199,11 +243,14 @@ public class allwines_fragment extends Fragment {
         }
     }
 
+    private String winetypeFilter = "None"; // This is the DEBUG FILTER
 
-    public String ReturnCurrentKey() {
+    public String ReturnCurrentKey()
+    {
 
         return currentKey;
     }
+
 
 
     private void addCard(String WineName, String WineType, String WineDesc, String WineImageLink, String WineKey)
