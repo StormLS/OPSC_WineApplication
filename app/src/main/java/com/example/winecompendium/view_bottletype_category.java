@@ -67,7 +67,7 @@ public class view_bottletype_category extends Fragment {
 
     private void AddCard(String BottletypeName) {
 
-        View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_winetype, null);
+        View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_bottletype, null);
         TextView title = cardView.findViewById(R.id.txtBottletypeTitle);
 
         title.setText(BottletypeName);

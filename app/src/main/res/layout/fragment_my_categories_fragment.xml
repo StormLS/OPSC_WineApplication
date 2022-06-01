@@ -66,6 +66,11 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                android:layout_weight="1" />
+
             <ImageButton
                 android:id="@+id/btnViewWineType"
                 android:layout_width="match_parent"
@@ -73,6 +78,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="winetype"
+                android:paddingBottom="1dp"
                 android:src="@drawable/winetype_category" />
 
             <ImageButton

@@ -92,7 +92,7 @@
             android:orientation="vertical">
 
             <ScrollView
-                android:id="@+id/origin"
+                android:id="@+id/bottletypes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="SpeakableTextPresentCheck">
