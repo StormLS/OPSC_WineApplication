@@ -19,6 +19,7 @@ public class categories extends AppCompatActivity
 
     private MaterialButton btnCategories;
     private MaterialButton btnViewCategory;
+    private MaterialButton btnAddGoals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,6 +32,7 @@ public class categories extends AppCompatActivity
         txtNavName = findViewById(R.id.txtNavUser);
         btnCategories = findViewById(R.id.btn_categories);
         btnViewCategory = findViewById(R.id.btnShowCategory);
+        btnAddGoals = findViewById(R.id.btnAddGoalFrag);
 
         dashboard dash = new dashboard();
         SetNavDrawerName(dash._name);
@@ -52,6 +54,7 @@ public class categories extends AppCompatActivity
                 manager.beginTransaction().replace(R.id.fragment_layout,frag1,frag1.getTag()).commit();
                 ButtonSelected(btnCategories);
                 ButtonUnselected(btnViewCategory);
+                ButtonUnselected(btnAddGoals);
             }
         });
 
@@ -63,6 +66,19 @@ public class categories extends AppCompatActivity
                 manager.beginTransaction().replace(R.id.fragment_layout,frag2,frag2.getTag()).commit();
                 ButtonSelected(btnViewCategory);
                 ButtonUnselected(btnCategories);
+                ButtonUnselected(btnAddGoals);
+            }
+        });
+
+        btnAddGoals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                add_goal_fragment frag3 = new add_goal_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag3,frag3.getTag()).commit();
+                ButtonSelected(btnAddGoals);
+                ButtonUnselected(btnCategories);
+                ButtonUnselected(btnViewCategory);
             }
         });
 

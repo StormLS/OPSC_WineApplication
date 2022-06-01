@@ -1,6 +1,8 @@
 package com.example.winecompendium;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +78,35 @@ public class view_bottletype_category extends Fragment {
 
         layout = getView().findViewById(R.id.container);
         PopulateCards();
+        RunLoadingScreen();
     }
+
+    /*
+    ---------Display Loading screen dialogue to allow for the all wines fragment to fully load-----
+   */
+    private void RunLoadingScreen() {
+
+        AlertDialog alertDialog;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+
+        builder.setView(inflater.inflate(R.layout.custom_loading_dialogue,null));
+        builder.setCancelable(false);
+
+        alertDialog = builder.create();
+        alertDialog.show();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.dismiss();
+            }
+        },1300); //Loading screen will run for 5 seconds
+    }
+    //----------------------------------------------------------------------------------------------
 
     private void PopulateCards() {
 

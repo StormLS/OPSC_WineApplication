@@ -54,13 +54,13 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_categories"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layout_gravity="bottom|fill|fill_vertical"
                 android:layout_weight="1"
@@ -70,7 +70,7 @@
                 android:text="Categories"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:strokeColor="#7CA39D"
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -86,7 +86,23 @@
                 android:text="View Category"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="16sp"
+                android:textSize="14sp"
+                app:strokeColor="#7CA39D"
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddGoalFrag"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_gravity="bottom|fill|fill_vertical"
+                android:layout_weight="1"
+                android:backgroundTint="@color/customColourFive"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Add Goals"
+                android:textAllCaps="false"
+                android:textColor="#C8E5E1"
+                android:textSize="14sp"
                 app:strokeColor="#7CA39D"
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
