@@ -65,6 +65,7 @@ public class categories extends AppCompatActivity
                 ButtonUnselected(btnCategories);
             }
         });
+
     }
 
 
@@ -162,7 +163,6 @@ public class categories extends AppCompatActivity
         selectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.selectedBtnStroke)));
         //Text colour
         selectedBtn.setTextColor(getResources().getColor(R.color.selectedBtnText));
-
     }
     //----------------------------------------------------------------------------------------------
 
@@ -175,8 +175,31 @@ public class categories extends AppCompatActivity
         unSelectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.unselectedBtnStroke)));
         //Text colour
         unSelectedBtn.setTextColor(getResources().getColor(R.color.unselectedBtnText));
+    }
+    //----------------------------------------------------------------------------------------------
 
 
+    //----------------Updating the appearance of the view category that is selected-----------------
+    public void ButtonSelectedViewCat() {
+
+        //background colour
+        btnViewCategory.setBackgroundColor(btnViewCategory.getContext().getResources().getColor(R.color.customColourFour));
+        //Button stroke appearance
+        btnViewCategory.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.selectedBtnStroke)));
+        //Text colour
+        btnViewCategory.setTextColor(getResources().getColor(R.color.selectedBtnText));
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //----------------Returning to the appearance of the categories that is unselected---------------
+    public void ButtonUnselectedCat() {
+
+        //background colour
+        btnCategories.setBackgroundColor(btnCategories.getContext().getResources().getColor(R.color.customColourFive));
+        //Button stroke appearance
+        btnCategories.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.unselectedBtnStroke)));
+        //Text colour
+        btnCategories.setTextColor(getResources().getColor(R.color.unselectedBtnText));
     }
     //----------------------------------------------------------------------------------------------
 }

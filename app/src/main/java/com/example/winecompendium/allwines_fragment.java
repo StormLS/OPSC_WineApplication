@@ -43,12 +43,7 @@ import java.io.File;
  */
 public class allwines_fragment extends Fragment {
 
-    private TextView txtWName;
-    private TextView txtWType;
-    private TextView txtWDesc;
-    private TextView txtNavName;
     private GridLayout layout;
-
 
     private String userID;
     private String wineName;

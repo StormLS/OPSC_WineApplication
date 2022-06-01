@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +30,9 @@ public class my_categories_fragment extends Fragment {
     ImageButton btnSubtype;
     ImageButton btnOrigin;
     ImageButton btnBottleType;
-    private static String fragmentNum = "1";
+
+    private categories cat = new categories();
+
 
     public my_categories_fragment() {
         // Required empty public constructor
@@ -101,27 +103,45 @@ public class my_categories_fragment extends Fragment {
     }
 
     private void ShowViewWineTypeDialogue() {
-        FragmentManager fm =  getChildFragmentManager();
-        view_winetype_category viewWineTypeCat = view_winetype_category.newInstance("WineType item");
-        viewWineTypeCat.show(fm, "view_winetype_dialogue");
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
+        ft.replace(R.id.fragment_layout, new view_winetype_category(), null);
+        ft.addToBackStack(view_winetype_category.class.getName());
+        ft.commit();
+
+        cat.ButtonUnselectedCat();
+        cat.ButtonSelectedViewCat();
     }
 
     private void ShowViewSubtypeDialogue() {
-        FragmentManager fm =  getChildFragmentManager();
-        view_subtype_category viewSubtypeCat = view_subtype_category.newInstance("Subtype item");
-        viewSubtypeCat.show(fm, "view_subtype_dialogue");
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
+        ft.replace(R.id.fragment_layout, new view_subtype_category(), null);
+        ft.addToBackStack(view_subtype_category.class.getName());
+        ft.commit();
+
+        cat.ButtonUnselectedCat();
+        cat.ButtonSelectedViewCat();
     }
 
     private void ShowViewOriginDialogue() {
-        FragmentManager fm =  getChildFragmentManager();
-        view_origin_category viewOriginCat = view_origin_category.newInstance("Origin item");
-        viewOriginCat.show(fm, "view_origin_dialogue");
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
+        ft.replace(R.id.fragment_layout, new view_origin_category(), null);
+        ft.addToBackStack(view_origin_category.class.getName());
+        ft.commit();
+
     }
 
     private void ShowViewBottleTypeDialogue() {
-        FragmentManager fm =  getChildFragmentManager();
-        view_bottletype_category viewBottleTypeCat = view_bottletype_category.newInstance("Bottle type item");
-        viewBottleTypeCat.show(fm, "view_bottletype_dialogue");
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
+        ft.replace(R.id.fragment_layout, new view_bottletype_category(), null);
+        ft.addToBackStack(view_bottletype_category.class.getName());
+        ft.commit();
+
+        cat.ButtonUnselectedCat();
+        cat.ButtonSelectedViewCat();
     }
 
 }

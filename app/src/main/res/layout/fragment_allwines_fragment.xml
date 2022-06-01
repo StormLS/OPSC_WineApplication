@@ -50,6 +50,8 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
+
+
                 <ImageButton
                     android:id="@+id/search"
                     android:layout_width="45dp"
@@ -62,6 +64,7 @@
                     tools:ignore="TouchTargetSizeCheck">
 
                 </ImageButton>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -89,7 +92,7 @@
             android:orientation="vertical">
 
             <ScrollView
-                android:id="@+id/wine_"
+                android:id="@+id/origin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="SpeakableTextPresentCheck">
@@ -105,5 +108,7 @@
                     android:rowCount="4" />
             </ScrollView>
         </LinearLayout>
+
+
     </LinearLayout>
 </FrameLayout>
