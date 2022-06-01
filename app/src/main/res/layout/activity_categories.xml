@@ -49,18 +49,19 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="118dp"
+            android:layout_height="115dp"
             android:layout_gravity="center_vertical" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_categories"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="52dp"
                 android:layout_gravity="bottom|fill|fill_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFive"
@@ -77,7 +78,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnShowCategory"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="52dp"
                 android:layout_gravity="bottom|fill|fill_vertical"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customColourFive"
