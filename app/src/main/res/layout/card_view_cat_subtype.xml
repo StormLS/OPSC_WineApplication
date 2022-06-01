@@ -34,7 +34,7 @@
                     app:srcCompat="@drawable/subtype_png" />
 
                 <LinearLayout
-                    android:layout_width="183dp"
+                    android:layout_width="239dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="7dp"
                     android:orientation="vertical">
@@ -43,6 +43,7 @@
                         android:id="@+id/txtSubtypeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="25dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_regular"
@@ -54,6 +55,7 @@
                         android:id="@+id/textView39"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:layout_marginBottom="28dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_semibold"
@@ -61,19 +63,6 @@
                         android:textSize="15sp" />
 
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnViewWinetypeWines"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/customColourFour"
-                    android:fontFamily="@font/poppins_regular"
-                    android:letterSpacing="0.03"
-                    android:text="View Wines"
-                    android:textAllCaps="false"
-                    android:textSize="13sp" />
 
                 <Space
                     android:layout_width="wrap_content"

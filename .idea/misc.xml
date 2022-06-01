@@ -59,10 +59,11 @@
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/activity_settings.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_cat_bottletype.xml" value="0.375" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_cat_origin.xml" value="0.335" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_cat_subtype.xml" value="0.625" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_cat_subtype.xml" value="0.375" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_cat_winetype.xml" value="0.335" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_cat_wintype.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_categories.xml" value="0.45" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_view_wines_per_cat.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/card_wine.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/custom_loading_dialogue.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/dialog_account_created.xml" value="0.3625" />

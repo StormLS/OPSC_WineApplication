@@ -5,14 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -128,30 +126,11 @@ public class view_winetype_category extends Fragment {
 
         View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_winetype, null);
         TextView title = cardView.findViewById(R.id.txtWinetypeTitle);
-        Button btnViewWine = cardView.findViewById(R.id.btnViewWinetypeWines);
 
         title.setText(WinetypeName);
 
         layout.addView(cardView);
 
-        //If user wants to display the wines in that category
-        btnViewWine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ShowWinesPerCatDialogue();
-            }
-        });
     }
 
-
-    /*
-    ----------- Show the dialogue that will display the wines respectively to the category ---------
-    */
-    private void ShowWinesPerCatDialogue()
-    {
-        FragmentManager fm =  getChildFragmentManager();
-        view_wines_per_category_dialogue winesPerCat = view_wines_per_category_dialogue.newInstance("Wines per Category");
-        winesPerCat.show(fm, "wines_per_cat");
-    }
-    //----------------------------------------------------------------------------------------------
 }

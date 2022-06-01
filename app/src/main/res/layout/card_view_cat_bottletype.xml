@@ -34,7 +34,7 @@
                     app:srcCompat="@drawable/bottletype_png" />
 
                 <LinearLayout
-                    android:layout_width="145dp"
+                    android:layout_width="188dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="7dp"
                     android:orientation="vertical">
@@ -63,18 +63,6 @@
                         android:textSize="16sp" />
 
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnViewWinetypeWines"
-                    android:layout_width="107dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/customColourFour"
-                    android:fontFamily="@font/poppins_regular"
-                    android:letterSpacing="0.03"
-                    android:text="View Wines"
-                    android:textAllCaps="false" />
 
                 <Space
                     android:layout_width="wrap_content"
