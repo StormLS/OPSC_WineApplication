@@ -182,9 +182,7 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                     OriginItem.put(String.valueOf(tot), item.getValue());
                     OriginItem.put(String.valueOf(tot+1),input);
                 }
-                //Update the child by overwriting previous Bottle types with Bottle types + newly added Bottle type
                 refOrigin.setValue(OriginItem);
-              //  Toast.makeText(getContext(),"Origin successfully added.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -224,7 +222,6 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 }
                 //Update the child by overwriting previous bottle types with bottle types + newly added bottle type
                 refBottleType.setValue(BottleTypeItem);
-               // Toast.makeText(getContext(),"Bottle Type successfully added.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
