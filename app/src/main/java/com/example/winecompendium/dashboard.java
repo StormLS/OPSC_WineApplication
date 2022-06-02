@@ -86,8 +86,8 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Toast btn_analytics_pressed = Toast.makeText(getApplicationContext(), "Button Pressed: Analytics", Toast.LENGTH_SHORT);
-                btn_analytics_pressed.show();
+                Intent i = new Intent(dashboard.this,analytics.class);
+                startActivity(i);
             }
         });
 
@@ -96,8 +96,8 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Toast btn_settings_pressed = Toast.makeText(getApplicationContext(), "Button Pressed: Settings", Toast.LENGTH_SHORT);
-                btn_settings_pressed.show();
+               Intent i = new Intent(dashboard.this,settings.class);
+               startActivity(i);
             }
         });
         //------------------------------------------------------------------------------------------
