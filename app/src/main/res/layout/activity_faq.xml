@@ -1,26 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout_"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout_"
+    android:background="@drawable/activities_background"
     tools:context=".faq">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include
-            layout="@layout/main_toolbar"/>
-        <TextView
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                layout="@layout/main_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="258dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/final_logo2" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="FAQ"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="19dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/faq_icon"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="FAQ"
+                    android:textColor="#FFFFFF"
+                    android:textSize="27sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="How we can help you?"
+                    android:textSize="20sp"></TextView>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="60dp"
+                    android:paddingEnd="60dp">
+
+                    <TextView
+                        android:id="@+id/textView49"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="1. How do I create a new category?"
+                        android:textColor="@color/customColourFour"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="Once you have logged into the app and you are on the home screen, select the icon all categories and then click add category and you will be able to customize your own category. Or you can make use of the pre-existing categories."
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="2. What’s a subcategory?"
+                        android:textColor="@color/customColourFour"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="A subcategory is a new category that can be custom created that will be added to a collection."
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="3. How do I edit information about a wine I entered?"
+                        android:textColor="@color/customColourFour"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="On the home screen click on my collections, from there you will see all your wine in your collections. Click on the wine you are looking for and at the bottom it will say edit, after clicking on edit you will be taken to a screen where all the information about the wine is displayed, and you are able to modify it and once you are done just click reset."
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView56"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="4. Can I remove wines from a category?"
+                        android:textColor="@color/customColourFour"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView57"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="Yes you can, you can remove a wine from a custom category that you created."
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView58"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="5. How do I find a certain wine?"
+                        android:textColor="@color/customColourFour"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView59"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="If you are on your collection page there is a search function where you are able to enter the wines name and it will appear, you can also filter your search, this helps you define certain criteria you are looking for."
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="6. How do I favourite a wine?"
+                        android:textColor="@color/customColourFour"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView61"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="When viewing your wines in the collection section you will see that there is a heart next to each wine at the bottom right corner, if you wish to favourite that specific wine click the heart. To find your favourite wines click on the favourite tab under my collections."
+                        android:textSize="15sp"></TextView>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
@@ -29,8 +207,7 @@
         android:layout_gravity="start"
         android:background="@android:color/white">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+        <include layout="@layout/main_nav_drawer" />
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

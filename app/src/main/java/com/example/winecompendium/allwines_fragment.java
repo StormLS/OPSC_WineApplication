@@ -128,7 +128,7 @@ public class allwines_fragment extends Fragment {
         filter.setAdapter(adapter);
 
         String x = filter.getSelectedItem().toString();
-        Toast.makeText(getContext(), x, Toast.LENGTH_LONG).show();
+
 
         filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
