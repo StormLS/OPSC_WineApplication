@@ -269,10 +269,9 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int i)
             {
-                //Finish activity
+                FirebaseAuth.getInstance().signOut();
                 activity.finishAffinity();
-                //Exit app
-                System.exit(0);
+                redirectActivity(activity, login.class);
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener()
