@@ -6,12 +6,12 @@
     tools:context=".favourites_fragment">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView62"
         android:layout_width="match_parent"
-        android:layout_height="116dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:gravity="center_horizontal"
-        android:text="Favourites Fragment"
-        android:textSize="30sp" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Coming soon! Stay tuned."
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
 </FrameLayout>

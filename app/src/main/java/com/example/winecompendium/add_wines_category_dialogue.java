@@ -1,6 +1,7 @@
 package com.example.winecompendium;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,12 +184,12 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 }
                 //Update the child by overwriting previous Bottle types with Bottle types + newly added Bottle type
                 refOrigin.setValue(OriginItem);
-                Toast.makeText(getContext(),"Origin successfully added.",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(),"Origin successfully added.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -223,12 +224,12 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 }
                 //Update the child by overwriting previous bottle types with bottle types + newly added bottle type
                 refBottleType.setValue(BottleTypeItem);
-                Toast.makeText(getContext(),"Bottle Type successfully added.",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),"Bottle Type successfully added.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("ADDBT","ErrorAddingBottleType");
             }
         });
 

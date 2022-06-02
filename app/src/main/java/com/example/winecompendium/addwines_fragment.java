@@ -224,7 +224,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         }
         //-------------------------------------------------------------------------------------------
 
-        RefreshSpinners();
+        populateAllSpinners();
 
         btnBrowseGallery.setOnClickListener(new View.OnClickListener()
         {
@@ -417,7 +417,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
         spinnerList_WineTypes = new ArrayList<>();
 
-        refWineType.addValueEventListener(new ValueEventListener()
+        refWineType.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -450,7 +450,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
                 spinnerList_wineSubtype = new ArrayList<>();
 
-                refSubtype.addValueEventListener(new ValueEventListener()
+                refSubtype.addListenerForSingleValueEvent(new ValueEventListener()
                 {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -485,7 +485,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
         spinnerList_wineOrigin = new ArrayList<>();
 
-        refOrigin.addValueEventListener(new ValueEventListener()
+        refOrigin.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -513,7 +513,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
 
         spinnerList_wineBottleType = new ArrayList<>();
 
-        refBottleType.addValueEventListener(new ValueEventListener()
+        refBottleType.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
