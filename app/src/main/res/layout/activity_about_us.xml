@@ -89,9 +89,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:paddingBottom="10dp"
-                    android:text="Wine compendium was created to help organize and categorize wines in any way you wish. The reason we decided to keep our collection app about wine is because we live in a province where there is a lot of wine production and we wanted to highlight that.
-
-                                    For more information or queries visit our FAQ page or feel free to contact us."
+                    android:text="Wine compendium was created to help organize and categorize wines in any way you wish. The reason we decided to keep our collection app about wine is because we live in a province where there is a lot of wine production and we wanted to highlight that."
                     android:textAlignment="center"
                     android:textSize="14sp"></TextView>
 

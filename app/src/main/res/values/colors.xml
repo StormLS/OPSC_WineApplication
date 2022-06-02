@@ -26,6 +26,18 @@
     <color name="unselectedBtnText">#C8E5E1</color>
     <color  name="customColourTwelve">#AAAAAA</color>
 
+    <color name="themetwo_one">#6E3CBC</color>
+    <color name="themetwo_two">#7267CB</color>
+    <color name="themetwo_three">#9BBAE7</color>
+    <color name="themetwo_four">#BBE4F0</color>
+    <color name="themetwo_five">#6E7CBA</color>
+
+    <color name="themethree_one">#2155CD</color>
+    <color name="themethree_two">#0AA1DD</color>
+    <color name="themethree_three">#79DAE8</color>
+    <color name="themethree_four">#E8F9FD</color>
+    <color name="themethree_five">#001D6E</color>
+
 
     <color name="grey">#636363</color>
     <color name="lightgrey">#979797</color>

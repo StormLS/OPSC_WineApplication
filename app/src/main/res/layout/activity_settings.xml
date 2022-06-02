@@ -225,27 +225,27 @@
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourOne"></LinearLayout>
+                                        android:background="@color/themetwo_one"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourTwo"></LinearLayout>
+                                        android:background="@color/themetwo_two"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourThree"></LinearLayout>
+                                        android:background="@color/themetwo_three"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourFour"></LinearLayout>
+                                        android:background="@color/themetwo_four"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourFive"></LinearLayout>
+                                        android:background="@color/themetwo_five"></LinearLayout>
                                 </LinearLayout>
 
                                 <CheckBox
@@ -277,27 +277,27 @@
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourOne"></LinearLayout>
+                                        android:background="@color/themethree_one"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourTwo"></LinearLayout>
+                                        android:background="@color/themethree_two"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourThree"></LinearLayout>
+                                        android:background="@color/themethree_three"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourFour"></LinearLayout>
+                                        android:background="@color/themethree_four"></LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="30dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/customColourFive"></LinearLayout>
+                                        android:background="@color/themethree_five"></LinearLayout>
                                 </LinearLayout>
 
                                 <CheckBox
