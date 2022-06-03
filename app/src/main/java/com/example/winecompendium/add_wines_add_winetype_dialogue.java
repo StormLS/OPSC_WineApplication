@@ -151,8 +151,6 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
                     WineTypeItem.put(String.valueOf(tot), item.getValue());
                     WineTypeItem.put(String.valueOf(tot+1),input);
                 }
-                //Refresh the fragment
-                //TODO: ??/
 
                 //Update the child by overwriting previous Wine types with wine types + newly added wine type
                 refWineType.setValue(WineTypeItem);
@@ -187,6 +185,8 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
    Close the dialogue box
     */
     private void CloseDialogueBox() {
+
         this.dismiss();
+
     }
 }

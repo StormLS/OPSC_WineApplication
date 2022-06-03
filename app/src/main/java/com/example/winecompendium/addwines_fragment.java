@@ -82,6 +82,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private ImageButton btnAddItemSubtype;
     private ImageButton btnAddItemOrigin;
     private ImageButton btnAddItemBottleType;
+    private ImageButton btnRefreshPage;
 
     private DatabaseReference refWineType;
     private DatabaseReference refSubtype;
@@ -119,7 +120,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private String date;
     public static String _heading = "text";
 
-
+    private static addwines_fragment instance = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -163,6 +164,12 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        instance = this;
+    }
+
+    public static addwines_fragment getInstance() {
+        return instance;
     }
 
     @Override
@@ -196,6 +203,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         txtDesc = getView().findViewById(R.id.txtDesc2);
         viewCalendar = (CalendarView) getView().findViewById(R.id.calendarView);
         btnResetWine = getView().findViewById(R.id.reset_addwine);
+        btnRefreshPage = getView().findViewById(R.id.btnRefresh);
 
         //Getting today's date
         date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
@@ -317,6 +325,14 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
+        btnRefreshPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RefreshSpinners();
+                populateAllSpinners();
+            }
+        });
+
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
@@ -377,7 +393,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             wineImage.setImageURI(mImageUri);
         }
     }
-
 
     /*
     Show the add new wine type to category dialogue box
@@ -672,13 +687,12 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         //------------------------------------------------------------------------------------------
     }
 
-    private void RefreshSpinners()
+    public void RefreshSpinners()
     {
         spinner_wineType.setAdapter(null);
         spinner_wineSubtype.setAdapter(null);
         spinner_wineOrigin.setAdapter(null);
         spinner_wineBottleType.setAdapter(null);
-        populateAllSpinners();
     }
 
     private String getFileExtension(Uri mUri)

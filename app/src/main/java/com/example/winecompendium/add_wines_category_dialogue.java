@@ -187,9 +187,11 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-              //  Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
+
+        Toast.makeText(getContext(),"Origin successfully added.",Toast.LENGTH_SHORT).show();
 
     }
     //----------------------------------------------------------------------------------------------
@@ -229,6 +231,8 @@ public class add_wines_category_dialogue extends androidx.fragment.app.DialogFra
                 Log.d("ADDBT","ErrorAddingBottleType");
             }
         });
+
+        Toast.makeText(getContext(),"Bottle Type successfully added.",Toast.LENGTH_SHORT).show();
 
     }
     //----------------------------------------------------------------------------------------------

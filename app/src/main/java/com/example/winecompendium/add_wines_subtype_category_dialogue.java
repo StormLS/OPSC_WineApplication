@@ -1,6 +1,7 @@
 package com.example.winecompendium;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -200,14 +201,15 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
                 }
                 //Update the child by overwriting previous subtypes types with subtypes + newly added subtype
                 refSubType.setValue(SubTypeItem);
-                Toast.makeText(getContext(),"Subtype successfully added.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("AddSubtypeTag",error.getMessage());
             }
         });
+
+        Toast.makeText(getContext(),"Subtype successfully added.",Toast.LENGTH_SHORT).show();
     }
     //----------------------------------------------------------------------------------------------
 

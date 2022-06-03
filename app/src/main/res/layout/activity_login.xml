@@ -80,10 +80,10 @@
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/poppins_italic"
             android:text="Forgot Password?"
             android:textSize="13sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
