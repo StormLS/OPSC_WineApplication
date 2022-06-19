@@ -48,7 +48,7 @@ public class login extends AppCompatActivity
 
         //TODO: TEMPORARY LOGIN
         email.setText("amber.bruil@gmail.com");
-        password.setText("12345678");
+        password.setText("test123");
 
        //Navigation
         btn_register.setOnClickListener(new View.OnClickListener()

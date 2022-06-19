@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "632537356540",
+    "firebase_url": "https://winecompendium-default-rtdb.firebaseio.com",
+    "project_id": "winecompendium",
+    "storage_bucket": "winecompendium.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632537356540:android:8f1092f7ad54dbf9f05f79",
+        "android_client_info": {
+          "package_name": "com.example.winecompendium"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632537356540-tfrdib7n8u37m3jn8adi4uqri5i9pqo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoTofNK6tVfZRFJX-XjFl10WMjam9XoIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632537356540-tfrdib7n8u37m3jn8adi4uqri5i9pqo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
