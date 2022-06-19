@@ -26,7 +26,6 @@ public class login extends AppCompatActivity
     private Button btn_register;
     private Button btn_login;
     private TextView btn_forgotPassword;
-
     private EditText email;
     private EditText password;
 
@@ -47,6 +46,9 @@ public class login extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
+        //TODO: TEMPORARY LOGIN
+        email.setText("amber.bruil@gmail.com");
+        password.setText("test123");
 
         /*
          *  SUMMERY: A listener for when the user clicks the Register button, then moves to register
