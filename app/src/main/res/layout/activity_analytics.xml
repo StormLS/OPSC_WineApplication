@@ -9,65 +9,96 @@
     tools:context=".analytics">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/main_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="426dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="38dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:letterSpacing="-0.08"
+            android:text="Analytics"
+            android:textColor="@color/customColourEleven"
+            android:textSize="27sp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/main_icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_gravity="center_vertical" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp">
 
-            <include
-                layout="@layout/main_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp" />
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="match_parent"
-                android:layout_height="86dp"
-                android:layout_marginTop="15dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_chart"
+                android:layout_width="105dp"
+                android:layout_height="52dp"
+                android:layout_gravity="bottom|fill|fill_vertical"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/final_logo2" />
+                android:backgroundTint="@color/customColourFive"
+                android:elevation="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Chart"
+                android:textAllCaps="false"
+                android:textColor="#C8E5E1"
+                android:textSize="14sp"
+                app:strokeColor="#7CA39D"
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
-            <Space
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_progress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="52dp"
+                android:layout_gravity="bottom|fill|fill_vertical"
+                android:layout_weight="1"
+                android:backgroundTint="@color/customColourFive"
+                android:fontFamily="@font/poppins_regular"
+                android:text="View Progress"
+                android:textAllCaps="false"
+                android:textColor="#C8E5E1"
+                android:textSize="14sp"
+                app:strokeColor="#7CA39D"
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="22dp" />
 
         <LinearLayout
+            android:id="@+id/fragment_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:drawableLeft="@drawable/analytics_ic"
-                android:fontFamily="@font/poppins_regular"
-                android:gravity="center_horizontal"
-                android:text="Analytics"
-                android:textColor="#FFFFFF"
-                android:textSize="27sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Coming soon! Stay tuned."
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
     </LinearLayout>
 

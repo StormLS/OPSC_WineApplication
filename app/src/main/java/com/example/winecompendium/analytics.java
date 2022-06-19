@@ -1,17 +1,23 @@
 package com.example.winecompendium;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.button.MaterialButton;
 
 public class analytics extends AppCompatActivity
 {
     //Initialize variables
     DrawerLayout drawerLayout;
     private TextView txtNavName;
+    private MaterialButton btnChart;
+    private MaterialButton btnProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,9 +28,42 @@ public class analytics extends AppCompatActivity
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout_);
         txtNavName = findViewById(R.id.txtNavUser);
+        btnChart = findViewById(R.id.btn_chart);
+        btnProgress = findViewById(R.id.btn_progress);
 
         dashboard dash = new dashboard();
         SetNavDrawerName(dash._name);
+
+         /*
+         Display the chart fragment on create
+        */
+        chart_fragment frag1 = new chart_fragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.fragment_layout,frag1,frag1.getTag()).commit();
+        ButtonSelected(btnChart);
+
+        //Navigation
+        btnChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chart_fragment frag2 = new chart_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag2,frag2.getTag()).commit();
+                ButtonSelected(btnChart);
+                ButtonUnselected(btnProgress);
+            }
+        });
+
+        btnProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progress_fragment frag3 = new progress_fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_layout,frag3,frag3.getTag()).commit();
+                ButtonSelected(btnProgress);
+                ButtonUnselected(btnChart);
+            }
+        });
     }
 
     //---------------------------------method for nav drawer display first name --------------------
@@ -108,4 +147,28 @@ public class analytics extends AppCompatActivity
         //Close drawer
         dashboard.closeDrawer(drawerLayout);
     }
+
+    //------------------Updating the appearance of the button that is selected----------------------
+    public void ButtonSelected(MaterialButton selectedBtn) {
+
+        //background colour
+        selectedBtn.setBackgroundColor(selectedBtn.getContext().getResources().getColor(R.color.customColourFour));
+        //Button stroke appearance
+        selectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.selectedBtnStroke)));
+        //Text colour
+        selectedBtn.setTextColor(getResources().getColor(R.color.selectedBtnText));
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //------------------Returning to the appearance of the button that is unselected----------------
+    public void ButtonUnselected(MaterialButton unSelectedBtn) {
+
+        //background colour
+        unSelectedBtn.setBackgroundColor(unSelectedBtn.getContext().getResources().getColor(R.color.customColourFive));
+        //Button stroke appearance
+        unSelectedBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.unselectedBtnStroke)));
+        //Text colour
+        unSelectedBtn.setTextColor(getResources().getColor(R.color.unselectedBtnText));
+    }
+    //----------------------------------------------------------------------------------------------
 }
