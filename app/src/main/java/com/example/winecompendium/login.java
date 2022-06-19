@@ -40,18 +40,17 @@ public class login extends AppCompatActivity
 
         email = findViewById(R.id.login_email_input);
         password = findViewById(R.id.login_password_input);
-
         btn_register = findViewById(R.id.btn_register);
         btn_login = findViewById(R.id.btn_login);
         btn_forgotPassword = findViewById(R.id.btn_forgotPassword);
 
         mAuth = FirebaseAuth.getInstance();
 
+        //TODO: TEMPORARY LOGIN
+        email.setText("amber.bruil@gmail.com");
+        password.setText("12345678");
 
-        /*
-         *  SUMMERY: A listener for when the user clicks the Register button, then moves to register
-         *           page
-         */
+       //Navigation
         btn_register.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -62,9 +61,6 @@ public class login extends AppCompatActivity
             }
         });
 
-        /*
-         *  SUMMERY: Once clicked the user will go through the LogUserIn() authentication process
-         */
         btn_login.setOnClickListener(new View.OnClickListener()
         {
             @Override
