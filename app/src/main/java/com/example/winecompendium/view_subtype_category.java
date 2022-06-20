@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,7 +58,8 @@ public class view_subtype_category extends Fragment {
     private ArrayAdapter<String> adapter_wineType;
     private Spinner spinner;
     private ArrayList<String> spinnerList_wineSubtype;
-    private TextView txtItems;
+    private EditText txtItems;
+    private Integer tot;
 
 
     // TODO: Rename and change types and number of parameters
@@ -91,7 +96,7 @@ public class view_subtype_category extends Fragment {
 
         spinner = getView().findViewById(R.id.spinner);
         layout = getView().findViewById(R.id.container);
-        txtItems = getView().findViewById(R.id.txtBT_Items);
+        txtItems = getView().findViewById(R.id.edtNum2);
 
         PopulateSpinner();
         RunLoadingScreen();
@@ -163,7 +168,7 @@ public class view_subtype_category extends Fragment {
                 String selectedWineType = spinner.getSelectedItem().toString();
                 layout.removeAllViews();
                 PopulateCard(selectedWineType);
-                LoadNumItems(selectedWineType);
+                LoadNumItems();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -226,29 +231,38 @@ public class view_subtype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
-    private void LoadNumItems(String selectedWine) {
+    /*
+     ---------------------Retrieve the total number of items in the category-------------------------
+     */
+    private void LoadNumItems() {
+
+        tot = 0;
 
         DatabaseReference ref;
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("SubType");
 
-        /*
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
-                .child("AddGoal_Categories").child("Goals").child("SubType").child(selectedWine);
+        //List temporarily holds the items in the category
+        Set<String> CatList = new HashSet<>();
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (snapshot.hasChildren())
-                {
-                    Integer total = snapshot.child("Total Wines").getValue(Integer.class);
-                    txtItems.setText("Current number of items: " + total);
+                for (DataSnapshot item: snapshot.getChildren()) {
+                    CatList.add(item.getValue().toString());
                 }
+
+                tot = CatList.size();
+                txtItems.setText(String.valueOf(tot));
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }); */
+        });
+
     }
+    //----------------------------------------------------------------------------------------------
 
 }

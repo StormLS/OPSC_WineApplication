@@ -192,7 +192,7 @@ public class add_goal_fragment extends Fragment {
 
                     WinesList.add(item.getValue().toString());
 
-                    //Retrieve the total number of wines in CollectedWines
+                    //Retrieve the total number of elements in category
                     tot = WinesList.size();
                 }
 

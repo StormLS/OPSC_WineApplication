@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +38,8 @@ public class view_origin_category extends Fragment{
 
     private GridLayout layout;
     private String userID;
-    private TextView txtItems;
+    private EditText txtItems;
+    private Integer tot;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,7 +88,7 @@ public class view_origin_category extends Fragment{
         userID = fUser.getUid();
 
         layout = getView().findViewById(R.id.container);
-        txtItems = getView().findViewById(R.id.txtBT_Items);
+        txtItems = getView().findViewById(R.id.edtNum3);
 
         PopulateCards();
         RunLoadingScreen();
@@ -177,28 +182,37 @@ public class view_origin_category extends Fragment{
     }
     //----------------------------------------------------------------------------------------------
 
+    /*
+    ---------------------Retrieve the total number of items in the category-------------------------
+     */
     private void LoadNumItems() {
 
-        DatabaseReference ref;
+        tot = 0;
 
-        /*
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
-                .child("AddGoal_Categories").child("Goals").child("Origin");
+        DatabaseReference ref;
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("Origin");
+
+        //List temporarily holds the items in the category
+        Set<String> CatList = new HashSet<>();
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (snapshot.hasChildren())
-                {
-                    Integer total = snapshot.child("Total Wines").getValue(Integer.class);
-                    txtItems.setText("Current number of items: " + total);
+                for (DataSnapshot item: snapshot.getChildren()) {
+                    CatList.add(item.getValue().toString());
                 }
+
+                tot = CatList.size();
+                txtItems.setText(String.valueOf(tot));
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }); */
+        });
+
     }
+    //----------------------------------------------------------------------------------------------
 }
