@@ -5,8 +5,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Pie;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +31,27 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class chart_fragment extends Fragment {
+
+    private AnyChartView myChart;
+    private String userID;
+    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+
+    String[] months = {"January","February","March","April"};
+    int[] salary = {16000, 20000, 30000, 50000};
+
+    List<DataEntry> dataEntries;
+
+    static Integer totalGoal = 0; //accumulated total goal amount
+    static Integer totalCollected = 0; //accumulated total collected wines amount
+    static Integer remaining; //the remaining number of wines to collect
+    static Integer goalWineType; //the goal number of wine types
+    static Integer goalSubtype; //the goal number of subtypes
+    static Integer goalOrigin; //the goal number of origins
+    static Integer goalBottle; //the goal number of bottle types
+    static Integer totalWineType; ;//the total number of wine types collected already
+    static Integer totalSubtype; //the total number of sub types collected already
+    static Integer totalOrigin; //the total number of origins collected already
+    static Integer totalBottle; //the total number of bottle types collected already
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,5 +104,177 @@ public class chart_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
+        //Getting currently logged in user's ID
+        userID = fUser.getUid();
+
+        myChart = getView().findViewById(R.id.any_chart_view);
+
+        //Ensuring all values reset to 0 to avoid pie chart data to double
+        remaining = 0;
+        totalCollected = 0;
+        totalGoal = 0;
+        totalBottle = 0;
+        totalOrigin = 0;
+        totalSubtype = 0;
+        totalWineType = 0;
+        goalBottle = 0;
+        goalOrigin = 0;
+        goalSubtype = 0;
+        goalWineType = 0;
+
+        dataEntries = new ArrayList<>();
+        SetUpChart();
+
+    }
+
+    /*
+    -------------------------------------- Setting up the PIE chart --------------------------------
+     */
+    private void SetUpChart() {
+        Pie pie = AnyChart.pie();
+
+        DatabaseReference ref1;
+        DatabaseReference ref2;
+        DatabaseReference ref3;
+        DatabaseReference ref4;
+
+        //------------------- Retrieving the goal and total amount for wine types ------------------
+        ref1 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
+                .child("WineType");
+
+        ref1.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot snapshot)
+            {
+                if (snapshot.hasChildren()) {
+                   goalWineType = snapshot.child("Goal Num").getValue(Integer.class);
+                   totalWineType = snapshot.child("Total Wines").getValue(Integer.class);
+
+                   totalGoal =  totalGoal + goalWineType;
+                   totalCollected = totalCollected + totalWineType;
+                }
+                else
+                {
+                    totalGoal = totalGoal + 0;
+                    totalCollected = totalCollected + 0;
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
+
+        //------------------- Retrieving the goal and total amount for sub types -------------------
+        ref2 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
+                .child("SubType");
+
+        ref2.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot snapshot)
+            {
+                if (snapshot.hasChildren()) {
+                    goalSubtype = snapshot.child("Goal Num").getValue(Integer.class);
+                    totalSubtype = snapshot.child("Total Wines").getValue(Integer.class);
+
+                    totalGoal = totalGoal + goalSubtype;
+                    totalCollected = totalCollected + totalSubtype;
+                } else
+                {
+                    totalGoal = totalGoal + 0;
+                    totalCollected = totalCollected + 0;
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
+
+        //------------------- Retrieving the goal and total amount for origin ----------------------
+        ref3 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
+                .child("Origin");
+
+        ref3.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot snapshot)
+            {
+                if (snapshot.hasChildren()) {
+                    goalOrigin = snapshot.child("Goal Num").getValue(Integer.class);
+                    totalOrigin  = snapshot.child("Total Wines").getValue(Integer.class);
+
+                    totalGoal = totalGoal + goalOrigin;
+                    totalCollected = totalCollected + totalOrigin;
+                }
+                else
+                {
+                    totalGoal = totalGoal + 0;
+                    totalCollected = totalCollected + 0;
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
+
+        //------------------- Retrieving the goal and total amount for bottle types ----------------
+        ref4 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
+                .child("BottleType");
+
+        ref4.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot snapshot)
+            {
+                if (snapshot.hasChildren()) {
+                    goalBottle = snapshot.child("Goal Num").getValue(Integer.class);
+                    totalBottle  = snapshot.child("Total Wines").getValue(Integer.class);
+
+                    totalGoal = totalGoal + goalBottle;
+                    totalCollected = totalCollected + totalBottle;
+                }
+                else
+                {
+                    totalGoal = totalGoal + 0;
+                    totalCollected = totalCollected + 0;
+                }
+
+                remaining = totalGoal - totalCollected;
+                /*
+                ------------------------------ PIE CHART IMPLEMENTATION ----------------------------
+                 */
+
+                //Categories and collected items correspond according to their index
+                String[] categories = {"WineType","SubType","Origin","BottleType","Remaining"};
+                Integer[] collected = {totalWineType, totalSubtype, totalOrigin, totalBottle, remaining};
+
+                //populating array list used to populate pie chart data
+                for (int i=0; i < categories.length; i++) {
+                    dataEntries.add(new ValueDataEntry(categories[i],collected[i]));
+                }
+
+                pie.data(dataEntries);
+                myChart.setChart(pie);
+                //----------------------------------------------------------------------------------
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
     }
 }

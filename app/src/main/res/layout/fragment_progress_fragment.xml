@@ -18,14 +18,14 @@
 
             <TextView
                 android:id="@+id/textView67"
-                android:layout_width="wrap_content"
+                android:layout_width="378dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center_horizontal"
-                android:text="TextView"
+                android:text="@string/progress_text"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -103,7 +103,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                         <Space
@@ -127,7 +129,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                         <Space
@@ -231,7 +235,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <Space
@@ -255,7 +261,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <Space
@@ -361,7 +369,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                         <Space
@@ -385,7 +395,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <Space
@@ -491,7 +503,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <Space
@@ -515,7 +529,9 @@
                             android:layout_weight="1"
                             android:background="@drawable/textview_border"
                             android:ems="10"
+                            android:enabled="false"
                             android:inputType="textPersonName"
+                            android:paddingStart="15dp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <Space

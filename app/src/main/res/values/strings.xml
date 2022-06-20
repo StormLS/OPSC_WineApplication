@@ -9,4 +9,6 @@
     <string name="set_description_underline"><u>Set description</u></string>
     <string name="add_cat">Add %1$s</string>
     <string name="add_subtype">Add %1$s to %1$s</string>
+    <string name="progress_text">This page resembles your progress regarding your total wine collection, along with the goal amount. The bar visually indicates your progress on how many wines you are collecting, and how many there still are to collect.</string>
+    <string name="chart_text">This chart resembles your percentage on completing your goal amount of collecting wines respectively. The remaining % indicates a remaining percentage of wines still to collect.</string>
 </resources>

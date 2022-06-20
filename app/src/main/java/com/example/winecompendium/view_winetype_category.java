@@ -87,42 +87,11 @@ public class view_winetype_category extends Fragment {
         userID = fUser.getUid();
 
         layout = getView().findViewById(R.id.container);
-        pBar = getView().findViewById(R.id.pBarWineTypes);
-        txtTotal = getView().findViewById(R.id.txtTotalWineType);
-        txtGoal = getView().findViewById(R.id.txtGoalWineType);
 
-        CheckForGoalImplementation();
         PopulateCards();
         RunLoadingScreen();
 
     }
-
-    /*
-    --------------------------Check if user has entered a goal amount-------------------------------
-     */
-    private void CheckForGoalImplementation() {
-
-        DatabaseReference ref;
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals").child("WineType");
-
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                if (snapshot.hasChildren())
-                {
-                    RetrieveGoalData();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-    //----------------------------------------------------------------------------------------------
-
 
     /*
     ---------Display Loading screen dialogue to allow for the all wines fragment to fully load-----
@@ -151,58 +120,6 @@ public class view_winetype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
-
-    private void RetrieveGoalData() {
-
-        DatabaseReference ref;
-        ref = FirebaseDatabase.getInstance().getReference("Users");
-
-        //Retrieving goal number
-        ref.addListenerForSingleValueEvent(new ValueEventListener(){
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                Integer value = dataSnapshot.child(userID).child("AddGoal_Categories").child("Goals").child("WineType").
-                        child("Goal Num").getValue(Integer.class);
-
-                SetProgressBar(value);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-    private void SetProgressBar(Integer goal) {
-
-        DatabaseReference ref;
-        ref = FirebaseDatabase.getInstance().getReference("Users");
-
-        //Retrieving goal number
-        ref.addListenerForSingleValueEvent(new ValueEventListener(){
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                Integer value = dataSnapshot.child(userID).child("AddGoal_Categories").child("Goals").child("WineType").
-                        child("Total Wines").getValue(Integer.class);
-
-                pBar.setMax(goal);
-                pBar.setProgress(value);
-
-                txtGoal.setText(String.valueOf(goal));
-                txtTotal.setText(String.valueOf(value));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
-    }
 
     private void PopulateCards() {
 

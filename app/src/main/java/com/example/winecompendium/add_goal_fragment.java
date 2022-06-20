@@ -106,6 +106,8 @@ public class add_goal_fragment extends Fragment {
 
         CheckForCollectedWines();
 
+        //TODO: CHECK VALIDATION OF INPUT
+        //TODO: TO SEE IF THE GOAL ENTERED IS LESS THAN THE WINES ALREADY IN THE CAT
 
         btnAddGoal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,13 +205,13 @@ public class add_goal_fragment extends Fragment {
     //----------------------------------------------------------------------------------------------
 
     /*
-    ----------------------- Retrieving the total number of wines the user has ----------------------
+    ------------------ Retrieving the total number of wines per cat the user has -------------------
      */
     private void RetrieveTotalNumWinesPerCat() {
 
         tot = 0;
 
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("CollectedWines");
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child(selectedCat);
 
         Set<String> WinesList = new HashSet<>();
 
@@ -223,9 +225,7 @@ public class add_goal_fragment extends Fragment {
 
                     //Retrieve the total number of wines in CollectedWines
                     tot = WinesList.size();
-
                 }
-
                 AddTotalToDB(tot);
 
             }
