@@ -230,6 +230,7 @@ public class view_subtype_category extends Fragment {
 
         DatabaseReference ref;
 
+        /*
         ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
                 .child("AddGoal_Categories").child("Goals").child("SubType").child(selectedWine);
 
@@ -247,7 +248,7 @@ public class view_subtype_category extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        }); */
     }
 
 }

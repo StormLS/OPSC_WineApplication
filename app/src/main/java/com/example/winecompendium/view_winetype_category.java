@@ -186,8 +186,6 @@ public class view_winetype_category extends Fragment {
                 .child("AddGoal_Categories").child("Goals").child("WineType");
 
         /*
-        Wine Type Goal implementation
-         */
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -203,7 +201,7 @@ public class view_winetype_category extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        }); */
 
 
     }

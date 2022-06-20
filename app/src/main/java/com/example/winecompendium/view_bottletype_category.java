@@ -181,6 +181,7 @@ public class view_bottletype_category extends Fragment {
 
         DatabaseReference ref;
 
+        /*
         ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
                 .child("AddGoal_Categories").child("Goals").child("BottleType");
 
@@ -198,6 +199,6 @@ public class view_bottletype_category extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        }); */
     }
 }
