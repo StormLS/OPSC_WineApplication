@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,15 +33,14 @@ import java.util.List;
  */
 public class chart_fragment extends Fragment {
 
+    private EditText txtGoal;
+    private EditText txtCollected;
     private AnyChartView myChart;
-    private String userID;
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-
-    String[] months = {"January","February","March","April"};
-    int[] salary = {16000, 20000, 30000, 50000};
 
     List<DataEntry> dataEntries;
 
+    private String userID;
     static Integer totalGoal = 0; //accumulated total goal amount
     static Integer totalCollected = 0; //accumulated total collected wines amount
     static Integer remaining; //the remaining number of wines to collect
@@ -122,6 +122,8 @@ public class chart_fragment extends Fragment {
         goalSubtype = 0;
         goalWineType = 0;
 
+        txtGoal = getView().findViewById(R.id.txtTotalGoal);
+        txtCollected = getView().findViewById(R.id.txtTotalCollected);
         dataEntries = new ArrayList<>();
         SetUpChart();
 
@@ -266,8 +268,19 @@ public class chart_fragment extends Fragment {
                     dataEntries.add(new ValueDataEntry(categories[i],collected[i]));
                 }
 
+                //Updating the appearance of the pie chart
+                pie.palette(new String[] { "#E5839E", "#CCE8E4", "#6EA8B9", "#C6C6C6","#585858" });
+                pie.labels().position("outside");
+                pie.legend(false);
+
+                //Loading the data
                 pie.data(dataEntries);
                 myChart.setChart(pie);
+
+                //Setting edit texts
+                txtGoal.setText(String.valueOf(totalGoal));
+                txtCollected.setText(String.valueOf(totalCollected));
+
                 //----------------------------------------------------------------------------------
             }
             @Override

@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,12 +34,7 @@ public class view_origin_category extends Fragment{
 
     private GridLayout layout;
     private String userID;
-    private Float numTotalWines;
-    private Float numGoalWines;
-    private DatabaseReference ref;
-    private ProgressBar pBar;
-    private TextView txtGoal;
-    private TextView txtTotal;
+    private TextView txtItems;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,10 +83,11 @@ public class view_origin_category extends Fragment{
         userID = fUser.getUid();
 
         layout = getView().findViewById(R.id.container);
+        txtItems = getView().findViewById(R.id.txtBT_Items);
 
         PopulateCards();
         RunLoadingScreen();
-
+        LoadNumItems();
     }
 
     /*
@@ -123,6 +118,9 @@ public class view_origin_category extends Fragment{
     //----------------------------------------------------------------------------------------------
 
 
+    /*
+    ---------------------------------- Retrieving category data ------------------------------------
+     */
     private void PopulateCards() {
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -165,7 +163,9 @@ public class view_origin_category extends Fragment{
         }
     }
 
-
+    /*
+    -------------------------- This method will display populated card views -----------------------
+    */
     private void AddCard(String originName) {
 
         View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_origin, null);
@@ -174,5 +174,30 @@ public class view_origin_category extends Fragment{
         title.setText(originName);
 
         layout.addView(cardView);
+    }
+    //----------------------------------------------------------------------------------------------
+
+    private void LoadNumItems() {
+
+        DatabaseReference ref;
+
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
+                .child("AddGoal_Categories").child("Goals").child("Origin");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                if (snapshot.hasChildren())
+                {
+                    Integer total = snapshot.child("Total Wines").getValue(Integer.class);
+                    txtItems.setText("Current number of items: " + total);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

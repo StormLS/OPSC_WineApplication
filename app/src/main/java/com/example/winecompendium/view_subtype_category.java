@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -55,9 +54,7 @@ public class view_subtype_category extends Fragment {
     private ArrayAdapter<String> adapter_wineType;
     private Spinner spinner;
     private ArrayList<String> spinnerList_wineSubtype;
-    private ProgressBar pBar;
-    private TextView txtGoal;
-    private TextView txtTotal;
+    private TextView txtItems;
 
 
     // TODO: Rename and change types and number of parameters
@@ -94,7 +91,7 @@ public class view_subtype_category extends Fragment {
 
         spinner = getView().findViewById(R.id.spinner);
         layout = getView().findViewById(R.id.container);
-
+        txtItems = getView().findViewById(R.id.txtBT_Items);
 
         PopulateSpinner();
         RunLoadingScreen();
@@ -166,6 +163,7 @@ public class view_subtype_category extends Fragment {
                 String selectedWineType = spinner.getSelectedItem().toString();
                 layout.removeAllViews();
                 PopulateCard(selectedWineType);
+                LoadNumItems(selectedWineType);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -177,6 +175,9 @@ public class view_subtype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
+    /*
+    ---------------------------------- Retrieving category data ------------------------------------
+     */
     private void PopulateCard(String selectedWine) {
 
         DatabaseReference newRef = dataRef.child(userID).child("Categories").child("SubType").child(selectedWine);
@@ -225,5 +226,28 @@ public class view_subtype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
+    private void LoadNumItems(String selectedWine) {
+
+        DatabaseReference ref;
+
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
+                .child("AddGoal_Categories").child("Goals").child("SubType").child(selectedWine);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                if (snapshot.hasChildren())
+                {
+                    Integer total = snapshot.child("Total Wines").getValue(Integer.class);
+                    txtItems.setText("Current number of items: " + total);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 }

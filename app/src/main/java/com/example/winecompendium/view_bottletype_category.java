@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,9 +47,8 @@ public class view_bottletype_category extends Fragment {
 
     private GridLayout layout;
     private String userID;
-    private ProgressBar pBar;
-    private TextView txtGoal;
-    private TextView txtTotal;
+    private TextView txtItems;
+
 
     // TODO: Rename and change types and number of parameters
     public static view_bottletype_category newInstance(String title) {
@@ -85,9 +83,11 @@ public class view_bottletype_category extends Fragment {
         userID = fUser.getUid();
 
         layout = getView().findViewById(R.id.container);
+        txtItems = getView().findViewById(R.id.txtBT_Items);
 
         PopulateCards();
         RunLoadingScreen();
+        LoadNumItems();
     }
 
 
@@ -118,7 +118,9 @@ public class view_bottletype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
-
+    /*
+    ---------------------------------- Retrieving category data ------------------------------------
+    */
     private void PopulateCards() {
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,6 +163,9 @@ public class view_bottletype_category extends Fragment {
         }
     }
 
+    /*
+   -------------------------- This method will display populated card views -----------------------
+    */
     private void AddCard(String BottletypeName) {
 
         View cardView = getLayoutInflater().inflate(R.layout.card_view_cat_bottletype, null);
@@ -169,5 +174,30 @@ public class view_bottletype_category extends Fragment {
         title.setText(BottletypeName);
 
         layout.addView(cardView);
+    }
+    //----------------------------------------------------------------------------------------------
+
+    private void LoadNumItems() {
+
+        DatabaseReference ref;
+
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID)
+                .child("AddGoal_Categories").child("Goals").child("BottleType");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                if (snapshot.hasChildren())
+                {
+                    Integer total = snapshot.child("Total Wines").getValue(Integer.class);
+                    txtItems.setText("Current number of items: " + total);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

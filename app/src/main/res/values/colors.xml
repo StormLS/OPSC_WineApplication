@@ -38,6 +38,12 @@
     <color name="themethree_four">#E8F9FD</color>
     <color name="themethree_five">#001D6E</color>
 
+    <color name="WineType_Slice">#E5839E</color>
+    <color name="Subtype_Slice">#CCE8E4</color>
+    <color name="Origin_Slice">#6EA8B9</color>
+    <color name="BottleType_Slice">#C6C6C6</color>
+    <color name="Remaining_Slice">#585858</color>
+
 
     <color name="grey">#636363</color>
     <color name="lightgrey">#979797</color>

@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/textView33"
-        android:layout_width="347dp"
+        android:layout_width="372dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/poppins_regular"
@@ -20,6 +20,18 @@
         android:text="To set a goal per category, please select which category you could like to set a goal for. Then enter a number and press Set Goal."
         android:textColor="@color/black"
         android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center_horizontal"
+        android:text="@string/add_goal_hint"
+        android:textColor="@color/customColourThree"
+        android:textSize="14sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -118,5 +130,17 @@
         android:text="Set Goal"
         android:textAllCaps="false"
         android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/textView68"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center_horizontal"
+        android:text="@string/goal_description"
+        android:textColor="@color/customColourThree"
+        android:textSize="14sp" />
 
 </LinearLayout>

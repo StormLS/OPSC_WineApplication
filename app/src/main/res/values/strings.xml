@@ -9,6 +9,10 @@
     <string name="set_description_underline"><u>Set description</u></string>
     <string name="add_cat">Add %1$s</string>
     <string name="add_subtype">Add %1$s to %1$s</string>
-    <string name="progress_text">This page resembles your progress regarding your total wine collection, along with the goal amount. The bar visually indicates your progress on how many wines you are collecting, and how many there still are to collect.</string>
-    <string name="chart_text">This chart resembles your percentage on completing your goal amount of collecting wines respectively. The remaining % indicates a remaining percentage of wines still to collect.</string>
+    <string name="my_categories_desc">These pre-set categories define your wines. Press to view your category, and their respective items.</string>
+    <string name="categories_hint">Hint: Go to Analytics to view your progress on your category item collection!</string>
+    <string name="add_goal_hint">Not sure how many items you already have? Go to All Categories > View Category</string>
+    <string name="goal_description">Reminder: To start accumulating your category collection amount, go to My Collections > Add Wines > and press the + button next to the desired category. Then enter your new category item.</string>
+    <string name="progress_text">This page resembles your progress regarding your total category item collection, along with the goal amount. The bar visually indicates your progress on how many items you currently have, and how many there are still left to add.</string>
+    <string name="chart_text">This chart resembles your percentage on completing your goal amount of category items. The remaining % indicates a remaining percentage of category items still to collect.</string>
 </resources>

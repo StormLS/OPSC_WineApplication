@@ -104,10 +104,7 @@ public class add_goal_fragment extends Fragment {
         edtTxtGoal = getView().findViewById(R.id.txtGoal);
         btnAddGoal = getView().findViewById(R.id.btnSetGoal);
 
-        CheckForCollectedWines();
-
-        //TODO: CHECK VALIDATION OF INPUT
-        //TODO: TO SEE IF THE GOAL ENTERED IS LESS THAN THE WINES ALREADY IN THE CAT
+        PopulateSpinners();
 
         btnAddGoal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,36 +136,8 @@ public class add_goal_fragment extends Fragment {
             }
         });
 
-
-
     }
 
-    private void CheckForCollectedWines() {
-
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID);
-
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                if (snapshot.hasChild("CollectedWines"))
-                {
-                    PopulateSpinners();
-                }
-                else
-                {
-                    Toast.makeText(getContext(), "Please collect a wine before starting.", Toast.LENGTH_SHORT).show();
-                    btnAddGoal.setEnabled(false);
-                    return;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     /*
     ------------------------------- Populating spinner with categories -----------------------------
@@ -226,7 +195,13 @@ public class add_goal_fragment extends Fragment {
                     //Retrieve the total number of wines in CollectedWines
                     tot = WinesList.size();
                 }
-                AddTotalToDB(tot);
+
+                if (numGoal < tot) {
+                    Toast.makeText(getContext(),"Please enter a value that is higher than the number of category items! " +
+                            "Current number: " + tot,Toast.LENGTH_LONG).show();
+                } else {
+                    AddTotalToDB(tot);
+                }
 
             }
 
