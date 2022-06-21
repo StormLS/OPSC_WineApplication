@@ -4,7 +4,6 @@ import static android.app.Activity.RESULT_OK;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -13,7 +12,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -83,15 +81,16 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private ImageButton btnAddItemOrigin;
     private ImageButton btnAddItemBottleType;
     private ImageButton btnRefreshPage;
+    private ImageView wineImage;
+    private RatingBar myBar;
 
     private DatabaseReference refWineType;
     private DatabaseReference refSubtype;
     private DatabaseReference refOrigin;
     private DatabaseReference refBottleType;
-
-    private RatingBar myBar;
-
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference dbRef;
+    private StorageReference storageReference;
 
     private ArrayAdapter<String> adapter_wineType;
     private ArrayAdapter<String> adapter_wineSubtype;
@@ -103,10 +102,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private ArrayList<String> spinnerList_wineOrigin;
     private ArrayList<String> spinnerList_wineBottleType;
 
-    private ImageView wineImage;
-
     private String userID;
-
     private String selectedWineType;
     private String selectedSubtype;
     private String selectedOrigin;
@@ -118,9 +114,13 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     private Float wineRating;
     private String wineDesc;
     private String date;
-    public static String _heading = "text";
 
     private static addwines_fragment instance = null;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int TAKE_IMAGE_REQUEST = 100;
+    private Uri mImageUri;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -255,7 +255,6 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onClick(View view) {
                 ShowAddWineTypeDialogueBox();
-                _heading = "Wine Type";
             }
         });
 
@@ -263,23 +262,20 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onClick(View view) {
                 ShowAddSubtypeDialogueBox();
-                _heading = "Wine Subtype";
             }
         });
 
         btnAddItemOrigin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowAddItemDialogueBox();
-                _heading = "Origin";
+                ShowAddOriginDialogueBox();
             }
         });
 
         btnAddItemBottleType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowAddItemDialogueBox();
-                _heading = "Bottle Type";
+                ShowAddBottleTypeDialogueBox();
             }
         });
 
@@ -344,16 +340,9 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
     }
 
-    public String ReturnHeading()
-    {
-        return _heading;
-
-    }
-
-    private static final int PICK_IMAGE_REQUEST = 1;
-    private static final int TAKE_IMAGE_REQUEST = 100;
-    private Uri mImageUri;
-
+    /*
+    ----------------------------- CAMERA IMPLEMENTATION --------------------------------------------
+     */
     private void openCamera()
     {
         wineImage.setImageURI(mImageUri);
@@ -393,6 +382,7 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
             wineImage.setImageURI(mImageUri);
         }
     }
+    //----------------------------------------------------------------------------------------------
 
     /*
     Show the add new wine type to category dialogue box
@@ -417,14 +407,26 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
     /*
     Show the add new item to either origin or bottle type dialogue box
     */
-    private void ShowAddItemDialogueBox()
+    private void ShowAddOriginDialogueBox()
     {
         FragmentManager fm =  getChildFragmentManager();
-        add_wines_category_dialogue addItemDialogue = add_wines_category_dialogue.newInstance("Category Item");
+        add_wines_add_origin_dialogue addItemDialogue = add_wines_add_origin_dialogue.newInstance("Category Item");
         addItemDialogue.show(fm, "fragment_add_item");
     }
 
+    /*
+  Show the add new item to either origin or bottle type dialogue box
+  */
+    private void ShowAddBottleTypeDialogueBox()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_bottletype_dialogue addItemDialogue = add_wines_bottletype_dialogue.newInstance("Category Item");
+        addItemDialogue.show(fm, "fragment_add_item");
+    }
 
+    /*
+    ----------------------------Implementation for populating the spinners--------------------------
+     */
     public void populateAllSpinners()
     {
         /*----------------------------- Populate Wine Type Spinner -------------------------------*/
@@ -549,11 +551,11 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         });
         //------------------------------------------------------------------------------------------
     }
+    //----------------------------------------------------------------------------------------------
 
-    private DatabaseReference dbRef;
-    private FirebaseStorage storage;
-    private StorageReference storageReference;
-
+    /*
+    -------------------------Implementation for adding the new wine to the DB-----------------------
+     */
     private void AddWine()
     {
         final ProgressDialog pd = new ProgressDialog(getView().getContext());
@@ -686,7 +688,11 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         }
         //------------------------------------------------------------------------------------------
     }
+    //----------------------------------------------------------------------------------------------
 
+    /*
+    ---------------------------------- Refreshing the spinners--------------------------------------
+     */
     public void RefreshSpinners()
     {
         spinner_wineType.setAdapter(null);
@@ -694,16 +700,11 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         spinner_wineOrigin.setAdapter(null);
         spinner_wineBottleType.setAdapter(null);
     }
+    //----------------------------------------------------------------------------------------------
 
-    private String getFileExtension(Uri mUri)
-    {
-        ContentResolver cr = getView().getContext().getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-
-        return mime.getExtensionFromMimeType(cr.getType(mUri));
-    }
-
-    //Update the ui
+    /*
+    ------------------------------------Reset the UI------------------------------------------------
+     */
     private void ResetUI() {
         txtWineName.setText("");
         spinner_wineType.setAdapter(null);
@@ -717,4 +718,5 @@ public class addwines_fragment extends Fragment implements DatePickerDialog.OnDa
         txtWineName.setFocusable(true);
         populateAllSpinners();
     }
+    //----------------------------------------------------------------------------------------------
 }

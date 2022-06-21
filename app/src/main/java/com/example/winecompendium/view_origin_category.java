@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +42,8 @@ public class view_origin_category extends Fragment{
     private String userID;
     private EditText txtItems;
     private Integer tot;
+    private ImageButton btnAdd;
+    public static String _heading = "Origin";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,6 +93,14 @@ public class view_origin_category extends Fragment{
 
         layout = getView().findViewById(R.id.container);
         txtItems = getView().findViewById(R.id.edtNum3);
+        btnAdd = getView().findViewById(R.id.btnAddOrigin);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddOriginItemDialogue();
+            }
+        });
 
         PopulateCards();
         RunLoadingScreen();
@@ -215,4 +227,16 @@ public class view_origin_category extends Fragment{
 
     }
     //----------------------------------------------------------------------------------------------
+
+    /*
+   -----------------Show the add new item to bottle type dialogue box-------------------------------
+   */
+    private void ShowAddOriginItemDialogue()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_add_origin_dialogue addItemDialogue = add_wines_add_origin_dialogue.newInstance("Category Item");
+        addItemDialogue.show(fm, "fragment_add_item");
+    }
+    //----------------------------------------------------------------------------------------------
+
 }

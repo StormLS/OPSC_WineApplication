@@ -85,11 +85,11 @@ public class add_wines_subtype_category_dialogue extends androidx.fragment.app.D
         super.onViewCreated(view, savedInstanceState);
 
         userID = fUser.getUid();
-        getHeading = addWines.ReturnHeading();
+        getHeading = "Wine SubType";
 
         spinnerWineType = getView().findViewById(R.id.spinWineType);
         txtHead = getView().findViewById(R.id.txtHeading);
-        txtInput = getView().findViewById(R.id.txtAddCat);
+        txtInput = getView().findViewById(R.id.txtAddOrigin_Cat);
         btnDone = getView().findViewById(R.id.btnDone);
         btnClose = getView().findViewById(R.id.btnClose);
 

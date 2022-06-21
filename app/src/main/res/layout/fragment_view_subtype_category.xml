@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Total number of items:" />
+                android:text="Current number of items:" />
 
             <EditText
                 android:id="@+id/edtNum2"

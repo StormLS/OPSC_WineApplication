@@ -52,7 +52,7 @@
             android:layout_height="16dp" />
 
         <EditText
-            android:id="@+id/txtAddCat"
+            android:id="@+id/txtAddOrigin_Cat"
             android:layout_width="292dp"
             android:layout_height="52dp"
             android:layout_marginStart="10dp"

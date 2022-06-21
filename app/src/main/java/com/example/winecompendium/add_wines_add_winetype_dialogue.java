@@ -39,8 +39,6 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
     private EditText txtInput;
     private EditText txtSubtype;
 
-    private addwines_fragment addWines = new addwines_fragment();
-
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference UsersRef = database.getReference("Users");
@@ -79,13 +77,14 @@ public class add_wines_add_winetype_dialogue extends androidx.fragment.app.Dialo
         DialogueHeading = getView().findViewById(R.id.txtHeading);
         btnClose = getView().findViewById(R.id.btnClose);
         btnDone = getView().findViewById(R.id.btnDone);
-        txtInput = getView().findViewById(R.id.txtAddCat);
+        txtInput = getView().findViewById(R.id.txtAddOrigin_Cat);
         txtSubtype = getView().findViewById(R.id.txtAddSubtype);
         userID = fUser.getUid().toString();
 
 
         //Set the heading of the dialogue
-        DialogueHeading.setText("Add " + addWines.ReturnHeading());
+        DialogueHeading.setText("Add Wine Type");
+
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override

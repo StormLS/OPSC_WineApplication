@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,6 +55,7 @@ public class view_winetype_category extends Fragment {
     private String userID;
     private EditText txtItems;
     private Integer tot;
+    private ImageButton btnAdd;
 
     // TODO: Rename and change types and number of parameters
     public static view_winetype_category newInstance(String title) {
@@ -88,6 +91,14 @@ public class view_winetype_category extends Fragment {
 
         layout = getView().findViewById(R.id.container);
         txtItems = getView().findViewById(R.id.edtNum1);
+        btnAdd = getView().findViewById(R.id.btnAddWineType);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddWineTypeDialogueBox();
+            }
+        });
 
         PopulateCards();
         RunLoadingScreen();
@@ -215,4 +226,14 @@ public class view_winetype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
+    /*
+    ------------------------Show the add new wine type to category dialogue box---------------------
+    */
+    private void ShowAddWineTypeDialogueBox()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_add_winetype_dialogue addWineTypeDialogue = add_wines_add_winetype_dialogue.newInstance("WineType item");
+        addWineTypeDialogue.show(fm, "fragment_add_type");
+    }
+    //----------------------------------------------------------------------------------------------
 }

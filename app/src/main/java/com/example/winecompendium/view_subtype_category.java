@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +62,7 @@ public class view_subtype_category extends Fragment {
     private ArrayList<String> spinnerList_wineSubtype;
     private EditText txtItems;
     private Integer tot;
+    private ImageButton btnAdd;
 
 
     // TODO: Rename and change types and number of parameters
@@ -97,6 +100,14 @@ public class view_subtype_category extends Fragment {
         spinner = getView().findViewById(R.id.spinner);
         layout = getView().findViewById(R.id.container);
         txtItems = getView().findViewById(R.id.edtNum2);
+        btnAdd = getView().findViewById(R.id.btnAddSubType);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddSubtypeDialogueBox();
+            }
+        });
 
         PopulateSpinner();
         RunLoadingScreen();
@@ -265,4 +276,14 @@ public class view_subtype_category extends Fragment {
     }
     //----------------------------------------------------------------------------------------------
 
+    /*
+    ---------------------Show the add new subtype to category dialogue box--------------------------
+    */
+    private void ShowAddSubtypeDialogueBox()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_subtype_category_dialogue addSubtypeDialogue = add_wines_subtype_category_dialogue.newInstance("Subtype Item");
+        addSubtypeDialogue.show(fm, "fragment_add_subtype");
+    }
+    //----------------------------------------------------------------------------------------------
 }

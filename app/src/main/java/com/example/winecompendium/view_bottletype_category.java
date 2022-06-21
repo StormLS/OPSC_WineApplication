@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,6 +55,8 @@ public class view_bottletype_category extends Fragment {
     private String userID;
     private EditText txtItems;
     private Integer tot;
+    private ImageButton btnAdd;
+    public static String _heading = "Bottle Type";
 
 
     // TODO: Rename and change types and number of parameters
@@ -89,12 +93,19 @@ public class view_bottletype_category extends Fragment {
 
         layout = getView().findViewById(R.id.container);
         txtItems = getView().findViewById(R.id.edtNum4);
+        btnAdd = getView().findViewById(R.id.btnAddBottleType);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAddBottleTypeItem();
+            }
+        });
 
         PopulateCards();
         RunLoadingScreen();
         LoadNumItems();
     }
-
 
     /*
     ---------Display Loading screen dialogue to allow for the all wines fragment to fully load-----
@@ -215,4 +226,16 @@ public class view_bottletype_category extends Fragment {
 
     }
     //----------------------------------------------------------------------------------------------
+
+    /*
+    ----------------Show the add new item to bottle type dialogue box-------------------------------
+    */
+    private void ShowAddBottleTypeItem()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        add_wines_bottletype_dialogue addItemDialogue = add_wines_bottletype_dialogue.newInstance("Category Item");
+        addItemDialogue.show(fm, "fragment_add_item");
+    }
+    //----------------------------------------------------------------------------------------------
+
 }

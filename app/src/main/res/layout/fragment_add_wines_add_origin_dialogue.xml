@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".add_wines_category_dialogue">
+    tools:context=".add_wines_add_origin_dialogue">
 
     <LinearLayout
         android:layout_width="305dp"
@@ -33,7 +33,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/txtAddCat"
+            android:id="@+id/txtAddOrigin_Cat"
             android:layout_width="285dp"
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
