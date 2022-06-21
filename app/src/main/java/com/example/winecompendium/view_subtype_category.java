@@ -168,7 +168,7 @@ public class view_subtype_category extends Fragment {
                 String selectedWineType = spinner.getSelectedItem().toString();
                 layout.removeAllViews();
                 PopulateCard(selectedWineType);
-                LoadNumItems();
+                LoadNumItems(selectedWineType);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -234,12 +234,12 @@ public class view_subtype_category extends Fragment {
     /*
      ---------------------Retrieve the total number of items in the category-------------------------
      */
-    private void LoadNumItems() {
+    private void LoadNumItems(String selectedCat) {
 
         tot = 0;
 
         DatabaseReference ref;
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("SubType");
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Categories").child("SubType").child(selectedCat);
 
         //List temporarily holds the items in the category
         Set<String> CatList = new HashSet<>();
