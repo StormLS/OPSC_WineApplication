@@ -27,7 +27,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
-                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Percentage completed" />
 
                 <Space
@@ -52,26 +53,52 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/txtCompleted"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="-15dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center_vertical"
-                android:hint="22%"
-                android:text="22%"
-                android:textColor="@color/black"
-                android:textSize="31sp"
-                tools:ignore="TouchTargetSizeCheck"
-                android:inputType="none"
-                android:textIsSelectable="true"
-                android:focusable="false"
-                android:longClickable="false"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txtCompleted"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center_vertical"
+                    android:hint="22%"
+                    android:inputType="none"
+                    android:longClickable="false"
+                    android:text="22%"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="31sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/txtIncrease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/white"
+                    android:drawableLeft="@drawable/increase_32"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:inputType="none"
+                    android:longClickable="false"
+                    android:text="2% inc."
+                    android:textColor="#64C835"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
 
             <com.anychart.AnyChartView
                 android:id="@+id/any_chart_view"
@@ -116,7 +143,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:text="Wine Type"
                             android:textColor="#000000"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -147,7 +174,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:text="Wine SubType"
                             android:textColor="#000000"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -178,7 +205,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:text="Origin"
                             android:textColor="#000000"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -221,7 +248,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:text="Bottle Type"
                             android:textColor="#000000"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -251,7 +278,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:text="Remaining"
                             android:textColor="#000000"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -281,7 +308,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="Total goal amount"
                         android:textColor="@color/customColourThree" />
 
@@ -321,7 +348,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="Total items collected"
                         android:textColor="@color/customColourThree" />
 
