@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -33,6 +35,7 @@ import java.util.List;
  */
 public class chart_fragment extends Fragment {
 
+    private ImageButton btnHelp;
     private EditText txtGoal;
     private EditText txtCollected;
     private AnyChartView myChart;
@@ -108,6 +111,7 @@ public class chart_fragment extends Fragment {
         userID = fUser.getUid();
 
         myChart = getView().findViewById(R.id.any_chart_view);
+        btnHelp = getView().findViewById(R.id.btnHelp);
 
         //Ensuring all values reset to 0 to avoid pie chart data to double
         remaining = 0;
@@ -127,11 +131,18 @@ public class chart_fragment extends Fragment {
         dataEntries = new ArrayList<>();
         SetUpChart();
 
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowHelpBox();
+            }
+        });
+
     }
 
     /*
     -------------------------------------- Setting up the PIE chart --------------------------------
-     */
+    */
     private void SetUpChart() {
         Pie pie = AnyChart.pie();
 
@@ -270,7 +281,6 @@ public class chart_fragment extends Fragment {
 
                 //Updating the appearance of the pie chart
                 pie.palette(new String[] { "#E5839E", "#CCE8E4", "#6EA8B9", "#C6C6C6","#585858" });
-                pie.labels().position("outside");
                 pie.legend(false);
 
                 //Loading the data
@@ -289,5 +299,15 @@ public class chart_fragment extends Fragment {
 
             }
         });
+    }
+
+    /*
+     Show the help dialogue
+    */
+    private void ShowHelpBox()
+    {
+        FragmentManager fm =  getChildFragmentManager();
+        analytics_help_fragment help_dialogue = analytics_help_fragment.newInstance("Help");
+        help_dialogue.show(fm, "fragment_help");
     }
 }

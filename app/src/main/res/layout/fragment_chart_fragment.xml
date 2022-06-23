@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,33 +16,78 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView41"
-                android:layout_width="358dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/poppins_regular"
-                android:gravity="center_horizontal"
-                android:text="@string/chart_text"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView70"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Percentage completed" />
+
+                <Space
+                    android:layout_width="128dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/btnHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/help_icon_32"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/txtCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="-15dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center_vertical"
+                android:hint="22%"
+                android:text="22%"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="31sp"
+                tools:ignore="TouchTargetSizeCheck"
+                android:inputType="none"
+                android:textIsSelectable="true"
+                android:focusable="false"
+                android:longClickable="false"/>
 
             <com.anychart.AnyChartView
                 android:id="@+id/any_chart_view"
                 android:layout_width="450dp"
-                android:layout_height="382dp"
+                android:layout_height="368dp"
                 android:layout_gravity="center_horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="119dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="204dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -55,7 +101,7 @@
                             android:layout_width="32dp"
                             android:layout_height="15dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="5dp"
                             android:layout_weight="1"
                             android:background="@color/WineType_Slice"
                             android:backgroundTint="@color/WineType_Slice" />
@@ -64,8 +110,8 @@
                             android:id="@+id/textView45"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Wine Type"
@@ -86,7 +132,7 @@
                             android:layout_width="32dp"
                             android:layout_height="15dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:layout_weight="1"
                             android:background="@color/Subtype_Slice"
                             android:backgroundTint="@color/Subtype_Slice" />
@@ -95,8 +141,8 @@
                             android:id="@+id/textView46"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Wine SubType"
@@ -117,7 +163,7 @@
                             android:layout_width="32dp"
                             android:layout_height="15dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="10dp"
                             android:layout_weight="1"
                             android:background="@color/Origin_Slice"
                             android:backgroundTint="@color/Origin_Slice" />
@@ -126,8 +172,8 @@
                             android:id="@+id/textView47"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Origin"
@@ -135,6 +181,18 @@
                             android:textSize="14sp" />
 
                     </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -148,7 +206,7 @@
                             android:layout_width="32dp"
                             android:layout_height="15dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:layout_weight="1"
                             android:background="@color/BottleType_Slice"
                             android:backgroundTint="@color/BottleType_Slice" />
@@ -158,7 +216,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Bottle Type"
@@ -178,7 +236,7 @@
                             android:layout_width="32dp"
                             android:layout_height="15dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="10dp"
                             android:layout_weight="1"
                             android:background="@color/Remaining_Slice"
                             android:backgroundTint="@color/Remaining_Slice" />
@@ -196,83 +254,95 @@
                             android:textSize="14sp" />
 
                     </LinearLayout>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp"
-                        android:layout_weight="1" />
-
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="173dp"
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="19dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Space
+                    android:layout_width="24dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView50"
-                            android:layout_width="86dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="Total goal amount:"
-                            android:textColor="@color/black" />
-
-                        <EditText
-                            android:id="@+id/txtTotalGoal"
-                            android:layout_width="45dp"
-                            android:layout_height="33dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:background="@drawable/textview_border"
-                            android:ems="10"
-                            android:enabled="false"
-                            android:hint="22"
-                            android:inputType="textPersonName"
-                            android:paddingLeft="10dp"
-                            android:textSize="16sp"
-                            tools:ignore="TouchTargetSizeCheck" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/textView50"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Total goal amount"
+                        android:textColor="@color/customColourThree" />
 
-                        <TextView
-                            android:id="@+id/textView51"
-                            android:layout_width="86dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="Total wines collected:"
-                            android:textColor="@color/black" />
+                    <EditText
+                        android:id="@+id/txtTotalGoal"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:hint="22"
+                        android:textColor="@color/black"
+                        android:textSize="31sp"
+                        tools:ignore="TouchTargetSizeCheck"
+                        android:inputType="none"
+                        android:textIsSelectable="true"
+                        android:focusable="false"
+                        android:longClickable="false"/>
+                </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/txtTotalCollected"
-                            android:layout_width="45dp"
-                            android:layout_height="33dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:background="@drawable/textview_border"
-                            android:ems="10"
-                            android:enabled="false"
-                            android:hint="9"
-                            android:inputType="textPersonName"
-                            android:paddingLeft="10dp"
-                            android:textSize="16sp"
-                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-                    </LinearLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="16dp"
-                        android:layout_weight="1" />
+                <LinearLayout
+                    android:layout_width="154dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Total items collected"
+                        android:textColor="@color/customColourThree" />
+
+                    <EditText
+                        android:id="@+id/txtTotalCollected"
+                        android:layout_width="154dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:hint="9"
+                        android:inputType="none"
+                        android:longClickable="false"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="true"
+                        android:textSize="31sp"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>
 
             </LinearLayout>
