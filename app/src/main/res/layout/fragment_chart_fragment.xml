@@ -203,7 +203,7 @@
                 android:id="@+id/any_chart_view"
                 android:layout_width="450dp"
                 android:layout_height="368dp"
-                android:layout_gravity="center_horizontal" >
+                android:layout_gravity="center_horizontal">
 
                 <Space
                     android:layout_width="wrap_content"
@@ -211,217 +211,487 @@
                     android:layout_weight="1" />
             </com.anychart.AnyChartView>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView80"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Trend"
+                android:textColor="#363D83"
+                android:textSize="22sp" />
 
-                <LinearLayout
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="11dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent" >
 
-                    <Space
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <View
-                        android:id="@+id/view4"
-                        android:layout_width="27dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@color/WineType_Slice"
-                        android:backgroundTint="@color/WineType_Slice" />
+                        android:background="#EDEDED"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView45"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Wine Type"
-                        android:textColor="#000000"
-                        android:textSize="13sp" />
+                        <TextView
+                            android:id="@+id/textView77"
+                            android:layout_width="17dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Key"
+                            android:textColor="#252333" />
 
-                    <Space
-                        android:layout_width="268dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/textView47"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Category"
+                            android:textColor="#252333" />
 
-                </LinearLayout>
+                        <Space
+                            android:layout_width="18dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
-                <LinearLayout
+                        <TextView
+                            android:id="@+id/textView78"
+                            android:layout_width="44dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Collected"
+                            android:textColor="@color/black" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/textView79"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Total"
+                            android:textColor="@color/black" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent" >
 
-                    <Space
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <View
-                        android:id="@+id/view5"
-                        android:layout_width="27dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@color/Subtype_Slice"
-                        android:backgroundTint="@color/Subtype_Slice" />
+                        android:background="@color/white"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView46"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Wine SubType"
-                        android:textColor="#000000"
-                        android:textSize="13sp" />
+                        <View
+                            android:id="@+id/view4"
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/WineType_Slice"
+                            android:backgroundTint="@color/WineType_Slice" />
 
-                    <Space
-                        android:layout_width="254dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/textView52"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Wine Type"
+                            android:textColor="#252333" />
 
-                </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
-                <LinearLayout
+                        <EditText
+                            android:id="@+id/txtWT_C"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="7"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtWT_T"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent" >
 
-                    <Space
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <View
-                        android:id="@+id/view6"
-                        android:layout_width="27dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:background="@color/Origin_Slice"
-                        android:backgroundTint="@color/Origin_Slice" />
+                        android:background="#F3F3F3"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView47"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Origin"
-                        android:textColor="#000000"
-                        android:textSize="13sp" />
+                        <View
+                            android:id="@+id/view5"
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/Subtype_Slice"
+                            android:backgroundTint="@color/Subtype_Slice" />
 
-                    <Space
-                        android:layout_width="301dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/textView72"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Subtype"
+                            android:textColor="#252333" />
 
-                </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
-                <LinearLayout
+                        <EditText
+                            android:id="@+id/txtST_C"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtST_T"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent" >
 
-                    <Space
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <View
-                        android:id="@+id/view7"
-                        android:layout_width="27dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@color/BottleType_Slice"
-                        android:backgroundTint="@color/BottleType_Slice" />
+                        android:background="@color/white"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView48"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Bottle Type"
-                        android:textColor="#000000"
-                        android:textSize="13sp" />
+                        <View
+                            android:id="@+id/view6"
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/Origin_Slice"
+                            android:backgroundTint="@color/Origin_Slice" />
 
-                    <Space
-                        android:layout_width="275dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/textView73"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Origin"
+                            android:textColor="#252333" />
 
-                </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
-                <LinearLayout
+                        <EditText
+                            android:id="@+id/txtO_C"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtO_T"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent" >
 
-                    <Space
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <View
-                        android:id="@+id/view8"
-                        android:layout_width="27dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:background="@color/Remaining_Slice"
-                        android:backgroundTint="@color/Remaining_Slice" />
+                        android:background="#F3F3F3"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView49"
+                        <View
+                            android:id="@+id/view7"
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/BottleType_Slice"
+                            android:backgroundTint="@color/BottleType_Slice" />
+
+                        <TextView
+                            android:id="@+id/textView74"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Bottle Type"
+                            android:textColor="#252333" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtBT_C"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtBT_T"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Remaining"
-                        android:textColor="#000000"
-                        android:textSize="13sp" />
-
-                    <Space
-                        android:layout_width="274dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <View
+                            android:id="@+id/view8"
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/Remaining_Slice"
+                            android:backgroundTint="@color/Remaining_Slice" />
 
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView76"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Remaining"
+                            android:textColor="#252333" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtR_C"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/R_T"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="45"
+                            tools:ignore="TouchTargetSizeCheck"
+                            android:inputType="none"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:textIsSelectable="true"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                </TableRow>
+            </TableLayout>
 
         </LinearLayout>
     </ScrollView>
