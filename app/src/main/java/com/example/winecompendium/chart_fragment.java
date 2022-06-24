@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,18 @@ public class chart_fragment extends Fragment {
     private ImageButton btnHelp;
     private EditText txtGoal;
     private EditText txtCollected;
+    private EditText txtComplete;
+    private EditText txtWT_C;
+    private EditText txtWT_T;
+    private EditText txtST_C;
+    private EditText txtST_T;
+    private EditText txtO_C;
+    private EditText txtO_T;
+    private EditText txtBT_C;
+    private EditText txtBT_T;
+    private EditText txtR_C;
+    private EditText txtR_T;
+
     private AnyChartView myChart;
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -55,6 +68,8 @@ public class chart_fragment extends Fragment {
     static Integer totalSubtype; //the total number of sub types collected already
     static Integer totalOrigin; //the total number of origins collected already
     static Integer totalBottle; //the total number of bottle types collected already
+
+    DecimalFormat df = new DecimalFormat("0.#%");
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -112,6 +127,17 @@ public class chart_fragment extends Fragment {
 
         myChart = getView().findViewById(R.id.any_chart_view);
         btnHelp = getView().findViewById(R.id.btnHelp);
+        txtComplete = getView().findViewById(R.id.txtCompleted);
+        txtWT_C = getView().findViewById(R.id.txtWT_C);
+        txtWT_T = getView().findViewById(R.id.txtWT_T);
+        txtST_C = getView().findViewById(R.id.txtST_C);
+        txtST_T = getView().findViewById(R.id.txtST_T);
+        txtO_C = getView().findViewById(R.id.txtO_C);
+        txtO_T = getView().findViewById(R.id.txtO_T);
+        txtBT_C = getView().findViewById(R.id.txtBT_C);
+        txtBT_T = getView().findViewById(R.id.txtBT_T);
+        txtR_C = getView().findViewById(R.id.txtR_C);
+        txtR_T = getView().findViewById(R.id.txtR_T);
 
         //Ensuring all values reset to 0 to avoid pie chart data to double
         remaining = 0;
@@ -129,6 +155,7 @@ public class chart_fragment extends Fragment {
         txtGoal = getView().findViewById(R.id.txtTotalGoal);
         txtCollected = getView().findViewById(R.id.txtTotalCollected);
         dataEntries = new ArrayList<>();
+
         SetUpChart();
 
         btnHelp.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +208,6 @@ public class chart_fragment extends Fragment {
             }
         });
 
-
         //------------------- Retrieving the goal and total amount for sub types -------------------
         ref2 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
                 .child("SubType");
@@ -210,7 +236,6 @@ public class chart_fragment extends Fragment {
 
             }
         });
-
 
         //------------------- Retrieving the goal and total amount for origin ----------------------
         ref3 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
@@ -242,7 +267,6 @@ public class chart_fragment extends Fragment {
             }
         });
 
-
         //------------------- Retrieving the goal and total amount for bottle types ----------------
         ref4 = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("AddGoal_Categories").child("Goals")
                 .child("BottleType");
@@ -266,9 +290,10 @@ public class chart_fragment extends Fragment {
                 }
 
                 remaining = totalGoal - totalCollected;
+
                 /*
                 ------------------------------ PIE CHART IMPLEMENTATION ----------------------------
-                 */
+                */
 
                 //Categories and collected items correspond according to their index
                 String[] categories = {"WineType","SubType","Origin","BottleType","Remaining"};
@@ -290,6 +315,23 @@ public class chart_fragment extends Fragment {
                 //Setting edit texts
                 txtGoal.setText(String.valueOf(totalGoal));
                 txtCollected.setText(String.valueOf(totalCollected));
+
+                //----------------------------------------------------------------------------------
+
+               // pie.getPoint(5);
+                //-------------------------- LOADING TREND -----------------------------------------
+                double completion = ((remaining * totalGoal) / 100);
+                txtComplete.setText(df.format(completion));
+                txtWT_C.setText(String.valueOf(totalWineType));
+                txtWT_T.setText(String.valueOf(totalGoal));
+                txtST_C.setText(String.valueOf(totalSubtype));
+                txtST_T.setText(String.valueOf(totalGoal));
+                txtO_C.setText(String.valueOf(totalOrigin));
+                txtO_T.setText(String.valueOf(totalGoal));
+                txtBT_C.setText(String.valueOf(totalBottle));
+                txtBT_T.setText(String.valueOf(totalGoal));
+                txtR_C.setText(String.valueOf(totalCollected));
+                txtR_T.setText(String.valueOf(totalGoal));
 
                 //----------------------------------------------------------------------------------
             }

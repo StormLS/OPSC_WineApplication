@@ -175,7 +175,7 @@
 
                         <EditText
                             android:id="@+id/txtCompleted"
-                            android:layout_width="65dp"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
@@ -188,7 +188,7 @@
                             android:inputType="none"
                             android:longClickable="false"
                             android:text="22%"
-                            android:textColor="@color/black"
+                            android:textColor="#363D83"
                             android:textIsSelectable="true"
                             android:textSize="31sp"
                             tools:ignore="TouchTargetSizeCheck" />
@@ -669,7 +669,7 @@
                             android:layout_weight="1" />
 
                         <EditText
-                            android:id="@+id/R_T"
+                            android:id="@+id/txtR_T"
                             android:layout_width="10dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
