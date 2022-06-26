@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +67,6 @@ public class chart_fragment extends Fragment {
     static Integer totalSubtype; //the total number of sub types collected already
     static Integer totalOrigin; //the total number of origins collected already
     static Integer totalBottle; //the total number of bottle types collected already
-
-    DecimalFormat df = new DecimalFormat("0.#%");
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -318,10 +315,15 @@ public class chart_fragment extends Fragment {
 
                 //----------------------------------------------------------------------------------
 
-               // pie.getPoint(5);
+
                 //-------------------------- LOADING TREND -----------------------------------------
-                double completion = ((remaining * totalGoal) / 100);
-                txtComplete.setText(df.format(completion));
+
+                //Calcuating completed percentage
+                double perc = 100.00;
+                float completion = (float) ((float) totalCollected/totalGoal * perc);
+                String value = String.format("%2.01f",completion);
+
+                txtComplete.setText(value + "%");
                 txtWT_C.setText(String.valueOf(totalWineType));
                 txtWT_T.setText(String.valueOf(totalGoal));
                 txtST_C.setText(String.valueOf(totalSubtype));
@@ -332,7 +334,6 @@ public class chart_fragment extends Fragment {
                 txtBT_T.setText(String.valueOf(totalGoal));
                 txtR_C.setText(String.valueOf(totalCollected));
                 txtR_T.setText(String.valueOf(totalGoal));
-
                 //----------------------------------------------------------------------------------
             }
             @Override

@@ -175,7 +175,7 @@
 
                         <EditText
                             android:id="@+id/txtCompleted"
-                            android:layout_width="80dp"
+                            android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
