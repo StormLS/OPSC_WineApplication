@@ -17,12 +17,14 @@
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_faq.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_login.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_main.xml" value="0.3578125" />
+        <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_my_collections.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_mycollections.xml" value="0.33" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_register.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/activity_settings.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/dialog_account_created.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/main_nav_drawer.xml" value="0.371875" />
         <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/layout/main_toolbar.xml" value="0.25" />
+        <entry key="..\:/Users/Storm/AndroidStudioProjects/WineCompendium/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1995" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/bg_spinner.xml" value="0.349" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/calendar_icon.xml" value="0.349" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/drawable/card_view_cat_background.xml" value="0.154" />
@@ -73,26 +75,23 @@
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/dialogue_set_wine_description.xml" value="0.5" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_category_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_goal_fragment.xml" value="0.33" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_wines_add_origin_dialogue.xml" value="0.335" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_wines_add_winetype_dialogue.xml" value="0.3625" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_wines_bottletype_dialogue.xml" value="0.25" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_wines_category_dialogue.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_add_wines_subtype_category_dialogue.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_addwines_fragment.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_allwines_fragment.xml" value="0.25" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_analytics_help_fragment.xml" value="0.1911231884057971" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_card_view_cat_winetype.xml" value="0.26927083333333335" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_chart_fragment.xml" value="0.335" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_chart_fragment.xml" value="0.17980072463768115" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_dialog.xml" value="0.24320652173913043" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_favourites_fragment.xml" value="0.165" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_my_categories_fragment.xml" value="0.33" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_progress_fragment.xml" value="0.335" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_progress_fragment.xml" value="0.17980072463768115" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_select_date.xml" value="0.3625" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_set_description_dialogue.xml" value="0.24320652173913043" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_bottletype_category.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_origin_category.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_rating_fragment.xml" value="0.3625" />
-        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_subtype_category.xml" value="0.335" />
+        <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_subtype_category.xml" value="0.33" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_wine_dialogue.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_wines_per_category_dialogue.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/amber/StudioProjects/WineApplication/app/src/main/res/layout/fragment_view_winetype_category_dialogue.xml" value="0.33" />

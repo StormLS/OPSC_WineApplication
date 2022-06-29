@@ -70,7 +70,7 @@
                 android:text="Categories"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:strokeColor="#7CA39D"
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -86,7 +86,7 @@
                 android:text="View Category"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:strokeColor="#7CA39D"
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -102,7 +102,7 @@
                 android:text="Add Goals"
                 android:textAllCaps="false"
                 android:textColor="#C8E5E1"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:strokeColor="#7CA39D"
                 app:strokeWidth="2dp"
                 tools:ignore="TouchTargetSizeCheck" />
